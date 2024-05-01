@@ -46,7 +46,6 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 32.0),
-
                   // Password reset form using email.
                   const PasswordResetForm(),
                   const SizedBox(height: 16.0),
