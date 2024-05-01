@@ -1,11 +1,13 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
     "cSpell.words": [
+        "AARRGGBB",
         "appwrite",
         "Firestore",
         "formz",
         "fpdart",
         "Revy",
+        "RRGGBB",
         "Schyler",
         "supabase",
         "timezonedb",
