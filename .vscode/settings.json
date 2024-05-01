@@ -2,10 +2,12 @@
     "java.compile.nullAnalysis.mode": "automatic",
     "cSpell.words": [
         "formz",
+        "fpdart",
         "Revy",
         "Schyler",
         "supabase",
-        "unfocus"
+        "unfocus",
+        "wakelock"
     ],
     "java.project.sourcePaths": []
 }

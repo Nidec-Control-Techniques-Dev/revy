@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'features/auth/sign_in/application/presentation/screens/forgot_password_screen.dart';
-import 'features/auth/sign_in/application/presentation/screens/sign_in_screen.dart';
+import 'features/auth/application/presentation/screens/forgot_password_screen.dart';
+import 'features/auth/application/presentation/screens/sign_in_screen.dart';
 
 void main() {
   runApp(const RevyApp());
