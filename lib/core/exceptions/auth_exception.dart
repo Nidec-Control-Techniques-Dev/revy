@@ -1,3 +1,6 @@
+import '../base_classes/exception_base.dart';
+import '../constants/enums/auth_sources_enum.dart';
+
 class AuthException extends ExceptionBase {
   const AuthException({
     required super.title,
