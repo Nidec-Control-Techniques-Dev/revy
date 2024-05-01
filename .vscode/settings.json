@@ -1,11 +1,14 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
     "cSpell.words": [
+        "appwrite",
+        "Firestore",
         "formz",
         "fpdart",
         "Revy",
         "Schyler",
         "supabase",
+        "timezonedb",
         "unfocus",
         "wakelock"
     ],
