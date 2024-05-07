@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'features/auth/application/presentation/screens/forgot_password_screen.dart';
 import 'features/auth/application/presentation/screens/sign_in_screen.dart';
-
+import 'features/create_schedule/application/presentation/screens/select_starting_location.dart';
+import 'features/create_schedule/application/presentation/screens/ride_booking/ride_booking_screen.dart';
 void main() {
   runApp(const RevyApp());
 }
@@ -14,7 +15,7 @@ class RevyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Revy - Your Intelligent Sales Assistant',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)
       ),
       home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
@@ -64,9 +65,23 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Reset Password'),
             ),
+
+            FilledButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return const StartLocScreen();
+                    },
+                  ),
+                );
+              },
+              child: const Text('Create Schedule'),
+            ),
           ],
         ),
       ),
     );
   }
 }
+// RideBookingScreen
