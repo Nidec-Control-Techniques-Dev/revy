@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../widgets/client_list.dart';
-import '../widgets/client_page.dart';
 import '../widgets/date_picker.dart';
 import '../widgets/progress_bar.dart';
 
@@ -26,14 +25,14 @@ class ProgressTrackerApp extends StatelessWidget {
                     color: const Color(0xffeeee00), // Yellow
                     height: 396.0,
                     alignment: Alignment.center,
-                    child: ProgressBar(),
+                    child: const ProgressBar(),
                   ),
                   Container(
                     // A fixed-height child.
                     color: const Color(0xffeeee00), // Yellow
                     height: 220.0,
                     alignment: Alignment.center,
-                    child: DatePicker(),
+                    child: const DatePicker(),
                   ),
                   Container(
                     // A fixed-height child.

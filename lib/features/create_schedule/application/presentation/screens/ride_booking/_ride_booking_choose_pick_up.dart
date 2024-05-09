@@ -33,10 +33,10 @@ class _RideBookingChoosePickUpState extends State<_RideBookingChoosePickUp> {
         controller.text =
             '${state.pickUpAddress?.city ?? ''} ${state.pickUpAddress?.street ?? ''}';
         return Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
             color: colorScheme.background,
-            borderRadius: BorderRadius.vertical(
+            borderRadius: const BorderRadius.vertical(
               top: Radius.circular(8.0),
             ),
           ),
@@ -82,7 +82,7 @@ class _RideBookingChoosePickUpState extends State<_RideBookingChoosePickUp> {
                         .read<RideBookingBloc>()
                         .add(ConfirmPickUpAddressEvent());
                   },
-                  child: Text('Confirm pick-up'),
+                  child: const Text('Confirm pick-up'),
                 )
               ],
             ),

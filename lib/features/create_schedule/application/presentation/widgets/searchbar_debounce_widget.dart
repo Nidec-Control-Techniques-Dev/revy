@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class Debouncer {
@@ -16,6 +15,8 @@ class Debouncer {
 }
 
 class DebouncedSearchBar extends StatefulWidget {
+  const DebouncedSearchBar({super.key});
+
   @override
   _DebouncedSearchBarState createState() => _DebouncedSearchBarState();
 }
@@ -33,15 +34,15 @@ class _DebouncedSearchBarState extends State<DebouncedSearchBar> {
         controller: _searchController,
         decoration: InputDecoration(
           hintText: 'Search',
-          prefixIcon: Icon(Icons.search),
+          prefixIcon: const Icon(Icons.search),
           border: InputBorder.none,  // Removes default underline
-          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+          contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.green, width: 2.0),
+            borderSide: const BorderSide(color: Colors.green, width: 2.0),
             borderRadius: BorderRadius.circular(30.0),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.green, width: 2.0),
+            borderSide: const BorderSide(color: Colors.green, width: 2.0),
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),

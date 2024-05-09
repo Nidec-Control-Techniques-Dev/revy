@@ -27,7 +27,7 @@ class SuggestedSchedScreen extends StatelessWidget {
             const SizedBox(
               height: 200.0
             ),
-            Container(
+            SizedBox(
               width: double.infinity,
               child: FloatingActionButton(
                 backgroundColor: Colors.green,

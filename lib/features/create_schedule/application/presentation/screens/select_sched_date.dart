@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'select_client_preferences.dart';
-import '../widgets/date_picker.dart';
+
 import '../widgets/date_picker_v2.dart';
+import 'select_client_preferences.dart';
 // import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
 // "Which date/s do you want to create a schedule?"
 
 class SelectSchedDateScreen extends StatelessWidget {
-  
   const SelectSchedDateScreen({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +25,7 @@ class SelectSchedDateScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-      
+
           // const Expanded(
           //   // Use Expanded to fill the remaining space with the map
           //   child: DatePickerExample(), // Assuming MapSample is the name of your map widget
@@ -37,17 +36,19 @@ class SelectSchedDateScreen extends StatelessWidget {
           // ),
           const Expanded(
             // Use Expanded to fill the remaining space with the map
-            child: DatePickerCupertino(), // Assuming MapSample is the name of your map widget
+            child:
+                DatePickerCupertino(), // Assuming MapSample is the name of your map widget
           ),
-      
-          Container(
+
+          SizedBox(
             width: double.infinity,
             child: FloatingActionButton(
               backgroundColor: Colors.green,
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ClientConfigScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const ClientConfigScreen()),
                 );
               },
               child: const Text('Choose Client Preferences'),

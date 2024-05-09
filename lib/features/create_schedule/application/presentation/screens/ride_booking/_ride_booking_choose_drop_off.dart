@@ -65,7 +65,7 @@ class _RideBookingChooseDropOffState extends State<_RideBookingChooseDropOff> {
                   'Type and pick from the suggestions',
                   style: textTheme.bodyLarge,
                 ),
-                Divider(height: 32.0),
+                const Divider(height: 32.0),
                 Row(
                   children: [
                     Column(
@@ -125,7 +125,7 @@ class _RideBookingChooseDropOffState extends State<_RideBookingChooseDropOff> {
                     ),
                   ],
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 // List of suggestions
                 Expanded(
                   child: ListView.builder(

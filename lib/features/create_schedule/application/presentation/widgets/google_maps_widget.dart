@@ -15,8 +15,8 @@ class MapSampleState extends State<MapSample> {
   double lat = 0.0;
   double long=0.0;
 
-  CameraPosition _kGooglePlex = CameraPosition(
-    target: const LatLng(14.866056, 120.859948),
+  final CameraPosition _kGooglePlex = const CameraPosition(
+    target: LatLng(14.866056, 120.859948),
     zoom: 14.4746,
   );
 

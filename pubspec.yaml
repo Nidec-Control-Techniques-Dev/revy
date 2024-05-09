@@ -121,7 +121,6 @@ dependencies:
   upgrader: ^10.3.0
   permission_handler: ^11.3.1
   logger: ^2.2.0
-  google_maps_flutter: ^2.6.1
   fl_chart: ^0.67.0
   syncfusion_flutter_charts: ^25.1.42+1
   calendar_view: ^1.1.0

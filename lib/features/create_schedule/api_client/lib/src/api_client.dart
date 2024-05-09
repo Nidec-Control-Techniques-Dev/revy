@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:revy/features/create_schedule/api_client/lib/src/resources/resources.dart';
+import 'resources/resources.dart';
 import 'package:http/http.dart' as http;
 
 class ApiClient {

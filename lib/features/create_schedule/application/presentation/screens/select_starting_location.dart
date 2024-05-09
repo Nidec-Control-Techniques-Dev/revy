@@ -28,7 +28,7 @@ class StartLocScreen extends StatelessWidget {
             const SizedBox(
               height: 10.0
             ),
-            DebouncedSearchBar(),
+            const DebouncedSearchBar(),
             const SizedBox(
               height: 10.0
             ),
@@ -48,7 +48,7 @@ class StartLocScreen extends StatelessWidget {
             // const SizedBox(
             //   height: 20.0
             // ),
-            Container(
+            SizedBox(
               width: double.infinity,
               child: FloatingActionButton(
                 backgroundColor: Colors.green,

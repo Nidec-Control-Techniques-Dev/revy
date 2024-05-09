@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'view_suggested_schedule.dart';
+
 import '../widgets/multiselect_widget.dart';
+import 'view_suggested_schedule.dart';
 
 class ClientConfigScreen extends StatelessWidget {
-  
   const ClientConfigScreen({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,18 +27,20 @@ class ClientConfigScreen extends StatelessWidget {
               child: SizedBox(
                 child: Expanded(
                   // Use Expanded to fill the remaining space with the map
-                  child: MultiSelectWidget(), // Assuming MapSample is the name of your map widget
+                  child:
+                      MultiSelectWidget(), // Assuming MapSample is the name of your map widget
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: double.infinity,
               child: FloatingActionButton(
                 backgroundColor: Colors.green,
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SuggestedSchedScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const SuggestedSchedScreen()),
                   );
                 },
                 child: const Text('Generate Schedule'),

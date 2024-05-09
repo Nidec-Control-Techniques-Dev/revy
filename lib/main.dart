@@ -16,9 +16,8 @@ class RevyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Revy - Your Intelligent Sales Assistant',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)
-      ),
+      theme:
+          ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
       home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
     );

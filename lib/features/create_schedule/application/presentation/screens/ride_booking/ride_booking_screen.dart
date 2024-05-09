@@ -46,7 +46,7 @@ class RideBookingView extends StatelessWidget {
             return Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                _RideBookingMap(target: const LatLng(25.24, 55.28)),
+                const _RideBookingMap(target: LatLng(25.24, 55.28)),
                 (state.pickUpAddressConfirmed)
                     ? const SizedBox()
                     : const _RideBookingChoosePickUp(),

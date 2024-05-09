@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
-import '../widgets/date_picker.dart'; 
 import 'package:google_fonts/google_fonts.dart';
 
 class ProgressBar extends StatelessWidget {
+  const ProgressBar({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class ProgressBar extends StatelessWidget {
               ),
               circularStrokeCap: CircularStrokeCap.square,
               progressColor: Colors.greenAccent,
-              backgroundColor: Color.fromARGB(255, 92, 91, 91),
+              backgroundColor: const Color.fromARGB(255, 92, 91, 91),
 
             ),
             const SizedBox(height: 20, ),
