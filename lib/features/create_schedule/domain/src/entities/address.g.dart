@@ -41,3 +41,4 @@
 //   Json? Function(Value value) toJson,
 // ) =>
 //     value == null ? null : toJson(value);
+
