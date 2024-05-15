@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'env/env.dart';
-import 'features/auth/application/presentation/screens/forgot_password_screen.dart';
-import 'features/auth/application/presentation/screens/sign_in_screen.dart';
 import 'features/create_schedule/application/presentation/screens/select_starting_location.dart';
 import 'features/progress_tracker/application/presentations/screens/progress_tracker_screen.dart';
 // import 'features/create_schedule/application/presentation/screens/ride_booking/ride_booking_screen.dart';
@@ -53,7 +51,8 @@ class HomeScreen extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {
-                      return const SignInScreen();
+                      // return const SignInScreen();
+                      return const Center(child: Text('Sign In'));
                     },
                   ),
                 );
@@ -67,7 +66,8 @@ class HomeScreen extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {
-                      return const ForgotPasswordScreen();
+                      // return const ForgotPasswordScreen();
+                      return const Center(child: Text('Reset Password'));
                     },
                   ),
                 );
