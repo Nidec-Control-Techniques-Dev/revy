@@ -40,6 +40,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   http: ^1.2.1
   flutter_dotenv: ^5.1.0
+
   # rxdart: any
   # flutter_google_places: ^0
   # The following adds the Cupertino Icons font to your application.
@@ -57,11 +58,11 @@ dependencies:
 
   # This package helps in creation of forms in Flutter by removing the boilerplate code,
   # reusing validation, react to changes, and collect final user input.
-  flutter_form_builder: ^9.2.1
+  # flutter_form_builder: ^9.2.1
 
   # Form Builder Validators set of validators for FlutterFormBuilder.
   # Provides common validators and a way to make your own.
-  form_builder_validators: ^9.1.0
+  # form_builder_validators: ^9.1.0
 
   # TODO: [p3] Experiment: Try out the formz package for form validation.
   # A unified form representation in Dart which aims to simplify
@@ -74,7 +75,7 @@ dependencies:
 
   # An extension to the bloc state management library which
   # automatically persists and restores bloc states.
-  hydrated_bloc: ^9.1.5
+  # hydrated_bloc: ^9.1.5
 
   # Custom event transformers inspired by ember concurrency.
   # Built to be used with the bloc state management package.
@@ -90,7 +91,7 @@ dependencies:
 
   # Contains code to deal with internationalized/localized messages, date and number formatting
   # and parsing, bi-directional text, and other internationalization issues.
-  intl: ^0.18.1
+  intl: ^0.19.0
 
   # Flutter plugin for getting commonly used locations on host platform file systems,
   # such as the temp and app data directories.
@@ -102,17 +103,17 @@ dependencies:
 
   # Flutter plugin for discovering the state of the network
   # (WiFi & mobile/cellular) connectivity on Android and iOS.
-  connectivity_plus: ^6.0.3
+  # connectivity_plus: ^6.0.3
   google_fonts: ^6.2.1
 
   # A cross platform plugin for displaying and scheduling local notifications for Flutter
   # applications with the ability to customise for each platform.
-  # flutter_local_notifications: ^17.1.0
+  flutter_local_notifications: ^17.1.0
 
   # Simple direct Service Locator that allows to decouple the interface from a concrete
   # implementation and to access the concrete implementation from everywhere in your App"
   get_it: ^7.7.0
-  package_info_plus: ^7.0.0
+  package_info_plus: ^8.0.0
   device_info_plus: ^10.1.0
   wakelock_plus: ^1.2.4
   flutter_launcher_icons: ^0.13.1
@@ -122,11 +123,11 @@ dependencies:
   upgrader: ^10.3.0
   permission_handler: ^11.3.1
   logger: ^2.2.0
-  fl_chart: ^0.67.0
+  fl_chart: ^0.68.0
   syncfusion_flutter_charts: ^25.1.42+1
   calendar_view: ^1.1.0
   flutter_spinkit: ^5.2.1
-  awesome_snackbar_content: ^0.1.3
+  # awesome_snackbar_content: ^0.1.3
   cached_network_image: ^3.3.1
   animations: ^2.0.11
   envied: ^0.5.4+1
@@ -140,7 +141,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
   # A testing library which makes it easy to test blocs.
   # Built to be used with the bloc state management package.
