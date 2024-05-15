@@ -46,3 +46,9 @@ app.*.map.json
 # Environment variables
 .env
 env.g.dart
+
+# Raw data
+*.csv
+
+# Python environments
+.venv*/

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import 'env/env.dart';
 import 'features/auth/application/presentation/screens/forgot_password_screen.dart';
 import 'features/auth/application/presentation/screens/sign_in_screen.dart';
 import 'features/create_schedule/application/presentation/screens/search_bar_screen.dart';
 import 'features/progress_tracker/application/presentations/screens/progress_tracker_screen.dart';
 // import 'features/create_schedule/application/presentation/screens/ride_booking/ride_booking_screen.dart';
 
-// TODO: Demonstrate Schedule Creation
-// TODO: implement stepper widget for create schedule
-// TODO: implement BLOC for create schedule
-// 
-void main() {
+Future<void> main() async {
+  await Supabase.initialize(
+    url: Env.publicSupabaseUrl,
+    anonKey: Env.publicSupabaseUrl,
+  );
   runApp(const RevyApp());
 }
 
