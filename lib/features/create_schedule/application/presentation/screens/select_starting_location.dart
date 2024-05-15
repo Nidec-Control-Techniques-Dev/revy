@@ -10,7 +10,7 @@ class StartLocScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Create Schedule"),
       ),
@@ -20,7 +20,7 @@ class StartLocScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                "Where will you be coming from?",
+                "Area of Chosen Address",
                 style: TextStyle(fontSize: 22),
                 textAlign: TextAlign.center,
               ),
@@ -28,7 +28,7 @@ class StartLocScreen extends StatelessWidget {
             const SizedBox(
               height: 10.0
             ),
-            const DebouncedSearchBar(),
+            // const DebouncedSearchBar(),
             const SizedBox(
               height: 10.0
             ),
@@ -36,18 +36,6 @@ class StartLocScreen extends StatelessWidget {
               // Use Expanded to fill the remaining space with the map
               child: MapSample(), // Assuming MapSample is the name of your map widget
             ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => const SelectSchedDateScreen()),
-            //     );
-            //   },
-            //   child: const Text('Choose Schedule dates'),
-            // ),
-            // const SizedBox(
-            //   height: 20.0
-            // ),
             SizedBox(
               width: double.infinity,
               child: FloatingActionButton(
