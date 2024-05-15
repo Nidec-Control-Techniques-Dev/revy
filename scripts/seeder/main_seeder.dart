@@ -44,22 +44,74 @@ Future<void> main() async {
   }
 
   // Traverse the data (list of client companies).
-  for (int i = 0; i < data.length; i++) {
+  final countryIndex = columnNameToCompanyClientRowIndex('Country');
+  final stateIndex = columnNameToCompanyClientRowIndex('State');
+
+  for (int i = 0; i < 3; i++) {
     List<Object?> companyClient = data[i];
+    print('[ ${i + 1} ]');
 
     // * Country.
-    print('[ UPLOADING COUNTRY... ]\n');
-    final countryIndex = columnNameToCompanyClientRowIndex('Country');
+    print('[ UPLOADING COUNTRY... ]');
     String countryName = companyClient[countryIndex] as String;
+
+    if (await doesCountryExist(countryName)) {
+      print('Country already exists.\n');
+    } else {
+      // Upload the country.
+      await uploadCountry(countryName);
+    }
+
+    // * State.
+    print('[ UPLOADING STATE... ]');
+    String stateName = companyClient[stateIndex] as String;
+
+    if (await doesStateExist(stateName)) {
+      print('State already exists.\n');
+    } else {
+      // Upload the state.
+    }
   }
 
-  print(await doesCountryExist('Philippines'));
+  print('Upload Marxity');
+  await uploadState('Marxity');
 
   print('[ END OF SCRIPT ]\n');
   stopwatch.stop();
   print('Execution time: ${stopwatch.elapsed}\n');
 
   exit(0);
+}
+
+Future<void> uploadState(String stateName) async {
+  await supabase.from('states').insert({
+    'name': stateName,
+    'added_at': DateTime.now().toIso8601String(),
+    'added_by_ref': authResponse.user?.id,
+    'updated_at': DateTime.now().toIso8601String(),
+    'updated_by_ref': authResponse.user?.id,
+  });
+}
+
+Future<bool> doesStateExist(String stateName) async {
+  final List<Map<String, dynamic>> response =
+      await supabase.from('states').select('name').eq('name', stateName);
+
+  return response.isNotEmpty;
+}
+
+Future<void> uploadCountry(String countryName) async {
+  final List<Map<String, dynamic>> response =
+      await supabase.from('countries').insert({
+    'name': countryName,
+    'un_code': getCountryUNCode(countryName),
+    'added_at': DateTime.now().toIso8601String(),
+    'added_by_ref': authResponse.user?.id,
+    'updated_at': DateTime.now().toIso8601String(),
+    'updated_by_ref': authResponse.user?.id,
+  }).select();
+
+  print(response);
 }
 
 Future<bool> doesCountryExist(String countryName) async {
@@ -125,6 +177,8 @@ String getCountryUNCode(String countryName) {
       return 'PH';
     case 'Vietnam':
       return 'VN';
+    case 'Utopia':
+      return 'UT';
     default:
       throw Exception('Country not found.');
   }

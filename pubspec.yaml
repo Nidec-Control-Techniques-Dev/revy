@@ -107,7 +107,7 @@ dependencies:
 
   # A cross platform plugin for displaying and scheduling local notifications for Flutter
   # applications with the ability to customise for each platform.
-  flutter_local_notifications: ^17.1.0
+  # flutter_local_notifications: ^17.1.0
 
   # Simple direct Service Locator that allows to decouple the interface from a concrete
   # implementation and to access the concrete implementation from everywhere in your App"
@@ -147,6 +147,7 @@ dev_dependencies:
   bloc_test: ^9.1.7
   build_runner: ^2.4.9
   envied_generator: ^0.5.4+1
+  supabase: ^2.1.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
