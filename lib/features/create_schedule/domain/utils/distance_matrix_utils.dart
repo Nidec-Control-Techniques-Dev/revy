@@ -1,5 +1,4 @@
 import 'dart:convert';
-import '../../data/test_data/hardcoded_locations.dart';
 
 class DistanceMatrix {
  // Method to parse the JSON response and extract the main texts
@@ -40,7 +39,7 @@ class DistanceMatrix {
 void print2DArray(List<List<int>> array) {
   for (var row in array) {
     for (var value in row) {
-      print(value.toString() + ' ');
+      print('$value ');
     }
     print(''); // This prints a new line after each row
   }

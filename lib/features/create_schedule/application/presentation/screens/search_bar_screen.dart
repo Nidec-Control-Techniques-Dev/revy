@@ -14,14 +14,14 @@ class SearchBarScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          SingleChildScrollView(
+          const SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 60.0), // Add padding to avoid overlap
+              padding: EdgeInsets.only(bottom: 60.0), // Add padding to avoid overlap
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // Text widget
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
                       "Where will you be coming from? Search your address",
@@ -30,9 +30,9 @@ class SearchBarScreen extends StatelessWidget {
                     ),
                   ),
                   // Search Bar widget with Places API
-                  Container(
+                  SizedBox(
                     height: 500,
-                    child: const PlacesSearchBar(),
+                    child: PlacesSearchBar(),
                   ),
                 ],
               ),
