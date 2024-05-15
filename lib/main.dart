@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'env/env.dart';
-import 'features/create_schedule/application/presentation/screens/select_starting_location.dart';
+import 'features/create_schedule/application/presentation/screens/search_bar_screen.dart';
 import 'features/progress_tracker/application/presentations/screens/progress_tracker_screen.dart';
 // import 'features/create_schedule/application/presentation/screens/ride_booking/ride_booking_screen.dart';
 
@@ -11,7 +11,6 @@ Future<void> main() async {
     url: Env.publicSupabaseUrl,
     anonKey: Env.publicSupabaseUrl,
   );
-
   runApp(const RevyApp());
 }
 
@@ -45,6 +44,11 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            // Nidec Logo
+            Center(
+              child: Image.asset('assets/images/Nidec-logo_primary_RGB.png'),
+            ),
+            const SizedBox(height: 20), //
             // Button for the Sign-In screen.
             FilledButton(
               onPressed: () {
@@ -59,7 +63,6 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Sign In'),
             ),
-
             // Button for the Reset Password screen.
             FilledButton(
               onPressed: () {
@@ -74,19 +77,20 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Reset Password'),
             ),
-
+            // Button for Create Schedule rerouting
             FilledButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {
-                      return const StartLocScreen();
+                      return const SearchBarScreen();
                     },
                   ),
                 );
               },
               child: const Text('Create Schedule'),
             ),
+            // Button for Create Schedule rerouting
             FilledButton(
               onPressed: () {
                 Navigator.of(context).push(
@@ -105,4 +109,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-// RideBookingScreen
