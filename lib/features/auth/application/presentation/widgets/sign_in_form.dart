@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
+// import 'package:form_builder_validators/form_builder_validators.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -32,12 +32,12 @@ class _SignInFormState extends State<SignInForm> {
               hintText: 'Enter your email',
               border: OutlineInputBorder(),
             ),
-            validator: FormBuilderValidators.compose(
-              [
-                FormBuilderValidators.required(),
-                FormBuilderValidators.email(),
-              ],
-            ),
+            // validator: FormBuilderValidators.compose(
+            //   [
+            //     FormBuilderValidators.required(),
+            //     FormBuilderValidators.email(),
+            //   ],
+            // ),
           ),
           const SizedBox(height: 32.0),
 
@@ -65,12 +65,12 @@ class _SignInFormState extends State<SignInForm> {
                     : null,
               ),
             ),
-            validator: FormBuilderValidators.compose(
-              [
-                FormBuilderValidators.required(),
-                FormBuilderValidators.minLength(8),
-              ],
-            ),
+            // validator: FormBuilderValidators.compose(
+            //   [
+            //     FormBuilderValidators.required(),
+            //     FormBuilderValidators.minLength(8),
+            //   ],
+            // ),
           ),
 
           // Forgot password?
