@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'select_starting_location.dart';
 import '../widgets/search_bar.dart';
-import 'package:easy_stepper/easy_stepper.dart';
 
 class SearchBarScreen extends StatelessWidget {
   const SearchBarScreen({super.key});
@@ -17,7 +16,8 @@ class SearchBarScreen extends StatelessWidget {
         children: [
           const SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.only(bottom: 60.0), // Add padding to avoid overlap
+              padding:
+                  EdgeInsets.only(bottom: 60.0), // Add padding to avoid overlap
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -43,7 +43,8 @@ class SearchBarScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.all(10.0), // Padding for aesthetic spacing
+              padding:
+                  const EdgeInsets.all(10.0), // Padding for aesthetic spacing
               child: Row(
                 children: [
                   Expanded(
@@ -51,7 +52,8 @@ class SearchBarScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const StartLocScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => const StartLocScreen()),
                         );
                       },
                       label: const Text('Select Starting Location'),

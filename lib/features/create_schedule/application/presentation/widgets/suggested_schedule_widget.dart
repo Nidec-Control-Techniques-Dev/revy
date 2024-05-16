@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../../main.dart';
 import '../widgets/accordion_widget.dart';
 
 class SuggestedSchedWidget extends StatelessWidget {
@@ -7,10 +6,10 @@ class SuggestedSchedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Column(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
               "Here’s your suggested schedule",
@@ -18,8 +17,8 @@ class SuggestedSchedWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          const AccordionPage(),
-          const SizedBox(
+          AccordionPage(),
+          SizedBox(
             height: 200.0,
           ),
         ],
