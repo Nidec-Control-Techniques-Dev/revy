@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'select_starting_location.dart';
 import '../widgets/search_bar.dart';
+import 'package:easy_stepper/easy_stepper.dart';
 
 class SearchBarScreen extends StatelessWidget {
   const SearchBarScreen({super.key});
