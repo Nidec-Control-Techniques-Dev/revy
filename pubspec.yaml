@@ -131,6 +131,7 @@ dependencies:
   cached_network_image: ^3.3.1
   animations: ^2.0.11
   envied: ^0.5.4+1
+  rive: ^0.13.4
 
 dev_dependencies:
   flutter_test:
@@ -162,9 +163,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/avatars/
+    - assets/backgrounds/
+    - assets/fonts/
+    - assets/icons/
     - assets/illustrations/
-    - assets/images/NidecDrives-logo_primary_RGB.png
-    - assets/images/Nidec-logo_primary_RGB.png
+    - assets/images/
+    - assets/logos/
+    - assets/rive_assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

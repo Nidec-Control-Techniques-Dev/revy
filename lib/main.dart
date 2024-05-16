@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:revy/features/auth/application/presentation/screens/auth_screen.dart';
+import 'package:revy/features/dashboard/application/presentation/screens/home_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'env/env.dart';
@@ -21,13 +23,36 @@ class RevyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Revy - Your Intelligent Sales Assistant',
-      theme:
-          ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFEEF1F8),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        fontFamily: "Intel",
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.white),
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          errorStyle: TextStyle(height: 0),
+          border: defaultInputBorder,
+          enabledBorder: defaultInputBorder,
+          focusedBorder: defaultInputBorder,
+          errorBorder: defaultInputBorder,
+        ),
+      ),
       home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
+
+const defaultInputBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.all(Radius.circular(16)),
+  borderSide: BorderSide(
+    color: Color(0xFFDEE3F2),
+    width: 1,
+  ),
+);
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -48,7 +73,8 @@ class HomeScreen extends StatelessWidget {
             Center(
               child: Image.asset('assets/images/Nidec-logo_primary_RGB.png'),
             ),
-            const SizedBox(height: 20), //
+            const SizedBox(height: 20),
+
             // Button for the Sign-In screen.
             FilledButton(
               onPressed: () {
@@ -63,6 +89,35 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Sign In'),
             ),
+
+            // Button for the Sign-in screen v2.
+            FilledButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return const AuthScreen();
+                    },
+                  ),
+                );
+              },
+              child: const Text('Sign In (v2)'),
+            ),
+
+            // Button for the Dashboard screen.
+            FilledButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return const HomePage();
+                    },
+                  ),
+                );
+              },
+              child: const Text('Dashboard (Beta)'),
+            ),
+
             // Button for the Reset Password screen.
             FilledButton(
               onPressed: () {
@@ -77,6 +132,7 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Reset Password'),
             ),
+
             // Button for Create Schedule rerouting
             FilledButton(
               onPressed: () {
@@ -90,6 +146,7 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Create Schedule'),
             ),
+
             // Button for Create Schedule rerouting
             FilledButton(
               onPressed: () {

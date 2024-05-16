@@ -3,6 +3,7 @@
     "cSpell.words": [
         "AARRGGBB",
         "appwrite",
+        "dotenv",
         "Firestore",
         "fkey",
         "formz",
