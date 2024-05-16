@@ -26,7 +26,7 @@ class _SearchBarState extends State<PlacesSearchBar> {
           child: TextField(
             controller: _searchController,
             decoration: InputDecoration(
-              hintText: 'Search',
+              hintText: 'Search your address',
               prefixIcon: const Icon(Icons.search),
               border: InputBorder.none,
               contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
