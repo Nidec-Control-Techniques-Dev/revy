@@ -13,7 +13,16 @@ import 'features/progress_tracker/application/presentations/screens/progress_tra
 Future<void> main() async {
   await Supabase.initialize(
     url: Env.publicSupabaseUrl,
-    anonKey: Env.publicSupabaseUrl,
+    anonKey: Env.publicSupabaseAnonKey,
+    authOptions: const FlutterAuthClientOptions(
+      authFlowType: AuthFlowType.pkce,
+    ),
+    realtimeClientOptions: const RealtimeClientOptions(
+      logLevel: RealtimeLogLevel.info,
+    ),
+    storageOptions: const StorageClientOptions(
+      retryAttempts: 10,
+    ),
   );
   runApp(const RevyApp());
 }

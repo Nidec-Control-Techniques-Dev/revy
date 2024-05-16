@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:form_builder_validators/form_builder_validators.dart';
 
 class SignInForm extends StatefulWidget {
@@ -86,7 +87,64 @@ class _SignInFormState extends State<SignInForm> {
           // Log in button.
           FilledButton(
             onPressed: () async {
-              if (_formKey.currentState?.saveAndValidate() ?? false) {}
+              if (_formKey.currentState?.saveAndValidate() ?? false) {
+                print(_formKey.currentState?.value['email']);
+                print(_formKey.currentState?.value['password']);
+
+                try {
+                  final supabase = Supabase.instance.client;
+                  final AuthResponse res =
+                      await supabase.auth.signInWithPassword(
+                    email: _formKey.currentState?.value['email'],
+                    password: _formKey.currentState?.value['password'],
+                  );
+                  final Session? session = res.session;
+                  final User? user = res.user;
+
+                  // Show a dialog if the login was successful, if not, show the error message.
+                  if (session != null && user != null) {
+                    showDialog<void>(
+                      // ignore: use_build_context_synchronously
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Success'),
+                          content:
+                              const Text('You have successfully logged in.'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                } catch (e) {
+                  // Show a dialog if the login was unsuccessful.
+                  showDialog<void>(
+                    // ignore: use_build_context_synchronously
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Error'),
+                        content: Text('An error occurred: $e'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+              }
             },
             child: const Text('Log in'),
           ),

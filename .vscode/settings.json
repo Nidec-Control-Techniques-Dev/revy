@@ -11,6 +11,7 @@
         "geolocator",
         "Masterfile",
         "Nidec",
+        "pkce",
         "pkey",
         "Revy",
         "RRGGBB",
