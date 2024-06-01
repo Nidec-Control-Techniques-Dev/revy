@@ -72,6 +72,7 @@ dependencies:
   # Flutter Widgets that make it easy to implement the BLoC (Business Logic Component)
   # design pattern. Built to be used with the bloc state management package.
   flutter_bloc: ^8.1.5
+  bloc: ^8.1.4
 
   # An extension to the bloc state management library which
   # automatically persists and restores bloc states.
@@ -170,7 +171,6 @@ flutter:
     - assets/icons/
     - assets/illustrations/
     - assets/images/
-    - assets/logos/
     - assets/rive_assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
