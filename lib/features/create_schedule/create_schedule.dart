@@ -7,16 +7,16 @@ import 'application/presentation/widgets/select_sched_dates_widget.dart';
 
 /// Flutter code sample for [Stepper].
 
-void main() => runApp(const StepperExampleApp());
+// void main() => runApp(const StepperExampleApp());
 
-class StepperExampleApp extends StatelessWidget {
-  const StepperExampleApp({super.key});
+class CreateScheduleScreen extends StatelessWidget {
+  const CreateScheduleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Stepper Sample')),
+        appBar: AppBar(title: const Text('Create Schedule')),
         body: const Center(
           child: StepperExample(),
         ),
