@@ -64,6 +64,60 @@ class DataBloc extends Bloc<DataEvent, DataState> {
       print('Error fetching data: $e');
     }
   }
+
+  //   Future<void> generateSchedule(DataEvent event, Emitter<DataState> emit) async {
+  //   try {
+  //     final supabase = Supabase.instance.client;
+  //     await supabase.auth.signInWithPassword(
+  //       email: 'nidec.ct.dev@gmail.com',
+  //       password: 'Qwerty1234',
+  //     );
+  //     emit(SupabaseInitialized());
+  //     print('Supabase initialized successfully.');
+  //   } catch (e) {
+  //     emit(DataError(e.toString()));
+  //     print('Error initializing Supabase: $e');
+  //     return;
+  //   }
+
+  //   // final List<String> companyRefs = [
+  //   //   'uuid1',
+  //   //   'uuid2',
+  //   //   'uuid3',
+  //   //   // Add more UUIDs as needed
+  //   // ];
+  //   // final orCondition = companyRefs.map((uuid) => 'company_ref.eq.$uuid').join(',');
+
+  //   try {
+  //     print('Fetching states...');
+  //   final businessModelCategoryFiltered = await Supabase.instance.client
+  //       .from('company_clients')
+  //       .select('company_ref')
+  //       .contains('business_model_refs', [])
+  //       ;
+
+  //   final addressesResponse = await Supabase.instance.client
+  //       .from('company_addresses')
+  //       .select('company_ref, full_text')
+  //       .eq('country_ref', '3a55c85a-182a-4d80-854f-a9409631df6b')
+  //       .or(orCondition);
+
+
+  //     final addresses = (addressesResponse as List)
+  //         .map((item) => ValueItem(label: item['full_text'] as String, value: item['full_text'] as String))
+  //         .toList();
+  //     final addresses = (addressesResponse as List)
+  //         .map((item) => ValueItem(label: item['full_text'] as String, value: item['full_text'] as String))
+  //         .toList();
+
+  //     emit(AddressLoaded(
+  //       availableAddresses: addresses,
+  //     ));
+  //   } catch (e) {
+  //     emit(DataError(e.toString()));
+  //     print('Error fetching data: $e');
+  //   }
+  // }
 }
 
 

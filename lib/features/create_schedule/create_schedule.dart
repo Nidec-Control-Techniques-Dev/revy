@@ -61,7 +61,13 @@ class _StepperState extends State<CreateScheduleStepper> {
         }
       },
       onStepContinue: () {
-        if (_index >= 0 && _index < 3) {
+        if (_index >= 0 && _index < 2) {
+          setState(() {
+            _index += 1;
+          });
+        }
+        else if (_index==2){
+          
           setState(() {
             _index += 1;
           });

@@ -32,6 +32,12 @@ class DataLoaded extends DataState {
   }
 }
 
+class AddressLoaded extends DataState {
+  final List<ValueItem> availableAddresses;
+
+  const AddressLoaded({required this.availableAddresses});
+}
+
 class DataError extends DataState {
   final String message;
 
