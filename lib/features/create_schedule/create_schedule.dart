@@ -54,7 +54,7 @@ class _StepperState extends State<CreateScheduleStepper> {
       type: StepperType.horizontal,
       currentStep: _index,
       onStepCancel: () {
-        if (_index > 0) {
+        if (_index > 0 && _index < 3) {
           setState(() {
             _index -= 1;
           });

@@ -47,8 +47,8 @@ final class DateStageStarted extends CreateScheduleEvent {
   );
 }
 
-final class CliengConfigStageStarted extends CreateScheduleEvent {
-  CliengConfigStageStarted(
+final class ClientConfigStageStarted extends CreateScheduleEvent {
+  ClientConfigStageStarted(
     {
       super.startLocation,
       super.startDate,
@@ -60,4 +60,15 @@ final class CliengConfigStageStarted extends CreateScheduleEvent {
   );
 }
 
-final class ResultStageStarted extends CreateScheduleEvent {}
+final class ResultStageStarted extends CreateScheduleEvent {
+  ResultStageStarted(
+    {
+      super.startLocation,
+      super.startDate,
+      super.endDate,
+      super.chosenStates,
+      super.chosenBusinessModels,
+      super.chosenCategories,
+    }
+  );
+}
