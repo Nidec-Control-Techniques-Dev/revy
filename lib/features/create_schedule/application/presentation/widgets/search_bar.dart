@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import '../../../data/datasources/remote/place_api_data_source.dart'; // Adjust the import path as necessary
-import '../../../domain/utils/place_suggestions.dart'; // Adjust the import path as necessary
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../data/datasources/remote/place_api_data_source.dart';
+import '../../../domain/utils/place_suggestions.dart';
+import '../../../bloc/create_schedule_bloc.dart';
 
 class PlacesSearchBar extends StatefulWidget {
   const PlacesSearchBar({super.key});
@@ -55,6 +57,7 @@ class _SearchBarState extends State<PlacesSearchBar> {
                 onChanged: (value) {
                   setState(() {
                     _selectedResult = value;
+                    context.read<CreateScheduleBloc>().add(LocationStageStarted(startLocation:value!));
                   });
                 },
               );

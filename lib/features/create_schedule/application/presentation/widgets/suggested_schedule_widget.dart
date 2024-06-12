@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/accordion_widget.dart';
+import 'accordion_widget.dart';
 
 class SuggestedSchedWidget extends StatelessWidget {
   const SuggestedSchedWidget({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/multiselect_widget.dart';
+import 'multiselect_widget.dart';
 
 class ClientConfigWidget extends StatelessWidget {
   const ClientConfigWidget({super.key});
