@@ -38,15 +38,15 @@ class DataBloc extends Bloc<DataEvent, DataState> {
       final statesResponse = await Supabase.instance.client
           .from('states')
           .select('name')
-          .eq('country_ref', '3a55c85a-182a-4d80-854f-a9409631df6b').limit(5);
+          .eq('country_ref', '3a55c85a-182a-4d80-854f-a9409631df6b');
 
       final businessModelsResponse = await Supabase.instance.client
           .from('business_models')
-          .select('name').limit(5);
+          .select('name');
 
       final categoriesResponse = await Supabase.instance.client
-          .from('companies')
-          .select('name').limit(5);
+          .from('categories')
+          .select('name');
 
       final statesOptions = (statesResponse as List)
           .map((item) => item['name'] as String)
