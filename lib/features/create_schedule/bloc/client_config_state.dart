@@ -1,34 +1,33 @@
 part of 'client_config_bloc.dart';
 
-sealed class DataState  {
+sealed class DataState {
   const DataState();
-
 }
 
 class DataInitial extends DataState {}
 
 class DataLoading extends DataState {}
 
-
 class DataLoaded extends DataState {
+  final List<ValueItem> statesOptions;
+  final List<ValueItem> businessModelsOptions;
+  final List<ValueItem> categoriesOptions;
 
-  final List<String> statesOptions;
-  final List<String> businessModelsOptions;
-  final List<String> categoriesOptions;
+  const DataLoaded({
+    required this.statesOptions,
+    required this.businessModelsOptions,
+    required this.categoriesOptions,
+  });
 
-  const DataLoaded({required this.statesOptions, required this.businessModelsOptions, required this.categoriesOptions});
-
-  DataLoaded copyWith(
-    {
-      final List<String>? statesOptions,
-      final List<String>? businessModelsOptions,
-      final List<String>? categoriesOptions
-    }
-  ){
+  DataLoaded copyWith({
+    List<ValueItem>? statesOptions,
+    List<ValueItem>? businessModelsOptions,
+    List<ValueItem>? categoriesOptions,
+  }) {
     return DataLoaded(
       statesOptions: statesOptions ?? this.statesOptions,
       businessModelsOptions: businessModelsOptions ?? this.businessModelsOptions,
-      categoriesOptions: categoriesOptions ?? this.categoriesOptions
+      categoriesOptions: categoriesOptions ?? this.categoriesOptions,
     );
   }
 }
@@ -40,6 +39,50 @@ class DataError extends DataState {
 }
 
 class SupabaseInitialized extends DataState {}
+
+
+// part of 'client_config_bloc.dart';
+
+// sealed class DataState  {
+//   const DataState();
+
+// }
+
+// class DataInitial extends DataState {}
+
+// class DataLoading extends DataState {}
+
+
+// class DataLoaded extends DataState {
+
+//   final List<String> statesOptions;
+//   final List<String> businessModelsOptions;
+//   final List<String> categoriesOptions;
+
+//   const DataLoaded({required this.statesOptions, required this.businessModelsOptions, required this.categoriesOptions});
+
+//   DataLoaded copyWith(
+//     {
+//       final List<String>? statesOptions,
+//       final List<String>? businessModelsOptions,
+//       final List<String>? categoriesOptions
+//     }
+//   ){
+//     return DataLoaded(
+//       statesOptions: statesOptions ?? this.statesOptions,
+//       businessModelsOptions: businessModelsOptions ?? this.businessModelsOptions,
+//       categoriesOptions: categoriesOptions ?? this.categoriesOptions
+//     );
+//   }
+// }
+
+// class DataError extends DataState {
+//   final String message;
+
+//   DataError(this.message);
+// }
+
+// class SupabaseInitialized extends DataState {}
 
 
 // abstract class DataState {}
