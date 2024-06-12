@@ -6,6 +6,8 @@ import 'application/presentation/widgets/suggested_schedule_widget.dart';
 import 'application/presentation/widgets/select_sched_dates_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/create_schedule_bloc.dart';
+import 'bloc/client_config_bloc.dart';
+
 /// Flutter code sample for [Stepper].
 
 // void main() => runApp(const StepperExampleApp());
@@ -13,29 +15,23 @@ import 'bloc/create_schedule_bloc.dart';
 class CreateScheduleScreen extends StatelessWidget {
   const CreateScheduleScreen({super.key});
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     home: Scaffold(
-  //       appBar: AppBar(title: const Text('Create Schedule')),
-  //       body: const Center(
-  //         child: CreateScheduleStepper(),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CreateScheduleBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CreateScheduleBloc>(
+          create: (context) => CreateScheduleBloc(),
+        ),
+        BlocProvider<DataBloc>(
+          create: (context) => DataBloc()..add(InitializeSupabase()),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(title: const Text('Create Schedule')),
         body: const CreateScheduleStepper(),
       ),
     );
   }
-
 }
 
 class CreateScheduleStepper extends StatefulWidget {
