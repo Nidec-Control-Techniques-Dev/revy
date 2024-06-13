@@ -6,11 +6,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'env/env.dart';
 import 'features/auth/application/presentation/screens/forgot_password_screen.dart';
 import 'features/auth/application/presentation/screens/sign_in_screen.dart';
-import 'features/create_schedule/application/presentation/screens/search_bar_screen.dart';
+import 'features/create_schedule/create_schedule.dart';
 import 'features/progress_tracker/application/presentations/screens/progress_tracker_screen.dart';
+import 'bloc/main_bloc_observer.dart';
+import 'package:bloc/bloc.dart';
 // import 'features/create_schedule/application/presentation/screens/ride_booking/ride_booking_screen.dart';
 
 Future<void> main() async {
+  Bloc.observer = MainBlocObserver();
   await Supabase.initialize(
     url: Env.publicSupabaseUrl,
     anonKey: Env.publicSupabaseAnonKey,
@@ -150,7 +153,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {
-                      return const SearchBarScreen();
+                      return const CreateScheduleScreen();
                     },
                   ),
                 );

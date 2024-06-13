@@ -4,20 +4,46 @@ import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 
 /// Main example page
-class AccordionPage extends StatelessWidget //__
-{
+class AccordionPage extends StatelessWidget {
   static const headerStyle = TextStyle(
       color: Color(0xffffffff), fontSize: 18, fontWeight: FontWeight.bold);
   static const contentStyleHeader = TextStyle(
       color: Colors.black, fontSize: 14, fontWeight: FontWeight.w700);
   static const contentStyle = TextStyle(
       color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal);
-  static const loremIpsum =
-      '''Lorem ipsum is typically a corrupted version of 'De finibus bonorum et malorum', a 1st century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin.''';
-  static const slogan =
-      'Do not forget to play around with all sorts of colors, backgrounds, borders, etc.';
 
-  const AccordionPage({super.key});
+  final String? startLocation;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final List<String>? chosenStates;
+  final List<String>? chosenBusinessModels;
+  final List<String>? chosenCategories;
+
+  static const loremIpsum = '''
+  Hello World
+  ''';
+
+  String getLoremIpsum() {
+    return '''
+    Start Location:  ${startLocation ?? 'Unknown'}\n
+    startDate: ${startDate ?? 'Unknown'}\n
+    endDate: ${endDate ?? 'Unknown'}\n
+    chosenStates: ${chosenStates ?? 'Unknown'}\n
+    chosenBusinessModels: ${chosenBusinessModels ?? 'Unknown'}\n
+    chosenCategories: ${chosenCategories ?? 'Unknown'}\n
+    ''';
+  }
+
+  const AccordionPage({
+    super.key,
+      this.startLocation,
+      this.startDate,
+      this.endDate,
+      this.chosenStates,
+      this.chosenBusinessModels,
+      this.chosenCategories
+
+  });
 
   @override
   build(context) => Accordion(
@@ -42,6 +68,14 @@ class AccordionPage extends StatelessWidget //__
               leftIcon:
                   const Icon(Icons.business_center_rounded, color: Colors.white),
               header: const Text('Company I', style: headerStyle),
+              content: Text(getLoremIpsum(), style: contentStyle),
+            ),
+            AccordionSection(
+              isOpen: true,
+              contentVerticalPadding: 20,
+              leftIcon:
+                  const Icon(Icons.business_center_rounded, color: Colors.white),
+              header: const Text('Company II', style: headerStyle),
               content: const Text(loremIpsum, style: contentStyle),
             ),
             AccordionSection(
@@ -49,7 +83,7 @@ class AccordionPage extends StatelessWidget //__
               contentVerticalPadding: 20,
               leftIcon:
                   const Icon(Icons.business_center_rounded, color: Colors.white),
-              header: const Text('Company I', style: headerStyle),
+              header: const Text('Company III', style: headerStyle),
               content: const Text(loremIpsum, style: contentStyle),
             ),
             AccordionSection(
@@ -57,15 +91,7 @@ class AccordionPage extends StatelessWidget //__
               contentVerticalPadding: 20,
               leftIcon:
                   const Icon(Icons.business_center_rounded, color: Colors.white),
-              header: const Text('Company I', style: headerStyle),
-              content: const Text(loremIpsum, style: contentStyle),
-            ),
-            AccordionSection(
-              isOpen: true,
-              contentVerticalPadding: 20,
-              leftIcon:
-                  const Icon(Icons.business_center_rounded, color: Colors.white),
-              header: const Text('Company I', style: headerStyle),
+              header: const Text('Company IV', style: headerStyle),
               content: const Text(loremIpsum, style: contentStyle),
             ),
           ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../.././../bloc/create_schedule_bloc.dart';
 
 class DatePickerWidget extends StatefulWidget {
   const DatePickerWidget({super.key});
@@ -23,8 +25,12 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       setState(() {
         if (dateNumber == 1) {
           _selectedDate1 = picked;
+          context.read<CreateScheduleBloc>().add(DateStageStarted(startDate : picked));
+
         } else {
           _selectedDate2 = picked;
+          context.read<CreateScheduleBloc>().add(DateStageStarted(endDate : picked));
+
         }
       });
     }
