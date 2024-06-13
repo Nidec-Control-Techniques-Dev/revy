@@ -7,8 +7,8 @@ import '../screens/entry_point/entry_point.dart';
 
 class SignInForm2 extends StatefulWidget {
   const SignInForm2({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SignInForm2> createState() => _SignInForm2State();

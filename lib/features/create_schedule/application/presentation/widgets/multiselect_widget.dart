@@ -118,7 +118,7 @@ class _MultiSelectWidgetState extends State<MultiSelectWidget> {
             ),
           );
         } else {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );

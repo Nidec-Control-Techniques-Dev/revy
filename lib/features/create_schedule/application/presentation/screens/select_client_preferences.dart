@@ -23,7 +23,7 @@ class ClientConfigScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               child: SizedBox(
                 child: Expanded(
                   // Use Expanded to fill the remaining space with the map

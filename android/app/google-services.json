@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "340073529659",
+    "project_id": "revy-dev-0",
+    "storage_bucket": "revy-dev-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340073529659:android:7ac2dc72d4f8b583ddb71e",
+        "android_client_info": {
+          "package_name": "com.nidec_drives.revy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD46-nJIU2ViqLdZV9_MuaFALZ_LXZS7Ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340073529659:android:56b82a57f8d7a1bbddb71e",
+        "android_client_info": {
+          "package_name": "com.nidecdrives.revy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD46-nJIU2ViqLdZV9_MuaFALZ_LXZS7Ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

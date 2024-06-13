@@ -60,7 +60,7 @@ class _SideBarState extends State<SideBar> {
                               stateMachineName: menu.rive.stateMachineName);
                         },
                       ))
-                  .toList(),
+                  ,
               Padding(
                 padding: const EdgeInsets.only(left: 24, top: 40, bottom: 16),
                 child: Text(
@@ -86,7 +86,7 @@ class _SideBarState extends State<SideBar> {
                               stateMachineName: menu.rive.stateMachineName);
                         },
                       ))
-                  .toList(),
+                  ,
             ],
           ),
         ),

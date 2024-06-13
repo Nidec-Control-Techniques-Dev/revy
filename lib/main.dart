@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:revy/features/auth/application/presentation/screens/auth_screen.dart';
 import 'package:revy/features/dashboard/application/presentation/screens/home_screen.dart';
+import 'package:revy/firebase_options.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'env/env.dart';
@@ -13,6 +15,10 @@ import 'package:bloc/bloc.dart';
 // import 'features/create_schedule/application/presentation/screens/ride_booking/ride_booking_screen.dart';
 
 Future<void> main() async {
+  // Firebase Initialization
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   Bloc.observer = MainBlocObserver();
   await Supabase.initialize(
     url: Env.publicSupabaseUrl,
@@ -27,6 +33,7 @@ Future<void> main() async {
       retryAttempts: 10,
     ),
   );
+
   runApp(const RevyApp());
 }
 

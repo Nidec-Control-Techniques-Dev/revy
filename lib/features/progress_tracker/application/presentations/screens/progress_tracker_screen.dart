@@ -9,47 +9,43 @@ class ProgressTrackerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Progress Tracker'),
-        ),
-        body: SingleChildScrollView( // Use SingleChildScrollView to allow scrolling if the content overflows
-          child: Column(
+        title: 'Flutter Demo',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Progress Tracker'),
+          ),
+          body: SingleChildScrollView(
+            // Use SingleChildScrollView to allow scrolling if the content overflows
+            child: Column(
               children: [
                 Container(
-                    // A fixed-height child.
-                    color: const Color(0xffeeee00), // Yellow
-                    height: 396.0,
-                    alignment: Alignment.center,
-                    child: const ProgressBar(),
-                  ),
-                  Container(
-                    // A fixed-height child.
-                    color: const Color(0xffeeee00), // Yellow
-                    height: 220.0,
-                    alignment: Alignment.center,
-                    child: const DatePicker(),
-                  ),
-                  Container(
-                    // A fixed-height child.
-                    // color: Color.fromARGB(255, 103, 103, 31), // Yellow
-                    height: 400.0,
-                    alignment: Alignment.center,
-                    child: ClientList(),
-                  ),
+                  // A fixed-height child.
+                  color: const Color(0xffeeee00), // Yellow
+                  height: 396.0,
+                  alignment: Alignment.center,
+                  child: const ProgressBar(),
+                ),
+                Container(
+                  // A fixed-height child.
+                  color: const Color(0xffeeee00), // Yellow
+                  height: 220.0,
+                  alignment: Alignment.center,
+                  child: const DatePicker(),
+                ),
+                Container(
+                  // A fixed-height child.
+                  // color: Color.fromARGB(255, 103, 103, 31), // Yellow
+                  height: 400.0,
+                  alignment: Alignment.center,
+                  child: ClientList(),
+                ),
                 // ProgressBar(), // Your ProgressBar widget
                 // MainPage(), // Your MainPage widget
               ],
             ),
+          ),
         ),
-      ),
-      routes: {
-        '/clientlist': (context) => ClientList()
-      }
-    );
+        routes: {'/clientlist': (context) => ClientList()});
   }
 }
