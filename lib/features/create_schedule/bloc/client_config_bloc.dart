@@ -9,6 +9,7 @@ part 'client_config_state.dart';
 class DataBloc extends Bloc<DataEvent, DataState> {
   DataBloc() : super(DataInitial()) {
     on<InitializeSupabase>(_onInitializeSupabase);
+    // on<GenerateSchedule>(onGenerateSchedule);
   }
 
   Future<void> _onInitializeSupabase(InitializeSupabase event, Emitter<DataState> emit) async {
@@ -64,61 +65,89 @@ class DataBloc extends Bloc<DataEvent, DataState> {
       print('Error fetching data: $e');
     }
   }
+}
 
-  //   Future<void> generateSchedule(DataEvent event, Emitter<DataState> emit) async {
+
+
+  // Future<void> onGenerateSchedule(GenerateSchedule event, Emitter<DataState> emit) async {
   //   try {
-  //     final supabase = Supabase.instance.client;
-  //     await supabase.auth.signInWithPassword(
-  //       email: 'nidec.ct.dev@gmail.com',
-  //       password: 'Qwerty1234',
-  //     );
-  //     emit(SupabaseInitialized());
-  //     print('Supabase initialized successfully.');
+  //     // final supabase = Supabase.instance.client;
+  //     // await supabase.auth.signInWithPassword(
+  //     //   email: 'nidec.ct.dev@gmail.com',
+  //     //   password: 'Qwerty1234',
+  //     // );
+  //     // emit(SupabaseInitialized());
+  //     // print('Supabase initialized successfully.');
+  //     // print("modelsCategoriesFiltered");
+  //     // final modelsCategoriesFiltered = await supabase
+  //     //   .from('company_clients')
+  //     //   .select('company_ref');
+  //       // .filter('business_model_refs', 'contains', event.businessModelsOptions?? [])
+  //       // .filter('category_refs', 'contains', event.categoriesOptions?? []);
+  //     // print("stateFiltered");
+  //     // final stateFiltered = await supabase
+  //     //   .from('company_addresses')
+  //     //   .select('company_ref, full_text, latitude, longitude', )
+  //     //   .containedBy('state_ref', event.statesOptions?? []);
+
+  //     // List<dynamic> companyRefs = stateFiltered.map((item) => item['company_ref']).toList();
+  //     // print("companyNames");
+  //     // final companyNames = await supabase
+  //     //   .from('companies')
+  //     //   .select('uuid, name')
+  //     //   .inFilter('uuid', companyRefs);
+
+  //     // List<dynamic> availableCompanies = modelsCategoriesFiltered.map((item) => item['company_ref']).toList();
+  //     // List<dynamic> availableCompanies = [];
+  //     // emit(ScheduleLoaded(
+  //     //   availableCompanies: availableCompanies
+  //     // ));
+  //     emit(ScheduleLoaded());
   //   } catch (e) {
   //     emit(DataError(e.toString()));
   //     print('Error initializing Supabase: $e');
   //     return;
   //   }
 
-  //   // final List<String> companyRefs = [
-  //   //   'uuid1',
-  //   //   'uuid2',
-  //   //   'uuid3',
-  //   //   // Add more UUIDs as needed
-  //   // ];
-  //   // final orCondition = companyRefs.map((uuid) => 'company_ref.eq.$uuid').join(',');
+    // final List<String> companyRefs = [
+    //   'uuid1',
+    //   'uuid2',
+    //   'uuid3',
+    //   // Add more UUIDs as needed
+    // ];
+    // final orCondition = companyRefs.map((uuid) => 'company_ref.eq.$uuid').join(',');
 
-  //   try {
-  //     print('Fetching states...');
-  //   final businessModelCategoryFiltered = await Supabase.instance.client
-  //       .from('company_clients')
-  //       .select('company_ref')
-  //       .contains('business_model_refs', [])
-  //       ;
+//     try {
+//       print('Fetching states...');
+//     final businessModelCategoryFiltered = await Supabase.instance.client
+//         .from('company_clients')
+//         .select('company_ref')
+//         .contains('business_model_refs', [])
+//         ;
 
-  //   final addressesResponse = await Supabase.instance.client
-  //       .from('company_addresses')
-  //       .select('company_ref, full_text')
-  //       .eq('country_ref', '3a55c85a-182a-4d80-854f-a9409631df6b')
-  //       .or(orCondition);
+//     final addressesResponse = await Supabase.instance.client
+//         .from('company_addresses')
+//         .select('company_ref, full_text')
+//         .eq('country_ref', '3a55c85a-182a-4d80-854f-a9409631df6b')
+//         .or(orCondition);
 
 
-  //     final addresses = (addressesResponse as List)
-  //         .map((item) => ValueItem(label: item['full_text'] as String, value: item['full_text'] as String))
-  //         .toList();
-  //     final addresses = (addressesResponse as List)
-  //         .map((item) => ValueItem(label: item['full_text'] as String, value: item['full_text'] as String))
-  //         .toList();
+//       final addresses = (addressesResponse as List)
+//           .map((item) => ValueItem(label: item['full_text'] as String, value: item['full_text'] as String))
+//           .toList();
+//       final addresses = (addressesResponse as List)
+//           .map((item) => ValueItem(label: item['full_text'] as String, value: item['full_text'] as String))
+//           .toList();
 
-  //     emit(AddressLoaded(
-  //       availableAddresses: addresses,
-  //     ));
-  //   } catch (e) {
-  //     emit(DataError(e.toString()));
-  //     print('Error fetching data: $e');
-  //   }
-  // }
-}
+//       emit(AddressLoaded(
+//         availableAddresses: addresses,
+//       ));
+//     } catch (e) {
+//       emit(DataError(e.toString()));
+//       print('Error fetching data: $e');
+//     }
+//   }
+// }
 
 
 // import 'package:bloc/bloc.dart';
@@ -275,4 +304,5 @@ class DataBloc extends Bloc<DataEvent, DataState> {
 //       }
 //     }
 //   }
+// }
 // }

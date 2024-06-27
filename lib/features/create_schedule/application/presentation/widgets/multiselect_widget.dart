@@ -26,11 +26,11 @@ class _MultiSelectWidgetState extends State<MultiSelectWidget> {
   List<ValueItem> _selectedBusinessModels = [];
   List<ValueItem> _selectedCategories = [];
 
-  @override
-  void initState() {
-    super.initState();
-    context.read<DataBloc>().add(InitializeSupabase());
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   context.read<DataBloc>().add(InitializeSupabase());
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,6 @@ import 'features/create_schedule/create_schedule.dart';
 import 'features/progress_tracker/application/presentations/screens/progress_tracker_screen.dart';
 import 'bloc/main_bloc_observer.dart';
 import 'package:bloc/bloc.dart';
-// import 'features/create_schedule/application/presentation/screens/ride_booking/ride_booking_screen.dart';
 
 Future<void> main() async {
   Bloc.observer = MainBlocObserver();
@@ -42,7 +41,7 @@ class RevyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         fontFamily: "Intel",
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(foregroundColor: Colors.white),
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
         ),
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,

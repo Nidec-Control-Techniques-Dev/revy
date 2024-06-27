@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-export '../widgets/date_picker.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../bloc/get_params_bloc.dart';
 
 class DatePicker extends StatefulWidget {
   const DatePicker({super.key});
@@ -12,8 +13,8 @@ class DatePicker extends StatefulWidget {
 
 class _DatePickerState extends State<DatePicker> {
   DateTimeRange dateRange = DateTimeRange(
-    start: DateTime(2022, 11, 5),
-    end: DateTime(2022, 12, 24),
+    start: DateTime.now(),
+    end: DateTime.now(),
   );
 
   @override
@@ -42,51 +43,15 @@ class _DatePickerState extends State<DatePicker> {
                                 const Color.fromARGB(255, 255, 253, 246),
                             foregroundColor: Colors.black,
                           ),
+                          onPressed: pickDateRange,
                           child: Text(
-                            '${start.year}/${start.month}/${start.day}',
-                            style: GoogleFonts.roboto(
-                                fontSize: 18, color: Colors.black),
-                          ),
-                          onPressed: () {}),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              side: const BorderSide(
-                                  width: 1, color: Colors.black),
-                            ),
-                            backgroundColor:
-                                const Color.fromARGB(255, 255, 253, 246),
-                            foregroundColor: Colors.black,
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            '${end.year}/${end.month}/${end.day}',
+                            '${start.year}/${start.month}/${start.day} - ${end.year}/${end.month}/${end.day}',
                             style: GoogleFonts.roboto(
                                 fontSize: 18, color: Colors.black),
                           )),
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: pickDateRange,
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: const BorderSide(width: 1, color: Colors.black),
-                    ),
-                    backgroundColor: const Color.fromARGB(255, 255, 253, 246),
-                    foregroundColor: Colors.black,
-                  ),
-                  child: Text(
-                    'Pick Date Range',
-                    style: GoogleFonts.rubik(fontSize: 18, color: Colors.black),
-                  ),
-                )
               ],
             )));
   }
@@ -100,6 +65,13 @@ class _DatePickerState extends State<DatePicker> {
 
     if (newDateRange == null) return;
 
-    setState(() => dateRange = newDateRange);
+    // setState(() => dateRange = newDateRange);
+    setState(() {
+      dateRange = newDateRange;
+      context.read<GetParamsBloc>().add(DatesChanged(
+            startDate: dateRange.start,
+            endDate: dateRange.end,
+          ));
+    });
   }
 }

@@ -23,9 +23,12 @@ class SearchBarWidget extends StatelessWidget {
             ),
             // Search Bar widget with Places API
             SizedBox(
-              height: 400,
+              height: 450,
               child: PlacesSearchBar(),
             ),
+            // Flexible(
+            //   child: PlacesSearchBar()
+            // )
           ],
         ),
       ),

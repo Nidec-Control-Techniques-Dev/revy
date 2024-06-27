@@ -1,55 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revy/features/progress_tracker/application/presentations/widgets/button_apply.dart';
+import 'package:revy/features/progress_tracker/bloc/get_params_bloc.dart';
+import 'package:revy/features/progress_tracker/bloc/read_progress_bloc.dart';
 import '../widgets/client_list.dart';
 import '../widgets/date_picker.dart';
 import '../widgets/progress_bar.dart';
+import '../widgets/filter_status.dart';
 
 class ProgressTrackerApp extends StatelessWidget {
   const ProgressTrackerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Progress Tracker'),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ReadProgressBloc>(
+          create: (context) => ReadProgressBloc(),
         ),
-        body: SingleChildScrollView( // Use SingleChildScrollView to allow scrolling if the content overflows
-          child: Column(
-              children: [
-                Container(
-                    // A fixed-height child.
-                    color: const Color(0xffeeee00), // Yellow
-                    height: 396.0,
-                    alignment: Alignment.center,
-                    child: const ProgressBar(),
-                  ),
-                  Container(
-                    // A fixed-height child.
-                    color: const Color(0xffeeee00), // Yellow
-                    height: 220.0,
-                    alignment: Alignment.center,
-                    child: const DatePicker(),
-                  ),
-                  Container(
-                    // A fixed-height child.
-                    // color: Color.fromARGB(255, 103, 103, 31), // Yellow
-                    height: 400.0,
-                    alignment: Alignment.center,
-                    child: ClientList(),
-                  ),
-                // ProgressBar(), // Your ProgressBar widget
-                // MainPage(), // Your MainPage widget
-              ],
-            ),
+        BlocProvider<GetParamsBloc>(
+          create: (context) => GetParamsBloc(),
         ),
+      ],
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Progress Tracker')),
+        body: const ProgressTrackerChild(),
       ),
-      routes: {
-        '/clientlist': (context) => ClientList()
-      }
+    );
+  }
+}
+
+class ProgressTrackerChild extends StatelessWidget {
+  const ProgressTrackerChild({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 198.0, // Half of the original height
+                      alignment: Alignment.center,
+                      child: const FilterStatus(),
+                    ),
+                    Container(
+                      height: 198.0, // Half of the original height
+                      alignment: Alignment.center,
+                      child: const DatePicker(),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: const ButtonApply(),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: const Color(0xffeeee00),
+                  height: 396.0,
+                  alignment: Alignment.center,
+                  child: const ProgressBar(),
+                ),
+              ),
+            ],
+          ),
+          Container(
+            height: 400.0,
+            alignment: Alignment.center,
+            child: ClientList(),
+          ),
+        ],
+      ),
     );
   }
 }
