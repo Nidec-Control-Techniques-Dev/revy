@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
-import '../../../bloc/client_config_bloc.dart'; // Assuming this is your BLoC setup
+// import 'package:http/http.dart';
+import '../../../bloc/client_config_bloc.dart';
 import 'package:accordion/accordion.dart';
-import 'package:accordion/controllers.dart';
+// import 'package:accordion/controllers.dart';
 import '../../../bloc/schedule_bloc.dart';
 class AccordionPage extends StatefulWidget {
-  final String? startLocation;
-  final DateTime? startDate;
-  final DateTime? endDate;
-  final List<String>? chosenStates;
-  final List<String>? chosenBusinessModels;
-  final List<String>? chosenCategories;
+  // final String? startLocation;
+  // final DateTime? startDate;
+  // final DateTime? endDate;
+  // final List<String>? chosenStates;
+  // final List<String>? chosenBusinessModels;
+  // final List<String>? chosenCategories;
 
   const AccordionPage({
-    Key? key,
-    this.startLocation,
-    this.startDate,
-    this.endDate,
-    this.chosenStates,
-    this.chosenBusinessModels,
-    this.chosenCategories,
-  }) : super(key: key);
+    super.key,
+    // this.startLocation,
+    // this.startDate,
+    // this.endDate,
+    // this.chosenStates,
+    // this.chosenBusinessModels,
+    // this.chosenCategories,
+  });
 
   @override
   _AccordionPageState createState() => _AccordionPageState();
@@ -33,80 +33,99 @@ class _AccordionPageState extends State<AccordionPage> {
   static const contentStyle = TextStyle(
       color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal);
 
-  String getLoremIpsum() {
+  String displayDetails({
+    String? businessModel,
+    String? category,
+    String? address,
+    double? annualSales,
+    String? telephoneNumber,
+    String? email,
+    String? faxNo,
+  }){
     return '''
-    Start Location:  ${widget.startLocation?? ''}\n
-    startDate: ${widget.startDate?? ''}\n
-    endDate: ${widget.endDate?? ''}\n
-    chosenStates: ${widget.chosenStates?? ''}\n
-    chosenBusinessModels: ${widget.chosenBusinessModels?? ''}\n
-    chosenCategories: ${widget.chosenCategories?? ''}\n
+    Business Model:  ${businessModel?? ''}\n
+    Category: ${category?? ''}\n
+    Address: ${address?? ''}\n
+    Annual Sales: ${annualSales?? ''}\n
+    Telephone Number: ${telephoneNumber?? ''}\n
+    Email: ${email?? ''}\n
+    Fax No: ${faxNo?? ''}\n
     ''';
   }
 
-  String companies(String availableCompanies) {
-    return '''
-    ${availableCompanies}\n
-    ''';
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    context.read<ScheduleBloc>().add(
-      EmitSchedule(
-        startDate: widget.startDate,
-        endDate: widget.endDate,
-        statesOptions: widget.chosenStates,
-        businessModelsOptions : widget.chosenBusinessModels,
-        categoriesOptions : widget.chosenCategories
-      )
-    );
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // context.read<ScheduleBloc>().add(
+  //   //   EmitSchedule(
+  //   //     startLocation: widget.startLocation,
+  //   //     startDate: widget.startDate,
+  //   //     endDate: widget.endDate,
+  //   //     chosenStates: widget.chosenStates,
+  //   //     chosenBusinessModels : widget.chosenBusinessModels,
+  //   //     chosenCategories : widget.chosenCategories
+  //   //   )
+  //   // );
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     // Place your event-triggering logic here.
+  //     // For example, triggering an event in the bloc:
+  //     context.read<ScheduleBloc>().add(EmitSchedule(
+  //       startLocation: widget.startLocation,
+  //       startDate: widget.startDate,
+  //       endDate: widget.endDate,
+  //       chosenStates: widget.chosenStates,
+  //       chosenBusinessModels : widget.chosenBusinessModels,
+  //       chosenCategories : widget.chosenCategories
+  //     ));
+  //   });
+  // }
 
 // || state is DataLoaded)
-@override
-Widget build(BuildContext context) {
-  return BlocBuilder<ScheduleBloc, ScheduleState>(
-    builder: (context, state) {
-      if (state is ScheduleLoaded) { // Check for ScheduleLoaded state
-        // Extract availableCompanies from the state
-        // List<dynamic> availableCompanies = state.availableCompanies;
-        return Accordion(
-          children: [
-            // AccordionSection(
-            //   content: Text(getLoremIpsum(), style: contentStyle),
-            //   header: const Text('Company Details', style: headerStyle),
-            // ),
-            AccordionSection(
-              // Pass availableCompanies to the companies function
-              
-              content: Text(getLoremIpsum(), style: contentStyle),
-              header: Text(companies(state.availableCompanies[0]), style: headerStyle),
-            ),
-            AccordionSection(
-              // Pass availableCompanies to the companies function
-              content: Text(state.companyAddresses[1], style: contentStyle),
-              header:  Text(companies(state.availableCompanies[1]), style: headerStyle),
-            ),
-            AccordionSection(
-              // Pass availableCompanies to the companies function
-              content: Text(state.companyAddresses[2], style: contentStyle),
-              header:  Text(companies(state.availableCompanies[2]), style: headerStyle),
-            ),
-            AccordionSection(
-              // Pass availableCompanies to the companies function
-              content: Text(state.companyAddresses[3], style: contentStyle),
-              header:  Text(companies(state.availableCompanies[3]), style: headerStyle),
-            ),
-          ],
-        );
-      } else {
-        return const Text('Error');
-      }
-    },
-  );
-}
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ScheduleBloc, ScheduleState>(
+      builder: (context, state) {
+        if (state is ScheduleLoaded) { // Check for ScheduleLoaded state
+          // Extract availableCompanies from the state
+          // List<dynamic> availableCompanies = state.availableCompanies;
+          return Accordion(
+            children: [
+              // AccordionSection(
+              //   content: Text(getLoremIpsum(), style: contentStyle),
+              //   header: const Text('Company Details', style: headerStyle),
+              // ),
+              AccordionSection(
+                // Pass availableCompanies to the companies function
+                
+                content: Text(displayDetails(address: state.companyAddresses[0], annualSales: state.annualSales[0]), style: contentStyle),
+                header: Text(state.availableCompanies[0], style: headerStyle),
+              ),
+              AccordionSection(
+                // Pass availableCompanies to the companies function
+                content: Text(displayDetails(address: state.companyAddresses[1], annualSales: state.annualSales[1]), style: contentStyle),
+                header:  Text(state.availableCompanies[1], style: headerStyle),
+              ),
+              AccordionSection(
+                // Pass availableCompanies to the companies function
+                content: Text(displayDetails(address: state.companyAddresses[2], annualSales: state.annualSales[2]), style: contentStyle),
+                header:  Text(state.availableCompanies[2], style: headerStyle),
+              ),
+              AccordionSection(
+                // Pass availableCompanies to the companies function
+                content: Text(displayDetails(address: state.companyAddresses[3], annualSales: state.annualSales[3]), style: contentStyle),
+                header:  Text(state.availableCompanies[3], style: headerStyle),
+              ),
+            ],
+          );
+        } 
+        else {
+          return const Center(
+              child: CircularProgressIndicator(),
+            );
+        }
+      },
+    );
+  }
 }
 
 

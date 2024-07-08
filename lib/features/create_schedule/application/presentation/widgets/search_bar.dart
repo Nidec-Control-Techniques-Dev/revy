@@ -9,6 +9,7 @@ class PlacesSearchBar extends StatefulWidget {
   const PlacesSearchBar({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SearchBarState createState() => _SearchBarState();
 }
 

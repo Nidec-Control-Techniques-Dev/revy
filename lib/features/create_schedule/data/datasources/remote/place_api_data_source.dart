@@ -37,5 +37,5 @@ class PlaceApiDataSource {
 void main() async{
   final PlaceApiDataSource dataSource = PlaceApiDataSource(Dio());
   String jsonResponse = await dataSource.fetchPlaceSuggestions("Walter Mart Plaridel");
-  print(jsonResponse);
+  // print(jsonResponse);
 }

@@ -40,14 +40,12 @@ class ClientList extends StatelessWidget {
                               state.businessModel![index]['name'];
                           Color iconColor = Colors.grey;
 
-                          //
-
                           if (businessModel != null) {
                             switch (businessModel.toLowerCase()) {
                               case 'oem':
                                 iconColor = Colors.green;
                                 break;
-                              case 'ict':
+                              case 'batangas':
                                 iconColor = Colors.yellow;
                                 break;
                               case 'cebu':

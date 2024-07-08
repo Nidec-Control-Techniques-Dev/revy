@@ -2,24 +2,34 @@ part of 'schedule_bloc.dart';
 
 sealed class GenerateSchedule {
 
+  final String startLocation;
+  final DateTime startDate;
+  final DateTime endDate;
+  final List<String> chosenStates;
+  final List<String> chosenBusinessModels;
+  final List<String> chosenCategories;
+
   const GenerateSchedule(
       {
-      startDate,
-      endDate,
-      statesOptions,
-      businessModelsOptions,
-      categoriesOptions
+      required this.startLocation,
+      required this.startDate,
+      required this.endDate,
+      required this.chosenStates,
+      required this.chosenBusinessModels,
+      required this.chosenCategories
     }
   );
 }
 
 final class EmitSchedule extends GenerateSchedule{
   EmitSchedule(
-    { super.startDate,
-      super.endDate,
-      super.statesOptions,
-      super.businessModelsOptions,
-      super.categoriesOptions
+    {
+      required super.startLocation,
+      required super.startDate,
+      required super.endDate,
+      required super.chosenStates,
+      required super.chosenBusinessModels,
+      required super.chosenCategories
     }
   );
 }

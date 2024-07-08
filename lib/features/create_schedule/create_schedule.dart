@@ -45,129 +45,138 @@ class _StepperState extends State<CreateScheduleStepper> {
 
   @override
   Widget build(BuildContext context) {
-    return Stepper(
-      type: StepperType.horizontal,
-      currentStep: _index,
-      onStepCancel: () {
-        // at least page 2 and page < page 4
-        if (_index > 0 && _index < 3) {
-          setState(() {
-            _index -= 1;
-          });
-        }
-        else {
-          // Navigate back to the homepage
-          Navigator.popUntil(context, (route) => route.isFirst);
-        }
-      },
-      onStepContinue: () {
-        if (_index >= 0 && _index < 2) {
-          setState(() {
-            _index += 1;
-          });
-        }
-        else if (_index==2){
-          // context.read<DataBloc>().add(DataLoading());
-          // simulateTimeDelay();
-          setState(() {
-            // context.read<DataBloc>().add(
-              // GenerateSchedule(
-              //   statesOptions: context.select((CreateScheduleBloc bloc) => bloc.state.chosenStates),
-              //   businessModelsOptions : context.select((CreateScheduleBloc bloc) => bloc.state.chosenBusinessModels),
-              //   categoriesOptions : context.select((CreateScheduleBloc bloc) => bloc.state.chosenCategories)
-              // )
-            // );
-            _index += 1;
-          });
-        }
-        else {
-          // Navigate back to the homepage
-          Navigator.popUntil(context, (route) => route.isFirst);
-        }
-      },
-      // onStepTapped: (int index) {
-      //   setState(() {
-      //     _index = index;
-      //   });
-      // },
-      steps: <Step>[
-        Step(
-          title: Row(
-            children: [
-              Icon(
-                _index == 0 ? Icons.location_on : (_index > 0 ? Icons.check_circle: Icons.location_on),
-                color: _index == 0 ? Colors.green : Colors.grey,
-              ),
-            ],
-          ),
-          content: Container(
-            alignment: Alignment.centerLeft,
-            child: const SearchBarWidget()
-          ),
-          isActive: _index == 0
-        ),
-        Step(
-          title: Row(
-            children: [
-              Icon(
-                _index == 1 ? Icons.calendar_month : (_index > 1 ? Icons.check_circle : Icons.calendar_month),
-                color: _index == 1 ? Colors.green : Colors.grey,
-              ),
-            ],
-          ),
-          content: Container(
-            alignment: Alignment.centerLeft,
-            child: const DatePickerWidget()
-          ),
-          isActive: _index == 1
-        ),
-        Step(
-          // Choose the dates of your schedule
-          // title: const Text(''),
-          title: Row(
-            children: [
-              Icon(
-                _index == 2 ? Icons.people : (_index > 2 ? Icons.check_circle: Icons.people),
-                color: _index == 2 ? Colors.green : Colors.grey,
-              ),
-            ],
-          ),
-          content: Container(
-            alignment: Alignment.centerLeft,
-            child: const ClientConfigWidget()
-          ),
-          isActive: _index == 2
-        ),
-        Step(
-          // Choose the dates of your schedule
-          // title: const Text(''),
-          title: Row(
-            children: [
-              Icon(
-                _index == 3 ? Icons.smart_toy : (_index < 3 ? Icons.smart_toy : Icons.check_circle),
-                color: _index == 3 ? Colors.green : Colors.grey,
-              ),
-            ],
-          ),
-          content: Container(
-            alignment: Alignment.centerLeft,
-            child: const SuggestedSchedWidget()
-          ),
-          isActive: _index == 3
-        ),
-      ],
-      controlsBuilder: (BuildContext context, ControlsDetails details) {
-        return Row(
-          children: <Widget>[
-            TextButton(
-              onPressed: details.onStepCancel,
-              child: const Text('BACK'), // Custom label for the "Cancel" button
-            ),
-            TextButton(
-              onPressed: details.onStepContinue,
-              child: const Text('NEXT'), // Custom label for the "Continue" button
-            ),
+    return BlocBuilder<CreateScheduleBloc, CreateScheduleState>(
+      builder: (context, state) {
+        return Stepper(
+          type: StepperType.horizontal,
+          currentStep: _index,
+          onStepCancel: () {
+            // page 2 and 3
+            if (_index > 0 && _index < 3) {
+              setState(() {
+                _index -= 1;
+              });
+            }
+            // page 1 and 4
+            else {
+              // Navigate back to the homepage
+              Navigator.popUntil(context, (route) => route.isFirst);
+            }
+          },
+          onStepContinue: () {
+            // page 1,2
+            if (_index >= 0 && _index < 2) {
+              setState(() {
+                _index += 1;
+              });
+            } else if (_index == 2) {
+              context.read<ScheduleBloc>().add(EmitSchedule(
+                  startLocation: state.startLocation,
+                  startDate: state.startDate,
+                  endDate: state.endDate,
+                  chosenStates: state.chosenStates,
+                  chosenBusinessModels: state.chosenBusinessModels,
+                  chosenCategories: state.chosenCategories
+              ));
+              setState(() {
+                _index += 1;
+              });
+            } else {
+              // Navigate back to the homepage
+              Navigator.popUntil(context, (route) => route.isFirst);
+            }
+          },
+          // onStepTapped: (int index) {
+          //   setState(() {
+          //     _index = index;
+          //   });
+          // },
+          steps: <Step>[
+            Step(
+                title: Row(
+                  children: [
+                    Icon(
+                      _index == 0
+                          ? Icons.location_on
+                          : (_index > 0
+                              ? Icons.check_circle
+                              : Icons.location_on),
+                      color: _index == 0 ? Colors.green : Colors.grey,
+                    ),
+                  ],
+                ),
+                content: Container(
+                    alignment: Alignment.centerLeft,
+                    child: const SearchBarWidget()),
+                isActive: _index == 0),
+            Step(
+                title: Row(
+                  children: [
+                    Icon(
+                      _index == 1
+                          ? Icons.calendar_month
+                          : (_index > 1
+                              ? Icons.check_circle
+                              : Icons.calendar_month),
+                      color: _index == 1 ? Colors.green : Colors.grey,
+                    ),
+                  ],
+                ),
+                content: Container(
+                    alignment: Alignment.centerLeft,
+                    child: const DatePickerWidget()),
+                isActive: _index == 1),
+            Step(
+                // Choose the dates of your schedule
+                // title: const Text(''),
+                title: Row(
+                  children: [
+                    Icon(
+                      _index == 2
+                          ? Icons.people
+                          : (_index > 2 ? Icons.check_circle : Icons.people),
+                      color: _index == 2 ? Colors.green : Colors.grey,
+                    ),
+                  ],
+                ),
+                content: Container(
+                    alignment: Alignment.centerLeft,
+                    child: const ClientConfigWidget()),
+                isActive: _index == 2),
+            Step(
+                // Choose the dates of your schedule
+                // title: const Text(''),
+                title: Row(
+                  children: [
+                    Icon(
+                      _index == 3
+                          ? Icons.smart_toy
+                          : (_index < 3 ? Icons.smart_toy : Icons.check_circle),
+                      color: _index == 3 ? Colors.green : Colors.grey,
+                    ),
+                  ],
+                ),
+                content: Container(
+                    alignment: Alignment.centerLeft,
+                    child: const SuggestedSchedWidget()),
+                isActive: _index == 3),
           ],
+          controlsBuilder: (BuildContext context, ControlsDetails details) {
+            return Row(
+              children: <Widget>[
+                TextButton(
+                  onPressed: details.onStepCancel,
+                  child: const Text(
+                      'BACK'), // Custom label for the "Cancel" button
+                ),
+                TextButton(
+                  onPressed: details.onStepContinue,
+                  child: const Text(
+                      'NEXT'), // Custom label for the "Continue" button
+                ),
+              ],
+            );
+          },
         );
       },
     );

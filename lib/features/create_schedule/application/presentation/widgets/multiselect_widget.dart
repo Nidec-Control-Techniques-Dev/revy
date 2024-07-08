@@ -22,9 +22,9 @@ class _MultiSelectWidgetState extends State<MultiSelectWidget> {
     color: Colors.black,
   );
 
-  List<ValueItem> _selectedStates = [];
-  List<ValueItem> _selectedBusinessModels = [];
-  List<ValueItem> _selectedCategories = [];
+  // List<ValueItem> _selectedStates = [];
+  // List<ValueItem> _selectedBusinessModels = [];
+  // List<ValueItem> _selectedCategories = [];
 
   // @override
   // void initState() {
@@ -54,7 +54,7 @@ class _MultiSelectWidgetState extends State<MultiSelectWidget> {
                     controller: _statesController,
                     onOptionSelected: (List<ValueItem> selectedStates) {
                       setState(() {
-                        _selectedStates = selectedStates;
+                        // _selectedStates = selectedStates;
                         context.read<CreateScheduleBloc>().add(
                           ClientConfigStageStarted(
                             chosenStates: selectedStates.map((e) => e.value).toList().cast<String>(),
@@ -76,7 +76,7 @@ class _MultiSelectWidgetState extends State<MultiSelectWidget> {
                     controller: _businessModelsController,
                     onOptionSelected: (List<ValueItem> selectedBusinessModels) {
                       setState(() {
-                        _selectedBusinessModels = selectedBusinessModels;
+                        // _selectedBusinessModels = selectedBusinessModels;
                         context.read<CreateScheduleBloc>().add(
                           ClientConfigStageStarted(
                             chosenBusinessModels: selectedBusinessModels.map((e) => e.value).toList().cast<String>(),
@@ -98,7 +98,7 @@ class _MultiSelectWidgetState extends State<MultiSelectWidget> {
                     controller: _categoriesController,
                     onOptionSelected: (List<ValueItem> selectedCategories) {
                       setState(() {
-                        _selectedCategories = selectedCategories;
+                        // _selectedCategories = selectedCategories;
                         context.read<CreateScheduleBloc>().add(
                           ClientConfigStageStarted(
                             chosenCategories: selectedCategories.map((e) => e.value).toList().cast<String>(),
@@ -118,7 +118,7 @@ class _MultiSelectWidgetState extends State<MultiSelectWidget> {
             ),
           );
         } else {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );
