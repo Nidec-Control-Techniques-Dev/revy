@@ -40,13 +40,13 @@ dependencies:
   freezed_annotation: ^2.4.1
   http: ^1.2.1
   flutter_dotenv: ^5.1.0
-
   # rxdart: any
   # flutter_google_places: ^0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   percent_indicator: ^4.2.3
   cupertino_icons: ^1.0.6
+  multi_select_flutter: ^4.0.0
 
   # A dart client for Supabase.
   # This client makes it simple for developers to build secure and scalable products.
@@ -72,7 +72,7 @@ dependencies:
   # Flutter Widgets that make it easy to implement the BLoC (Business Logic Component)
   # design pattern. Built to be used with the bloc state management package.
   flutter_bloc: ^8.1.5
-  bloc: ^8.1.4
+  # bloc: ^8.1.4
 
   # An extension to the bloc state management library which
   # automatically persists and restores bloc states.
@@ -85,7 +85,7 @@ dependencies:
   # A Dart package that helps to implement value based equality without
   # needing to explicitly override == and hashCode.
   equatable: ^2.0.5
-
+  pie_chart: ^5.4.0
   # Functional programming in Dart and Flutter. All the main functional programming
   # types and patterns fully documented, tested, and with examples.
   fpdart: ^1.1.0
