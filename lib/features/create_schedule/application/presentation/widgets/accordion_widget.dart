@@ -45,27 +45,66 @@ class _AccordionPageState extends State<AccordionPage> {
         if (state is ScheduleLoaded) {
           // Extract availableCompanies from the state
           List<dynamic> availableCompanies = state.availableCompanies;
-
-          return Accordion(
-            children: List.generate(availableCompanies.length, (index) {
-              return AccordionSection(
-                content: Text(
-                  displayDetails(
-                    address: state.companyAddresses[index],
-                    annualSales: state.annualSales[index],
-                    businessModel: state.businessModel[index],
-                    category: state.categoryName[index],
-                    subcategory: state.subcategoryName[index],
-                    telephoneNumber: state.contactNumber[index],
-                    email: state.email[index],
-                    faxNo: state.faxNumber[index],
+          if (availableCompanies.isNotEmpty){
+            return Accordion(
+              children: List.generate(availableCompanies.length, (index) {
+                return AccordionSection(
+                  content: Text(
+                    displayDetails(
+                      address: state.companyAddresses[index],
+                      annualSales: state.annualSales[index].toDouble(),
+                      businessModel: state.businessModel[index],
+                      category: state.categoryName[index],
+                      subcategory: state.subcategoryName[index],
+                      telephoneNumber: state.contactNumber[index],
+                      email: state.email[index],
+                      faxNo: state.faxNumber[index],
+                    ),
+                    style: contentStyle,
                   ),
-                  style: contentStyle,
+                  header: Text(availableCompanies[index], style: headerStyle),
+                );
+              }),
+            );
+          }
+          else{
+                return AlertDialog(
+                  title: const Text('No Clients Found'),
+                  content: RichText(
+                    text: const TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 
+                          '''Please try to generate another schedule with a different configuration.
+                          ''',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: 
+                          '''If the problem continues to persist, please report the issue.
+                          ''',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      child: const Text('OK'),
+                      onPressed: () {
+                        Navigator.of(context).pop(); 
+                      },
+                    ),
+                    TextButton(
+                      child: const Text('Report Issue'),
+                      onPressed: () {
+                        // TODO: reroute to report issue page
+                      },
                 ),
-                header: Text(availableCompanies[index], style: headerStyle),
-              );
-            }),
-          );
+                  ],
+                );
+          }
+
         } else {
           return const Center(
             child: CircularProgressIndicator(),

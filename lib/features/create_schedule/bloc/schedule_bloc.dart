@@ -122,7 +122,6 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     // ignore: avoid_print
     print("---------------");
 
-    
     List<dynamic> businessModel = chosenClientsInfo.map((item) => item['business_model_names']).toList();
     List<dynamic> categoryName = chosenClientsInfo.map((item) => item['category_names']).toList();
     List<dynamic> subcategoryName = chosenClientsInfo.map((item) => item['subcategory_names']).toList();
@@ -134,6 +133,7 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     List<dynamic> companyAnnualSales = chosenClients.map((item) => item['annual_sales']).toList();
 
     emit(ScheduleLoaded(
+      companyRefs: chosenClients.map((item) => item['company_ref'] as String).toList(),
       availableCompanies: companyNames, 
       companyAddresses:companyAddresses,
       annualSales: companyAnnualSales,
