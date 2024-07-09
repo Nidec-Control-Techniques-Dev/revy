@@ -66,7 +66,7 @@ class ProgressTrackerChild extends StatelessWidget {
                   child: const ProgressBar(),
                 ),
                 Container(
-                  height: 70, // Half of the original height
+                  height: 100, // Half of the original height
                   alignment: Alignment.center,
                   child: const FilterStatus(),
                 ),

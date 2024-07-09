@@ -51,7 +51,7 @@ class ProgressBar extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  "$percentValue%", // Display calculated percentage
+                  "$percentValue% Visited", // Display calculated percentage
                   style: GoogleFonts.anton(
                     fontWeight: FontWeight.bold,
                     fontSize: 55,

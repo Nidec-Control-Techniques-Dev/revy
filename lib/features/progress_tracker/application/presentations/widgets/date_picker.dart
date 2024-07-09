@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/get_params_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DatePicker extends StatefulWidget {
   const DatePicker({super.key});
@@ -17,7 +18,6 @@ class _DatePickerState extends State<DatePicker> {
     start: DateTime.now(),
     end: DateTime.now(),
   );
-
   @override
   Widget build(BuildContext context) {
     final start = dateRange.start;
@@ -27,29 +27,45 @@ class _DatePickerState extends State<DatePicker> {
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // Align content to the start
           children: [
             const SizedBox(height: 16),
+            Align(
+              alignment: Alignment.topLeft, // Align text to the top-left
+              child: Text(
+                'Select your prefer start and end date',
+                style: GoogleFonts.luckiestGuy(
+                  fontWeight: FontWeight.w300,
+                  fontSize: 16,
+                ),
+              ),
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment:
+                  MainAxisAlignment.spaceBetween, // Space out the elements
               children: [
                 Expanded(
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all<Color>(
-                          Colors.white), // Set button background color to white
+                      backgroundColor:
+                          WidgetStateProperty.all<Color>(Colors.white),
+                      shadowColor: WidgetStateProperty.all<Color>(
+                          Colors.grey), // Add shadow color
+                      elevation: WidgetStateProperty.all<double>(5),
                       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
-                          side: BorderSide.none,
+                          side: const BorderSide(
+                              color: Colors.green, width: 2), // Green border
                         ),
                       ),
-                      elevation: WidgetStateProperty.all<double>(5),
                       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                         const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 15),
                       ),
                     ),
-                    onPressed: pickDateRange,
+                    onPressed: () => pickDateRange(context, start, end),
                     child: Text(
                       '${DateFormat('MMMM dd, yyyy').format(start)} - ${DateFormat('MMMM dd, yyyy').format(end)}',
                       style: const TextStyle(
@@ -65,10 +81,11 @@ class _DatePickerState extends State<DatePicker> {
     );
   }
 
-  Future pickDateRange() async {
+  Future<void> pickDateRange(
+      BuildContext context, DateTime start, DateTime end) async {
     DateTimeRange? newDateRange = await showDateRangePicker(
       context: context,
-      initialDateRange: dateRange,
+      initialDateRange: DateTimeRange(start: start, end: end),
       firstDate: DateTime(1900),
       lastDate: DateTime(2100),
     );
@@ -77,6 +94,7 @@ class _DatePickerState extends State<DatePicker> {
 
     setState(() {
       dateRange = newDateRange;
+      // Assuming GetParamsBloc is available in this scope
       context.read<GetParamsBloc>().add(DatesChanged(
             startDate: dateRange.start,
             endDate: dateRange.end,

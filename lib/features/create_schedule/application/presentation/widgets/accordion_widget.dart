@@ -1,27 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:http/http.dart';
-import '../../../bloc/client_config_bloc.dart';
 import 'package:accordion/accordion.dart';
-// import 'package:accordion/controllers.dart';
 import '../../../bloc/schedule_bloc.dart';
-class AccordionPage extends StatefulWidget {
-  // final String? startLocation;
-  // final DateTime? startDate;
-  // final DateTime? endDate;
-  // final List<String>? chosenStates;
-  // final List<String>? chosenBusinessModels;
-  // final List<String>? chosenCategories;
 
-  const AccordionPage({
-    super.key,
-    // this.startLocation,
-    // this.startDate,
-    // this.endDate,
-    // this.chosenStates,
-    // this.chosenBusinessModels,
-    // this.chosenCategories,
-  });
+class AccordionPage extends StatefulWidget {
+  const AccordionPage({super.key});
 
   @override
   _AccordionPageState createState() => _AccordionPageState();
@@ -34,99 +17,244 @@ class _AccordionPageState extends State<AccordionPage> {
       color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal);
 
   String displayDetails({
-    String? businessModel,
-    String? category,
+    List<dynamic>? businessModel,
+    List<dynamic>? category,
+    List<dynamic>? subcategory,
     String? address,
     double? annualSales,
     String? telephoneNumber,
     String? email,
     String? faxNo,
-  }){
+  }) {
     return '''
-    Business Model:  ${businessModel?? ''}\n
-    Category: ${category?? ''}\n
-    Address: ${address?? ''}\n
-    Annual Sales: ${annualSales?? ''}\n
-    Telephone Number: ${telephoneNumber?? ''}\n
-    Email: ${email?? ''}\n
-    Fax No: ${faxNo?? ''}\n
+    Business Model:  ${businessModel ?? ''}\n
+    Category: ${category ?? ''}\n
+    Subcategory: ${subcategory ?? ''}\n
+    Address: ${address ?? ''}\n
+    Annual Sales: ${annualSales ?? ''}\n
+    Telephone Number: ${telephoneNumber ?? ''}\n
+    Email: ${email ?? ''}\n
+    Fax No: ${faxNo ?? ''}\n
     ''';
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // context.read<ScheduleBloc>().add(
-  //   //   EmitSchedule(
-  //   //     startLocation: widget.startLocation,
-  //   //     startDate: widget.startDate,
-  //   //     endDate: widget.endDate,
-  //   //     chosenStates: widget.chosenStates,
-  //   //     chosenBusinessModels : widget.chosenBusinessModels,
-  //   //     chosenCategories : widget.chosenCategories
-  //   //   )
-  //   // );
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     // Place your event-triggering logic here.
-  //     // For example, triggering an event in the bloc:
-  //     context.read<ScheduleBloc>().add(EmitSchedule(
-  //       startLocation: widget.startLocation,
-  //       startDate: widget.startDate,
-  //       endDate: widget.endDate,
-  //       chosenStates: widget.chosenStates,
-  //       chosenBusinessModels : widget.chosenBusinessModels,
-  //       chosenCategories : widget.chosenCategories
-  //     ));
-  //   });
-  // }
-
-// || state is DataLoaded)
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ScheduleBloc, ScheduleState>(
       builder: (context, state) {
-        if (state is ScheduleLoaded) { // Check for ScheduleLoaded state
+        if (state is ScheduleLoaded) {
           // Extract availableCompanies from the state
-          // List<dynamic> availableCompanies = state.availableCompanies;
+          List<dynamic> availableCompanies = state.availableCompanies;
+
           return Accordion(
-            children: [
-              // AccordionSection(
-              //   content: Text(getLoremIpsum(), style: contentStyle),
-              //   header: const Text('Company Details', style: headerStyle),
-              // ),
-              AccordionSection(
-                // Pass availableCompanies to the companies function
-                
-                content: Text(displayDetails(address: state.companyAddresses[0], annualSales: state.annualSales[0]), style: contentStyle),
-                header: Text(state.availableCompanies[0], style: headerStyle),
-              ),
-              AccordionSection(
-                // Pass availableCompanies to the companies function
-                content: Text(displayDetails(address: state.companyAddresses[1], annualSales: state.annualSales[1]), style: contentStyle),
-                header:  Text(state.availableCompanies[1], style: headerStyle),
-              ),
-              AccordionSection(
-                // Pass availableCompanies to the companies function
-                content: Text(displayDetails(address: state.companyAddresses[2], annualSales: state.annualSales[2]), style: contentStyle),
-                header:  Text(state.availableCompanies[2], style: headerStyle),
-              ),
-              AccordionSection(
-                // Pass availableCompanies to the companies function
-                content: Text(displayDetails(address: state.companyAddresses[3], annualSales: state.annualSales[3]), style: contentStyle),
-                header:  Text(state.availableCompanies[3], style: headerStyle),
-              ),
-            ],
+            children: List.generate(availableCompanies.length, (index) {
+              return AccordionSection(
+                content: Text(
+                  displayDetails(
+                    address: state.companyAddresses[index],
+                    annualSales: state.annualSales[index],
+                    businessModel: state.businessModel[index],
+                    category: state.categoryName[index],
+                    subcategory: state.subcategoryName[index],
+                    telephoneNumber: state.contactNumber[index],
+                    email: state.email[index],
+                    faxNo: state.faxNumber[index],
+                  ),
+                  style: contentStyle,
+                ),
+                header: Text(availableCompanies[index], style: headerStyle),
+              );
+            }),
           );
-        } 
-        else {
+        } else {
           return const Center(
-              child: CircularProgressIndicator(),
-            );
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );
   }
 }
+
+
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// // import 'package:http/http.dart';
+// import '../../../bloc/client_config_bloc.dart';
+// import 'package:accordion/accordion.dart';
+// // import 'package:accordion/controllers.dart';
+// import '../../../bloc/schedule_bloc.dart';
+// class AccordionPage extends StatefulWidget {
+//   // final String? startLocation;
+//   // final DateTime? startDate;
+//   // final DateTime? endDate;
+//   // final List<String>? chosenStates;
+//   // final List<String>? chosenBusinessModels;
+//   // final List<String>? chosenCategories;
+
+//   const AccordionPage({
+//     super.key,
+//     // this.startLocation,
+//     // this.startDate,
+//     // this.endDate,
+//     // this.chosenStates,
+//     // this.chosenBusinessModels,
+//     // this.chosenCategories,
+//   });
+
+//   @override
+//   _AccordionPageState createState() => _AccordionPageState();
+// }
+
+// class _AccordionPageState extends State<AccordionPage> {
+//   static const headerStyle = TextStyle(
+//       color: Color(0xffffffff), fontSize: 18, fontWeight: FontWeight.bold);
+//   static const contentStyle = TextStyle(
+//       color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal);
+
+//   String displayDetails({
+//     List<dynamic>? businessModel,
+//     List<dynamic>? category,
+//     List<dynamic>? subcategory,
+//     String? address,
+//     double? annualSales,
+//     String? telephoneNumber,
+//     String? email,
+//     String? faxNo,
+//   }){
+//     return '''
+//     Business Model:  ${businessModel?? ''}\n
+//     Category: ${category?? ''}\n
+//     Subcategory: ${subcategory?? ''}\n
+//     Address: ${address?? ''}\n
+//     Annual Sales: ${annualSales?? ''}\n
+//     Telephone Number: ${telephoneNumber?? ''}\n
+//     Email: ${email?? ''}\n
+//     Fax No: ${faxNo?? ''}\n
+//     ''';
+//   }
+
+//   // @override
+//   // void initState() {
+//   //   super.initState();
+//   //   // context.read<ScheduleBloc>().add(
+//   //   //   EmitSchedule(
+//   //   //     startLocation: widget.startLocation,
+//   //   //     startDate: widget.startDate,
+//   //   //     endDate: widget.endDate,
+//   //   //     chosenStates: widget.chosenStates,
+//   //   //     chosenBusinessModels : widget.chosenBusinessModels,
+//   //   //     chosenCategories : widget.chosenCategories
+//   //   //   )
+//   //   // );
+//   //   WidgetsBinding.instance.addPostFrameCallback((_) {
+//   //     // Place your event-triggering logic here.
+//   //     // For example, triggering an event in the bloc:
+//   //     context.read<ScheduleBloc>().add(EmitSchedule(
+//   //       startLocation: widget.startLocation,
+//   //       startDate: widget.startDate,
+//   //       endDate: widget.endDate,
+//   //       chosenStates: widget.chosenStates,
+//   //       chosenBusinessModels : widget.chosenBusinessModels,
+//   //       chosenCategories : widget.chosenCategories
+//   //     ));
+//   //   });
+//   // }
+
+// // || state is DataLoaded)
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<ScheduleBloc, ScheduleState>(
+//       builder: (context, state) {
+//         if (state is ScheduleLoaded) { // Check for ScheduleLoaded state
+//           // Extract availableCompanies from the state
+//           // List<dynamic> availableCompanies = state.availableCompanies;
+//           return Accordion(
+//             children: [
+//               // AccordionSection(
+//               //   content: Text(getLoremIpsum(), style: contentStyle),
+//               //   header: const Text('Company Details', style: headerStyle),
+//               // ),
+//               AccordionSection(
+//                 // Pass availableCompanies to the companies function
+//                 content: Text(
+//                   displayDetails(
+//                     address: state.companyAddresses[0],
+//                     annualSales: state.annualSales[0],
+//                     businessModel: state.businessModel[0],
+//                     category: state.categoryName[0],
+//                     subcategory: state.subcategoryName[0],
+//                     telephoneNumber: state.contactNumber[0],
+//                     email: state.email[0],
+//                     faxNo: state.faxNumber[0]
+//                   ), 
+//                   style: contentStyle
+//                 ),
+//                 header: Text(state.availableCompanies[0], style: headerStyle),
+//               ),
+//               AccordionSection(
+//                 // Pass availableCompanies to the companies function
+//                 content: Text(
+//                   displayDetails(
+//                     address: state.companyAddresses[1],
+//                     annualSales: state.annualSales[1],
+//                     businessModel: state.businessModel[1],
+//                     category: state.categoryName[1],
+//                     subcategory: state.subcategoryName[1],
+//                     telephoneNumber: state.contactNumber[1],
+//                     email: state.email[1],
+//                     faxNo: state.faxNumber[1]
+//                   ), 
+//                   style: contentStyle
+//                 ),
+//                 header:  Text(state.availableCompanies[1], style: headerStyle),
+//               ),
+//               AccordionSection(
+//                 // Pass availableCompanies to the companies function
+//                 content: Text(
+//                   displayDetails(
+//                     address: state.companyAddresses[2],
+//                     annualSales: state.annualSales[2],
+//                     businessModel: state.businessModel[2],
+//                     category: state.categoryName[2],
+//                     subcategory: state.subcategoryName[2],
+//                     telephoneNumber: state.contactNumber[2],
+//                     email: state.email[2],
+//                     faxNo: state.faxNumber[2]
+//                   ), 
+//                   style: contentStyle
+//                 ),
+//                 header:  Text(state.availableCompanies[2], style: headerStyle),
+//               ),
+//               AccordionSection(
+//                 // Pass availableCompanies to the companies function
+//                 content: Text(
+//                   displayDetails(
+//                     address: state.companyAddresses[3],
+//                     annualSales: state.annualSales[3],
+//                     businessModel: state.businessModel[3],
+//                     category: state.categoryName[3],
+//                     subcategory: state.subcategoryName[3],
+//                     telephoneNumber: state.contactNumber[3],
+//                     email: state.email[3],
+//                     faxNo: state.faxNumber[3]
+//                   ), 
+//                   style: contentStyle
+//                 ),
+//                 header:  Text(state.availableCompanies[3], style: headerStyle),
+//               ),
+//             ],
+//           );
+//         } 
+//         else {
+//           return const Center(
+//               child: CircularProgressIndicator(),
+//             );
+//         }
+//       },
+//     );
+//   }
+// }
 
 
 

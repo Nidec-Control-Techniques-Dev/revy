@@ -10,106 +10,141 @@ part 'schedule_state.dart';
 class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
   ScheduleBloc() : super(ScheduleInitial()) {
     on<EmitSchedule>(onGenerateSchedule);
+    on<ResetSchedule>((event, emit) {
+      emit(ScheduleReset());
+    });
   }
 
   Future<void> onGenerateSchedule(GenerateSchedule event, Emitter<ScheduleState> emit) async {
-      final supabase = Supabase.instance.client;
+    final supabase = Supabase.instance.client;
       await supabase.auth.signInWithPassword(
         email: 'nidec.ct.dev@gmail.com',
         password: 'Qwerty1234',
       );
 
-      final modelsCategoriesFiltered = await supabase
-        .from('company_clients')
-        .select('company_ref')
-        .containedBy('category_refs', event.chosenCategories.cast<Object>())
-        .containedBy('business_model_refs', event.chosenBusinessModels.cast<Object>());
+    final modelsCategoriesFiltered = await supabase
+      .from('company_clients')
+      .select('company_ref')
+      .containedBy('category_refs', event.chosenCategories.cast<Object>())
+      .containedBy('business_model_refs', event.chosenBusinessModels.cast<Object>());
+    // ignore: avoid_print
+    print("---------------");
+    // ignore: avoid_print
+    print(modelsCategoriesFiltered);
+    // ignore: avoid_print
+    print("---------------");
 
-      print("---------------");
-      print(modelsCategoriesFiltered);
-      print("---------------");
-
-      final statesFiltered = await supabase
+    final statesFiltered = await supabase
       .from("company_addresses")
       .select('company_ref')
       .filter('company_ref', 'in', modelsCategoriesFiltered.map((item) => item['company_ref'] as String).toList())
       .filter('state_ref', 'in', event.chosenStates);
 
-      print("---------------");
-      print(statesFiltered);
-      print("---------------");
+    // ignore: avoid_print
+    print("---------------");
+    // ignore: avoid_print
+    print(statesFiltered);
+    // ignore: avoid_print
+    print("---------------");
       
-      final allAvailableCompaniesUuid = await supabase
+    final allAvailableCompaniesUuid = await supabase
       .from("scheduled_companies")
       .select("company_ref")
       .filter("company_ref", "in", statesFiltered.map((item) => item['company_ref'] as String).toList())
       .eq("is_scheduled", 0);
 
+    // ignore: avoid_print
+    print("---------------");
+    // ignore: avoid_print
+    print(allAvailableCompaniesUuid);
+    // ignore: avoid_print
+    print("---------------");
 
-      print("---------------");
-      print(allAvailableCompaniesUuid);
-      print("---------------");
+    final GeocodingApiDataSource dataSource = GeocodingApiDataSource(Dio());
+    Map<String, dynamic> location = await dataSource.geocodeAddress(event.startLocation);
 
-      final GeocodingApiDataSource dataSource = GeocodingApiDataSource(Dio());
-      Map<String, dynamic> location = await dataSource.geocodeAddress(event.startLocation);
+    // ignore: avoid_print
+    print("---------------");
+    // ignore: avoid_print
+    print("Starting Location Coordinates $location");
+    // ignore: avoid_print
+    print("---------------");
 
-      print("---------------");
-      print("Starting Location Coordinates $location");
-      print("---------------");
-
-      final response = await supabase.rpc('clients', params: {
+    final chosenClients = await supabase.rpc('clients', params: {
         'lat1': location["lat"],
         'lon1': location["long"],
         'refs': allAvailableCompaniesUuid.map((item) => item['company_ref'] as String).toList(),
       });
 
-      print("---------------");
-      print(response);
-      print("---------------");
+    List<Future> futures = [];
 
-      // final nearestAvailableCompaniesUuid = await supabase
-      // .from
+    for (var companyId in chosenClients.map((item) => item['company_ref'] as String).toList()){
+      futures.add(
+        supabase
+          .from("scheduled_companies")
+          .update({"is_chosen": 1})
+          .eq("company_ref", companyId)
+      );
+    }
 
-      final availableCompaniesNames = await supabase
+    await Future.wait(futures);
+    
+    // ignore: avoid_print
+    print("---------------");
+    // ignore: avoid_print
+    print(chosenClients);
+    // ignore: avoid_print
+    print("---------------");
+
+    final availableCompaniesNames = await supabase
       .from("companies")
       .select("name")
-      .filter("uuid", "in", response.map((item) => item['company_ref'] as String).toList());
+      .filter("uuid", "in", chosenClients.map((item) => item['company_ref'] as String).toList())
+      .order("uuid", ascending: true);
 
-      print("---------------");
-      print(availableCompaniesNames);
-      print("---------------");
+    // ignore: avoid_print
+    print("---------------");
+    // ignore: avoid_print
+    print(availableCompaniesNames);
+    // ignore: avoid_print
+    print("---------------");
 
-      // List<dynamic> companyRefs = stateFiltered.map((item) => item['company_ref']).toList();
-      // print("companyNames");
-      // final companyNames = await supabase
-      //   .from('companies')
-      //   .select('uuid, name')
-      //   .inFilter('uuid', companyRefs);
+    final chosenClientsInfo = await supabase.rpc("get_client_info",
+      params: {
+        "company_ref_values": chosenClients.map((item) => item['company_ref'] as String).toList()
+      }
+    );
 
-      // final countryFiltered = await supabase
-      //   .from('company_addresses')
-      //   .select('company_ref, full_text')
-      //   .eq('country_ref','3a55c85a-182a-4d80-854f-a9409631df6b');
-      
-      List<dynamic> companyNames = availableCompaniesNames.map((item) => item['name']).toList();
-      List<dynamic> companyAddresses = response.map((item) => item['address_name']).toList();
-      List<dynamic> companyAnnualSales = response.map((item) => item['annual_sales']).toList();
+    // ignore: avoid_print
+    print("---------------");
+    // ignore: avoid_print
+    print(chosenClientsInfo);
+    // ignore: avoid_print
+    print("---------------");
 
-      // final companyNamesQuery = await supabase
-      //   .from('companies')
-      //   .select('name')
-      //   .inFilter('uuid',companyRef);
-      // List<dynamic> availableCompanies = [];
-      // emit(ScheduleLoaded(
-      //   availableCompanies: availableCompanies
-      // ));
+    
+    List<dynamic> businessModel = chosenClientsInfo.map((item) => item['business_model_names']).toList();
+    List<dynamic> categoryName = chosenClientsInfo.map((item) => item['category_names']).toList();
+    List<dynamic> subcategoryName = chosenClientsInfo.map((item) => item['subcategory_names']).toList();
+    List<dynamic> contactNumber = chosenClientsInfo.map((item) => item['contact_number']).toList();
+    List<dynamic> email = chosenClientsInfo.map((item) => item['email']).toList();
+    List<dynamic> faxNumber = chosenClientsInfo.map((item) => item['fax_number']).toList();
+    List<dynamic> companyNames = availableCompaniesNames.map((item) => item['name']).toList();
+    List<dynamic> companyAddresses = chosenClients.map((item) => item['address_name']).toList();
+    List<dynamic> companyAnnualSales = chosenClients.map((item) => item['annual_sales']).toList();
 
-      // List<dynamic> companyNames = companyNamesQuery.map((item) => item['name']).toList();
-      // List<String> companyRefAsString = companyRef.map((item) => item.toString()).toList();
-      // String uuids = companyRefAsString.join(','); 
-      // String sqlQuery = "SELECT name FROM companies WHERE uuid IN ($uuids)";
-      // final response = await supabase.rpc('custom_query', params: {'uuids': uuids}).single().execute();
-      emit(ScheduleLoaded(availableCompanies: companyNames, companyAddresses:companyAddresses, annualSales: companyAnnualSales));
+    emit(ScheduleLoaded(
+      availableCompanies: companyNames, 
+      companyAddresses:companyAddresses,
+      annualSales: companyAnnualSales,
+      businessModel: businessModel,
+      categoryName: categoryName,
+      subcategoryName: subcategoryName,
+      contactNumber: contactNumber,
+      email: email,
+      faxNumber: faxNumber
+      )
+    );
   }
 
 }

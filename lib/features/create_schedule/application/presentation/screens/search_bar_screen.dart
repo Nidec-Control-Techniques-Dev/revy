@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'select_starting_location.dart';
 import '../widgets/search_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SearchBarScreen extends StatelessWidget {
   const SearchBarScreen({super.key});

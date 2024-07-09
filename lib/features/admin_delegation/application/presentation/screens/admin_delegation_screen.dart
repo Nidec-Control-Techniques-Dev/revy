@@ -49,7 +49,9 @@ class DelegationPage extends StatelessWidget {
                       );
                     }).toList(),
                     onChanged: (newValue) {
-                      context.read<DelegationBloc>().add(LoadSalespersonDetails(newValue!));
+                      context
+                          .read<DelegationBloc>()
+                          .add(LoadSalespersonDetails(newValue!));
                     },
                   ),
                   const SizedBox(height: 16.0),
@@ -94,33 +96,33 @@ class DelegationPage extends StatelessWidget {
                         .map((e) => MultiSelectItem<String>(e, e))
                         .toList(),
                     title: const Text("Edit Country"),
-                    selectedColor: Colors.blue,
+                    selectedColor: Colors.green,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
-                        color: Colors.blue,
+                        color: Colors.green,
                         width: 2,
                       ),
                     ),
                     buttonIcon: const Icon(
                       Icons.arrow_drop_down,
-                      color: Colors.blue,
+                      color: Colors.black,
                     ),
-                    buttonText: Text(
+                    buttonText: const Text(
                       "Select Countries",
                       style: TextStyle(
-                        color: Colors.blue[800],
+                        color: Colors.black,
                         fontSize: 16,
                       ),
                     ),
                     onConfirm: (results) {
                       context.read<DelegationBloc>().add(UpdateDetails(
-                        salesperson: state.selectedSalesperson,
-                        countries: results.cast<String>(),
-                        states: state.states,
-                        businessModels: state.businessModels,
-                        businessCategories: state.businessCategories,
-                      ));
+                            salesperson: state.selectedSalesperson,
+                            countries: results.cast<String>(),
+                            states: state.states,
+                            businessModels: state.businessModels,
+                            businessCategories: state.businessCategories,
+                          ));
                     },
                     initialValue: state.countries,
                   ),
@@ -130,33 +132,33 @@ class DelegationPage extends StatelessWidget {
                         .map((e) => MultiSelectItem<String>(e, e))
                         .toList(),
                     title: const Text("Edit State"),
-                    selectedColor: Colors.blue,
+                    selectedColor: Colors.green,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
-                        color: Colors.blue,
+                        color: Colors.green,
                         width: 2,
                       ),
                     ),
                     buttonIcon: const Icon(
                       Icons.arrow_drop_down,
-                      color: Colors.blue,
+                      color: Colors.black,
                     ),
-                    buttonText: Text(
+                    buttonText: const Text(
                       "Select States",
                       style: TextStyle(
-                        color: Colors.blue[800],
+                        color: Colors.black,
                         fontSize: 16,
                       ),
                     ),
                     onConfirm: (results) {
                       context.read<DelegationBloc>().add(UpdateDetails(
-                        salesperson: state.selectedSalesperson,
-                        countries: state.countries,
-                        states: results.cast<String>(),
-                        businessModels: state.businessModels,
-                        businessCategories: state.businessCategories,
-                      ));
+                            salesperson: state.selectedSalesperson,
+                            countries: state.countries,
+                            states: results.cast<String>(),
+                            businessModels: state.businessModels,
+                            businessCategories: state.businessCategories,
+                          ));
                     },
                     initialValue: state.states,
                   ),
@@ -166,33 +168,33 @@ class DelegationPage extends StatelessWidget {
                         .map((e) => MultiSelectItem<String>(e, e))
                         .toList(),
                     title: const Text("Edit Business Model"),
-                    selectedColor: Colors.blue,
+                    selectedColor: Colors.green,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
-                        color: Colors.blue,
+                        color: Colors.green,
                         width: 2,
                       ),
                     ),
                     buttonIcon: const Icon(
                       Icons.arrow_drop_down,
-                      color: Colors.blue,
+                      color: Colors.black,
                     ),
-                    buttonText: Text(
+                    buttonText: const Text(
                       "Select Business Models",
                       style: TextStyle(
-                        color: Colors.blue[800],
+                        color: Colors.black,
                         fontSize: 16,
                       ),
                     ),
                     onConfirm: (results) {
                       context.read<DelegationBloc>().add(UpdateDetails(
-                        salesperson: state.selectedSalesperson,
-                        countries: state.countries,
-                        states: state.states,
-                        businessModels: results.cast<String>(),
-                        businessCategories: state.businessCategories,
-                      ));
+                            salesperson: state.selectedSalesperson,
+                            countries: state.countries,
+                            states: state.states,
+                            businessModels: results.cast<String>(),
+                            businessCategories: state.businessCategories,
+                          ));
                     },
                     initialValue: state.businessModels,
                   ),
@@ -202,33 +204,33 @@ class DelegationPage extends StatelessWidget {
                         .map((e) => MultiSelectItem<String>(e, e))
                         .toList(),
                     title: const Text("Edit Business Category"),
-                    selectedColor: Colors.blue,
+                    selectedColor: Colors.green,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
-                        color: Colors.blue,
+                        color: Colors.green,
                         width: 2,
                       ),
                     ),
                     buttonIcon: const Icon(
                       Icons.arrow_drop_down,
-                      color: Colors.blue,
+                      color: Colors.black,
                     ),
-                    buttonText: Text(
+                    buttonText: const Text(
                       "Select Business Categories",
                       style: TextStyle(
-                        color: Colors.blue[800],
+                        color: Colors.black,
                         fontSize: 16,
                       ),
                     ),
                     onConfirm: (results) {
                       context.read<DelegationBloc>().add(UpdateDetails(
-                        salesperson: state.selectedSalesperson,
-                        countries: state.countries,
-                        states: state.states,
-                        businessModels: state.businessModels,
-                        businessCategories: results.cast<String>(),
-                      ));
+                            salesperson: state.selectedSalesperson,
+                            countries: state.countries,
+                            states: state.states,
+                            businessModels: state.businessModels,
+                            businessCategories: results.cast<String>(),
+                          ));
                     },
                     initialValue: state.businessCategories,
                   ),
@@ -239,12 +241,13 @@ class DelegationPage extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {
                           context.read<DelegationBloc>().add(UpdateDetails(
-                            salesperson: state.selectedSalesperson,
-                            countries: state.previousCountries,
-                            states: state.previousStates,
-                            businessModels: state.previousBusinessModels,
-                            businessCategories: state.previousBusinessCategories,
-                          ));
+                                salesperson: state.selectedSalesperson,
+                                countries: state.previousCountries,
+                                states: state.previousStates,
+                                businessModels: state.previousBusinessModels,
+                                businessCategories:
+                                    state.previousBusinessCategories,
+                              ));
                         },
                         child: const Text('Reset'),
                       ),

@@ -1,36 +1,36 @@
-part of 'client_config_bloc.dart';
+// part of 'client_config_bloc.dart';
 
-sealed class DataState {
-  const DataState();
-}
+// sealed class DataState {
+//   const DataState();
+// }
 
-class DataInitial extends DataState {}
+// class DataInitial extends DataState {}
 
-class DataLoading extends DataState {}
+// class DataLoading extends DataState {}
 
-class DataLoaded extends DataState {
-  final List<ValueItem> statesOptions;
-  final List<ValueItem> businessModelsOptions;
-  final List<ValueItem> categoriesOptions;
+// class DataLoaded extends DataState {
+//   final List<ValueItem> statesOptions;
+//   final List<ValueItem> businessModelsOptions;
+//   final List<ValueItem> categoriesOptions;
 
-  const DataLoaded({
-    required this.statesOptions,
-    required this.businessModelsOptions,
-    required this.categoriesOptions,
-  });
+//   const DataLoaded({
+//     required this.statesOptions,
+//     required this.businessModelsOptions,
+//     required this.categoriesOptions,
+//   });
 
-  DataLoaded copyWith({
-    List<ValueItem>? statesOptions,
-    List<ValueItem>? businessModelsOptions,
-    List<ValueItem>? categoriesOptions,
-  }) {
-    return DataLoaded(
-      statesOptions: statesOptions ?? this.statesOptions,
-      businessModelsOptions: businessModelsOptions ?? this.businessModelsOptions,
-      categoriesOptions: categoriesOptions ?? this.categoriesOptions,
-    );
-  }
-}
+//   DataLoaded copyWith({
+//     List<ValueItem>? statesOptions,
+//     List<ValueItem>? businessModelsOptions,
+//     List<ValueItem>? categoriesOptions,
+//   }) {
+//     return DataLoaded(
+//       statesOptions: statesOptions ?? this.statesOptions,
+//       businessModelsOptions: businessModelsOptions ?? this.businessModelsOptions,
+//       categoriesOptions: categoriesOptions ?? this.categoriesOptions,
+//     );
+//   }
+// }
 
 // class ScheduleLoaded extends DataState {
 //   // final List<dynamic> availableCompanies;
@@ -38,13 +38,13 @@ class DataLoaded extends DataState {
 //   // const ScheduleLoaded({required this.availableCompanies});
 // }
 
-class DataError extends DataState {
-  final String message;
+// class DataError extends DataState {
+//   final String message;
 
-  DataError(this.message);
-}
+//   DataError(this.message);
+// }
 
-class SupabaseInitialized extends DataState {}
+// class SupabaseInitialized extends DataState {}
 
 
 // part of 'client_config_bloc.dart';

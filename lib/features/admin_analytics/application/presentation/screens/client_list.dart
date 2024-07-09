@@ -1,4 +1,4 @@
-import 'package:analytics/filter_bloc.dart';
+import '../../../bloc/filter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'client_page.dart';
@@ -97,7 +97,7 @@ class ClientListCompany1 extends StatelessWidget {
                               width: 2,
                             ),
                           ),
-                          child: Icon(Icons.circle),
+                          child: const Icon(Icons.circle),
                         ),
                       ),
                       Transform.scale(
@@ -212,7 +212,7 @@ class ClientListCompany2 extends StatelessWidget {
                               width: 2,
                             ),
                           ),
-                          child: Icon(Icons.circle),
+                          child: const Icon(Icons.circle),
                         ),
                       ),
                       Transform.scale(
@@ -334,7 +334,7 @@ class ClientListCompanyAll extends StatelessWidget {
                               width: 2,
                             ),
                           ),
-                          child: Icon(Icons.circle),
+                          child: const Icon(Icons.circle),
                         ),
                       ),
                       Transform.scale(

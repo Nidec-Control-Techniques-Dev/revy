@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 
 
 class CurrentDate extends StatelessWidget {
+  const CurrentDate({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Get the current date and time
@@ -12,15 +14,15 @@ class CurrentDate extends StatelessWidget {
 
     return Center(
       child: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: const Color.fromARGB(255, 255, 255, 255),
           border: Border.all(width:1.0),
         ),
         child: Text(
-          '$formattedDate',
-          style: TextStyle(
+          formattedDate,
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -31,12 +33,14 @@ class CurrentDate extends StatelessWidget {
 }
 
 class LastSevenDays extends StatelessWidget {
+  const LastSevenDays({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Get the current date and time
     DateTime now = DateTime.now();
     // Calculate the start date (7 days ago)
-    DateTime startDate = now.subtract(Duration(days: 6));
+    DateTime startDate = now.subtract(const Duration(days: 6));
 
     // Format the date as needed
     DateFormat dateFormat = DateFormat('yyyy-MM-dd');
@@ -46,15 +50,15 @@ class LastSevenDays extends StatelessWidget {
 
     return Center(
       child: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: const Color.fromARGB(255, 255, 255, 255),
           border: Border.all(width:1.0),
         ),
         child: Text(
           '$formattedStartDate - $formattedEndDate',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -65,12 +69,14 @@ class LastSevenDays extends StatelessWidget {
 }
 
 class LastThirtyDays extends StatelessWidget {
+  const LastThirtyDays({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Get the current date and time
     DateTime now = DateTime.now();
     // Calculate the start date (7 days ago)
-    DateTime startDate = now.subtract(Duration(days: 29));
+    DateTime startDate = now.subtract(const Duration(days: 29));
 
     // Format the date as needed
     DateFormat dateFormat = DateFormat('yyyy-MM-dd');
@@ -80,15 +86,15 @@ class LastThirtyDays extends StatelessWidget {
 
     return Center(
       child: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: const Color.fromARGB(255, 255, 255, 255),
           border: Border.all(width:1.0),
         ),
         child: Text(
           '$formattedStartDate - $formattedEndDate',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

@@ -33,3 +33,7 @@ final class EmitSchedule extends GenerateSchedule{
     }
   );
 }
+
+final class ResetSchedule extends GenerateSchedule{
+  ResetSchedule({required super.startLocation, required super.startDate, required super.endDate, required super.chosenStates, required super.chosenBusinessModels, required super.chosenCategories});
+}

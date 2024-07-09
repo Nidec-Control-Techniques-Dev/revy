@@ -87,6 +87,12 @@ class _ClientPageState extends State<ClientPage> {
                     fontWeight: FontWeight.w500,
                     fontSize: 18,
                     color: Colors.black)),
+            const SizedBox(height: 8),
+            Text('Category: ${widget.faxNo}',
+                style: GoogleFonts.robotoSlab(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    color: Colors.black)),
             const SizedBox(height: 150),
             Center(
                 child: Container(

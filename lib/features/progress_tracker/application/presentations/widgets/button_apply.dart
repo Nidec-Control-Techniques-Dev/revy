@@ -45,22 +45,17 @@ import '../../../bloc/get_params_bloc.dart';
 
 class ButtonApply extends StatelessWidget {
   const ButtonApply({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetParamsBloc, GetParamsState>(
       builder: (context, state) {
         return Center(
           child: Container(
-            // Wrap the button in a container to control its size
-            padding: const EdgeInsets.symmetric(
-                horizontal: 20), // Add some horizontal padding
-            width: MediaQuery.of(context).size.width *
-                0.8, // Set the width to 80% of the screen width
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            width: MediaQuery.of(context).size.width * 0.8,
             child: ElevatedButton(
               onPressed: () {
                 context.read<ReadProgressBloc>().add(ApplyButtonPressed(
-                      // Replace `.filterStatus` with the actual value or variable
                       filterStatus: state.filterStatus,
                       startDate: state.startDate,
                       endDate: state.endDate,
@@ -68,14 +63,22 @@ class ButtonApply extends StatelessWidget {
                 print('Apply button pressed');
               },
               style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                side: const BorderSide(
+                    color: Color.fromARGB(
+                        255, 8, 128, 28)), // Adds a dark green border
+                elevation: 10, // Adds shadow
+                shadowColor: Colors.grey[700], // Sets the shadow color
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30), // Rounded corners
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                minimumSize: const Size(double.infinity,
-                    50), // Set the height and ensure it takes full width
+                minimumSize: const Size(double.infinity, 50),
               ),
               child: const Text('Apply',
-                  style: TextStyle(fontSize: 18)), // Style the text
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400)),
             ),
           ),
         );

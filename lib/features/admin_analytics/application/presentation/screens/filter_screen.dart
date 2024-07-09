@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'client_list.dart';
-import 'filter_bloc.dart';
+import '../../../bloc/filter_bloc.dart';
 import 'date.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class FilterScreen extends StatelessWidget {
+  const FilterScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.all(8.0),
+        title: const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Text('Analytics', style: TextStyle(fontWeight: FontWeight.bold)),
         ),
       ),
       body: BlocProvider(
         create: (context) => FilterBloc(),
-        child: FilterScreenContent(),
+        child: const FilterScreenContent(),
       ),
     );
   }
 }
 
 class FilterScreenContent extends StatefulWidget {
+  const FilterScreenContent({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _FilterScreenContentState createState() => _FilterScreenContentState();
 }
 
@@ -40,7 +45,7 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Sales Person:', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('Sales Person:', style: TextStyle(fontWeight: FontWeight.bold)),
             BlocBuilder<FilterBloc, FilterState>(
               builder: (context, state) {
                 return _buildDropdown(
@@ -52,8 +57,8 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
                 );
               },
             ),
-            SizedBox(height: 20),
-            Text('Date:', style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 20),
+            const Text('Date:', style: TextStyle(fontWeight: FontWeight.bold)),
             BlocBuilder<FilterBloc, FilterState>(
               builder: (context, state) {
                 return _buildDropdown(
@@ -65,16 +70,16 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
                 );
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   context.read<FilterBloc>().add(ApplyFilters());
                 },
-                child: Text('Apply Filters'),
+                child: const Text('Apply Filters'),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             BlocBuilder<FilterBloc, FilterState>(
               builder: (context, state) {
                 if (state.displayText.isNotEmpty && state.selectedFilter1 != 'Choose a Filter' && state.selectedFilter2 == 'Today') {
@@ -84,18 +89,18 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
                 } else if (state.displayText.isNotEmpty && state.selectedFilter1 != 'Choose a Filter' && state.selectedFilter2 == 'Last 30 Days') {
                   return LastThirtyDays();
                 } else {
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 }
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             BlocBuilder<FilterBloc, FilterState>(
               builder: (context, state) {
                 if (state.displayText.isNotEmpty && state.selectedFilter1 == 'Company 1' && state.selectedFilter2 != 'Choose a Filter') {
                   return Column(
                     children: [
                       _buildResultBox(state),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Container(
                         height: 400.0,
                         alignment: Alignment.center,
@@ -108,7 +113,7 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
                   return Column(
                     children: [
                       _buildResultBox(state),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Container(
                         height: 400.0,
                         alignment: Alignment.center,
@@ -121,7 +126,7 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
                   return Column(
                     children: [
                       _buildResultBox(state),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Container(
                         height: 400.0,
                         alignment: Alignment.center,
@@ -131,7 +136,7 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
                   );
                 }
                 else {
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 }
               },
 
@@ -149,7 +154,7 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
@@ -173,24 +178,24 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
         Row(
           children: [
             Expanded(child: _buildBox('Visited', state.visitedCount.toString())),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(child: _buildBox('Not Visited', state.notVisitedCount.toString())),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(child: _buildBox('Ongoing', state.ongoingCount.toString())),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(child: _buildBox('Total', state.total.toString())),
           ],
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         if (state.dataMap.isNotEmpty) _buildPieChart(state.dataMap),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
       ],
     );
   }
 
   Widget _buildBox(String title, String value) {
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Colors.grey),
@@ -200,12 +205,12 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             value,
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -215,20 +220,20 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
   Widget _buildPieChart(Map<String, double> dataMap) {
     return PieChart(
       dataMap: dataMap,
-      animationDuration: Duration(milliseconds: 800),
+      animationDuration: const Duration(milliseconds: 800),
       chartLegendSpacing: 32,
       chartRadius: MediaQuery.of(context).size.width / 3.2,
       initialAngleInDegree: 0,
       chartType: ChartType.disc,
-      colorList: [Color.fromARGB(255, 165, 230, 167), const Color.fromARGB(255, 238, 147, 140), const Color.fromARGB(255, 243, 233, 147)],
+      colorList: const [Color.fromARGB(255, 165, 230, 167),  Color.fromARGB(255, 238, 147, 140), const Color.fromARGB(255, 243, 233, 147)],
       ringStrokeWidth: 32,
-      legendOptions: LegendOptions(
+      legendOptions:const LegendOptions(
         showLegendsInRow: true,
         legendPosition: LegendPosition.bottom,
         showLegends: true,
         legendTextStyle: TextStyle(fontWeight: FontWeight.bold),
       ),
-      chartValuesOptions: ChartValuesOptions(
+      chartValuesOptions:const ChartValuesOptions(
         showChartValueBackground: true,
         showChartValues: true,
         showChartValuesInPercentage: true,
