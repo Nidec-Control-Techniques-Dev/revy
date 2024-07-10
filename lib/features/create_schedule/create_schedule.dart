@@ -190,7 +190,8 @@ class _StepperState extends State<CreateScheduleStepper> {
                       );
                     },
                   );
-                } else {
+                }
+                else {
                   context.read<ScheduleBloc>().add(EmitSchedule(
                       startLocation: state.startLocation,
                       startDate: state.startDate,
