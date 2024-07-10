@@ -17,7 +17,18 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
       // Some logic
       // Trigger another event
       emit(ScheduleIsSaving());
-      add(SavingSchedule());
+      add(SavingSchedule(
+        companyRefs: event.companyRefs,
+        availableCompanies: event.availableCompanies,
+        companyAddresses: event.companyAddresses,
+        annualSales: event.annualSales,
+        businessModel: event.businessModel,
+        categoryName: event.categoryName,
+        subcategoryName: event.subcategoryName,
+        contactNumber: event.contactNumber,
+        email: event.email,
+        faxNumber: event.faxNumber,
+      ));
   }
     Future<void> insertSchedule(UploadScheduleEvent event, Emitter<UploadScheduleState> emit) async{
       await Future.delayed(const Duration(seconds: 5));

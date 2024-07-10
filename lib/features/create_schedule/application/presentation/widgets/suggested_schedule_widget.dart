@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'accordion_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/upload_schedule_bloc.dart';
+import '../../../bloc/schedule_bloc.dart';
 
 class SuggestedSchedWidget extends StatelessWidget {
   const SuggestedSchedWidget({
@@ -10,36 +11,107 @@ class SuggestedSchedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UploadScheduleBloc, UploadScheduleState>(
+    return BlocBuilder<ScheduleBloc, ScheduleState>(
       builder: (context, state) {
-        if (state is ScheduleIsSaving) {
-          return const Column(
-            children: [
-              Text("Saving Schedule"),
-              // SizedBox(height: 200.0),
-              Center(
-                child: CircularProgressIndicator(),
-              )
-            ],
-          );
-        } else {
-          return const SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Here’s your suggested schedule",
-                    style: TextStyle(fontSize: 22),
-                    textAlign: TextAlign.center,
+        if (state is ScheduleLoaded){
+          return BlocBuilder<UploadScheduleBloc, UploadScheduleState>(
+            builder: (context, state) {
+              if (state is ScheduleIsSaving) {
+                // showDialog(
+                //   context: context,
+                //   builder: (BuildContext context) {
+                    // return AlertDialog(
+                    //   title: const Text('Schedule Ready'),
+                    //   content: const Text('Your suggested schedule is being prepared. '),
+                    //   actions: <Widget>[
+                    //     TextButton(
+                    //       child: const Text('OK'),
+                    //       onPressed: () {
+                    //         Navigator.of(context).pop();
+                    //         WidgetsBinding.instance.addPostFrameCallback((_) {
+                    //           showDialog(
+                    //             context: context,
+                    //             builder: (BuildContext context) {
+                    //               return AlertDialog(
+                    //                 title: const Text("Don't like your schedule?"),
+                    //                 content: const Text(
+                    //                   'You can generate another schedule with a different set of clients selected '
+                    //                   'by letting time pass or choosing a different set of configurations'),
+
+                    //                 actions: <Widget>[
+                    //                   TextButton(
+                    //                     child: const Text('OK'),
+                    //                     onPressed: () {
+                    //                       Navigator.of(context).pop(); // Close the dialog
+                    //                       WidgetsBinding.instance.addPostFrameCallback((_) {
+                    //                         showDialog(
+                    //                           context: context,
+                    //                           builder: (BuildContext context) {
+                    //                             return AlertDialog(
+                    //                               title: const Text('Have an issue with the schedule?'),
+                    //                               content: const Text(
+                    //                                 'Please report an issue if the information given on the clients are invalid '
+                    //                               ),
+                    //                               actions: <Widget>[
+                    //                                 TextButton(
+                    //                                   child: const Text('OK'),
+                    //                                   onPressed: () {
+                    //                                     Navigator.of(context).pop(); // Close the dialog
+                    //                                   },
+                    //                                 ),
+                    //                               ],
+                    //                             );
+                    //                           },
+                    //                         );
+                    //                       });
+                    //                     },
+                    //                   ),
+                    //                 ],
+                    //               );
+                    //             },
+                    //           );
+                    //         });// Close the dialog
+                    //       },
+                    //     ),
+                    //   ],
+                    // );
+                //   },
+                // );
+                return const Column(
+                  children: [
+                    Text("Saving Schedule"),
+                    // SizedBox(height: 200.0),
+                    Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  ],
+                );
+              } else {
+                return const SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Here’s your suggested schedule",
+                          style: TextStyle(fontSize: 22),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      AccordionPage(),
+                      SizedBox(
+                        height: 200.0,
+                      ),
+                    ],
                   ),
-                ),
-                AccordionPage(),
-                SizedBox(
-                  height: 200.0,
-                ),
-              ],
-            ),
+                );
+              }
+            },
+          );
+        }
+        else{
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         }
       },
