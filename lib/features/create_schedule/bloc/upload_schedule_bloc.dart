@@ -2,9 +2,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:bloc/bloc.dart';
 // import 'package:freezed_annotation/freezed_annotation.dart';
-
+import 'package:supabase_flutter/supabase_flutter.dart';
 part 'upload_schedule_event.dart';
 part 'upload_schedule_state.dart';
+
 // part 'bloc/upload_schedule_bloc.freezed.dart';
 
 class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> {
@@ -31,7 +32,36 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
       ));
   }
     Future<void> insertSchedule(UploadScheduleEvent event, Emitter<UploadScheduleState> emit) async{
-      await Future.delayed(const Duration(seconds: 5));
-      emit(ScheduleSavedState());
+      final supabase = Supabase.instance.client;
+        await supabase.auth.signInWithPassword(
+          email: 'nidec.ct.dev@gmail.com',
+          password: 'Qwerty1234',
+        );
+        final user = supabase.auth.currentUser;
+        
+        if (user != null){
+          String userUid = user.id;
+          print("user $userUid");
+            await supabase.rpc('update_scheduled_companies', params: {
+              'company_uuids': event.companyRefs,
+              'email': 'nidec.ct.dev@gmail.com',
+              'schedule_date_param': DateTime.now().toUtc().toIso8601String(),
+              'user_id': userUid
+            });
+          emit(ScheduleSavedState());
+        }
+      // try{
+      //   await supabase.rpc('update_scheduled_companies', params: {
+      //     'company_uuids': event.companyRefs,
+      //     'email': 'nidec.ct.dev@gmail.com',
+      //     'schedule_date': DateTime.now().toUtc().toIso8601String(),
+      //   });
+      //   emit(ScheduleSavedState());
+      // }
+      // catch (e){
+      //   print(e);
+      //   emit(ScheduleErrorState());
+      // }
+      // await Future.delayed(const Duration(seconds: 5));
   }
 }
