@@ -42,12 +42,13 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
         if (user != null){
           String userUid = user.id;
           print("user $userUid");
-            await supabase.rpc('update_scheduled_companies', params: {
-              'company_uuids': event.companyRefs,
-              'email': 'nidec.ct.dev@gmail.com',
-              'schedule_date_param': DateTime.now().toUtc().toIso8601String(),
-              'user_id': userUid
-            });
+          await supabase.rpc('update_scheduled_companies', params: {
+            'company_uuids': event.companyRefs,
+            'email': 'nidec.ct.dev@gmail.com',
+            'schedule_date_param': DateTime.now().toUtc().toIso8601String(),
+            'user_id': userUid
+          });
+          await supabase.rpc("delete_unscheduled_companies");
           emit(ScheduleSavedState());
         }
       // try{

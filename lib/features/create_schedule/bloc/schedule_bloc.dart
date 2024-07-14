@@ -1,5 +1,5 @@
   // import 'package:bloc/bloc.dart';
-  import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:multi_dropdown/multiselect_dropdown.dart';
 import '../../create_schedule/data/datasources/remote/geocode_data_source.dart';
@@ -61,11 +61,19 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     // ignore: avoid_print
     print("---------------");
       
-    final allAvailableCompaniesUuid = await supabase
-      .from("scheduled_companies")
-      .select("company_ref")
-      .filter("company_ref", "in", statesFiltered.map((item) => item['company_ref'] as String).toList())
-      .eq("is_scheduled", 0);
+    // final allAvailableCompaniesUuid = await supabase
+    //   .from("scheduled_companies")
+    //   .select("company_ref")
+    //   .filter("company_ref", "in", statesFiltered.map((item) => item['company_ref'] as String).toList())
+    //   .eq("is_scheduled", 0);
+
+    // TODO: change allAvailableCompaniesUuid to get data from sql function: get_unscheduled_companies; use rpc
+    final allAvailableCompaniesUuid = await supabase.rpc(
+      "get_unscheduled_companies",
+      params: {
+        "refs": statesFiltered.map((item) => item['company_ref'] as String).toList()
+      } 
+    );
 
     // ignore: avoid_print
     print("---------------");
@@ -87,8 +95,17 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     final chosenClients = await supabase.rpc('clients', params: {
         'lat1': location["lat"],
         'lon1': location["long"],
-        'refs': allAvailableCompaniesUuid.map((item) => item['company_ref'] as String).toList(),
+        'refs': allAvailableCompaniesUuid.map((item) => item['uuid'] as String).toList(),
       });
+
+    // await supabase
+    // .from("scheduled_companies")
+    // .insert([
+    //     {'company_ref': chosenClients.map((item) => item['company_ref'] as String).toList()[0]},
+    //     {'company_ref': chosenClients.map((item) => item['company_ref'] as String).toList()[1]},
+    //     {'company_ref': chosenClients.map((item) => item['company_ref'] as String).toList()[2]},
+    //     {'company_ref': chosenClients.map((item) => item['company_ref'] as String).toList()[3]}
+    //   ]);
 
     List<Future> futures = [];
 
@@ -96,12 +113,26 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
       futures.add(
         supabase
           .from("scheduled_companies")
-          .update({"is_chosen": 1})
-          .eq("company_ref", companyId)
+          .insert([
+              {'company_ref': companyId},
+            ])
       );
     }
 
-    await Future.wait(futures);
+      await Future.wait(futures);
+
+    // List<Future> futures = [];
+
+    // for (var companyId in chosenClients.map((item) => item['company_ref'] as String).toList()){
+    //   futures.add(
+    //     supabase
+    //       .from("scheduled_companies")
+    //       .update({"is_chosen": 1})
+    //       .eq("company_ref", companyId)
+    //   );
+    // }
+
+    // await Future.wait(futures);
     
     // ignore: avoid_print
     print("---------------");
