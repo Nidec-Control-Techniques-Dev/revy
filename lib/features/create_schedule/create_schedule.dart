@@ -161,7 +161,8 @@ class _StepperState extends State<CreateScheduleStepper> {
                           return AlertDialog(
                             title: const Text('Reminder'),
                             content: const Text(
-                              'Do not forget to search and choose your starting location'
+                              'Do not forget to search and choose your starting location.',
+                              textAlign: TextAlign.left,
                             ),
                             actions: <Widget>[
                               TextButton(
@@ -310,7 +311,7 @@ class _StepperState extends State<CreateScheduleStepper> {
                       _index += 1;
                       if (_index == 3) {
                         _buttonsVisible = false; // Hide the button
-                        Timer(const Duration(seconds: 5), () {
+                        Timer(const Duration(seconds: 3), () {
                           setState(() {
                             _buttonsVisible = true; // Show the button again after 5 seconds
                           });
@@ -345,6 +346,7 @@ class _StepperState extends State<CreateScheduleStepper> {
                     if (_currentScheduleState is ScheduleLoaded) {
                       ScheduleLoaded loadedState = _currentScheduleState as ScheduleLoaded;
                         context.read<UploadScheduleBloc>().add(SaveSchedule(
+                          startingAddress: loadedState.startingAddress,
                           companyRefs: loadedState.companyRefs,
                           availableCompanies: loadedState.availableCompanies,
                           companyAddresses: loadedState.companyAddresses,

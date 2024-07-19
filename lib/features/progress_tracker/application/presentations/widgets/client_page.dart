@@ -36,6 +36,13 @@ class _ClientPageState extends State<ClientPage> {
     status = widget.status.toLowerCase();
   }
 
+// @override
+// Widget build(BuildContext context) {
+//   return Scaffold(
+//     appBar: AppBar(title: const Text('Client Details')),
+//   );
+// }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +57,7 @@ class _ClientPageState extends State<ClientPage> {
                     style: GoogleFonts.anton(
                         fontWeight: FontWeight.bold, fontSize: 30))),
             const SizedBox(height: 8),
-            _customDropdown(status, 'status'),
+            // _customDropdown(status, 'status'),
             const SizedBox(height: 50),
             Text('Business Model: ${widget.businessModel}',
                 style: GoogleFonts.robotoSlab(

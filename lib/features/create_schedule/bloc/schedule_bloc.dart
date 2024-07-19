@@ -178,6 +178,7 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     List<dynamic> companyAnnualSales = chosenClients.map((item) => item['annual_sales']).toList();
 
     emit(ScheduleLoaded(
+      startingAddress: event.startLocation,
       companyRefs: chosenClients.map((item) => item['company_ref'] as String).toList(),
       availableCompanies: companyNames, 
       companyAddresses:companyAddresses,

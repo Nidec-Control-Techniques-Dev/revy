@@ -6,9 +6,9 @@ import '../widgets/sign_in_form.dart';
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
-  final String googleIconPath = 'assets/icons/icons8-google.svg';
+  // final String googleIconPath = 'assets/icons/icons8-google.svg';
   // final String facebookIconPath = 'assets/icons/icons8-facebook.svg';
-  final String anonymousIconPath = 'assets/icons/icons8-incognito-48.png';
+  // final String anonymousIconPath = 'assets/icons/icons8-incognito-48.png';
 
   @override
   Widget build(BuildContext context) {

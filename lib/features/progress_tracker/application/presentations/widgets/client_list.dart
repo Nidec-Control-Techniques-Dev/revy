@@ -34,29 +34,30 @@ class ClientList extends StatelessWidget {
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: state.businessModel?.length ?? 0,
+                        itemCount: state.clientName?.length ?? 0,
                         itemBuilder: (context, index) {
-                          final businessModel =
-                              state.businessModel![index]['name'];
+                          final clients =
+                              // state.clientName![index]['name'];
+                              state.clientName![index]['company_ref'];
                           Color iconColor = Colors.grey;
 
                           //
 
-                          if (businessModel != null) {
-                            switch (businessModel.toLowerCase()) {
-                              case 'oem':
-                                iconColor = Colors.green;
-                                break;
-                              case 'ict':
-                                iconColor = Colors.yellow;
-                                break;
-                              case 'cebu':
-                              case 'laguna':
-                              case 'pampanga':
-                                iconColor = Colors.red;
-                                break;
-                            }
-                          }
+                          // if (businessModel != null) {
+                          //   switch (businessModel.toLowerCase()) {
+                          //     case 'oem':
+                          //       iconColor = Colors.green;
+                          //       break;
+                          //     case 'ict':
+                          //       iconColor = Colors.yellow;
+                          //       break;
+                          //     case 'cebu':
+                          //     case 'laguna':
+                          //     case 'pampanga':
+                          //       iconColor = Colors.red;
+                          //       break;
+                          //   }
+                          // }
 
                           return GestureDetector(
                             onTap: () {
@@ -65,17 +66,17 @@ class ClientList extends StatelessWidget {
                                 MaterialPageRoute(
                                   builder: (context) => ClientPage(
                                     clientName: state.clientName![index]
-                                        ['name'],
+                                        ['company_ref'],
                                     businessModel: state.businessModel![index]
-                                        ['name'],
-                                    address: state.address![index]['name'],
+                                        ['company_ref'],
+                                    address: state.address![index]['company_ref'],
                                     annualSales: state.annualSales![index]
-                                        ['name'],
+                                        ['company_ref'],
                                     telephoneNumber:
-                                        state.telephoneNumber![index]['name'],
-                                    email: state.email![index]['name'],
-                                    faxNo: state.faxNo![index]['name'],
-                                    status: state.status![index]['name'],
+                                        state.telephoneNumber![index]['company_ref'],
+                                    email: state.email![index]['company_ref'],
+                                    faxNo: state.faxNo![index]['company_ref'],
+                                    status: state.status![index]['company_ref'],
                                   ),
                                 ),
                               );
@@ -84,7 +85,7 @@ class ClientList extends StatelessWidget {
                               margin: const EdgeInsets.symmetric(vertical: 8.0),
                               child: ListTile(
                                 leading: Icon(Icons.circle, color: iconColor),
-                                title: Text(businessModel,
+                                title: Text(clients,
                                     style:
                                         const TextStyle(color: Colors.black)),
                               ),

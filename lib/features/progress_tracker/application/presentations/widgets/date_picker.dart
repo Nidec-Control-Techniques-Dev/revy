@@ -30,17 +30,17 @@ class _DatePickerState extends State<DatePicker> {
           crossAxisAlignment:
               CrossAxisAlignment.start, // Align content to the start
           children: [
-            const SizedBox(height: 16),
-            Align(
+            const SizedBox(height: 10),
+            const Align(
               alignment: Alignment.topLeft, // Align text to the top-left
               child: Text(
                 'Select your prefer start and end date',
-                style: GoogleFonts.luckiestGuy(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 16,
-                ),
+                style:  TextStyle(
+                  fontSize: 20, fontWeight: FontWeight.bold
+                )
               ),
             ),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment:
                   MainAxisAlignment.spaceBetween, // Space out the elements

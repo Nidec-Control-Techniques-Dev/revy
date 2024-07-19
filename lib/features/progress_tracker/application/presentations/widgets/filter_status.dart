@@ -124,12 +124,11 @@ class _FilterStatusState extends State<FilterStatus> {
         crossAxisAlignment:
             CrossAxisAlignment.start, // Aligns the label to the start
         children: <Widget>[
-          Text(
+          const Text(
             'Select Filter Status',
-            style: GoogleFonts.luckiestGuy(
-              fontWeight: FontWeight.w300, // Makes the label bold
-              fontSize: 16, // Adjust the font size as needed
-            ),
+            style:  TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold
+            )
           ),
           const SizedBox(
               height:

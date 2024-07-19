@@ -19,6 +19,7 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
       // Trigger another event
       emit(ScheduleIsSaving());
       add(SavingSchedule(
+        startingAddress: event.startingAddress,
         companyRefs: event.companyRefs,
         availableCompanies: event.availableCompanies,
         companyAddresses: event.companyAddresses,
@@ -44,9 +45,16 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
           print("user $userUid");
           await supabase.rpc('update_scheduled_companies', params: {
             'company_uuids': event.companyRefs,
-            'email': 'nidec.ct.dev@gmail.com',
+            'email': '',
             'schedule_date_param': DateTime.now().toUtc().toIso8601String(),
             'user_id': userUid
+          });
+          await supabase
+          .from("schedule_starting_location")
+          .insert({
+            "address": event.startingAddress,
+            "user_uid": userUid
+            // "schedule_date": DateTime.now()
           });
           await supabase.rpc("delete_unscheduled_companies");
           emit(ScheduleSavedState());
