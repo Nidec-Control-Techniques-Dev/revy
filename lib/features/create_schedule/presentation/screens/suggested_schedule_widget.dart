@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/accordion_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../bloc/upload_schedule_bloc.dart';
-import '../../../bloc/schedule_bloc.dart';
+import '../../bloc/upload_schedule_bloc.dart';
+import '../../bloc/schedule_bloc.dart';
 
 class SuggestedSchedWidget extends StatelessWidget {
   const SuggestedSchedWidget({

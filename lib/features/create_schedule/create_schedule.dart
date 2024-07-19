@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'application/presentation/screens/search_bar_with_places_api_widget.dart';
-import 'application/presentation/screens/client_preferences_widget.dart';
-import 'application/presentation/screens/suggested_schedule_widget.dart';
-import 'application/presentation/screens/select_sched_dates_widget.dart';
+import 'presentation/screens/search_bar_with_places_api_widget.dart';
+import 'presentation/screens/client_preferences_widget.dart';
+import 'presentation/screens/suggested_schedule_widget.dart';
+import 'presentation/screens/select_sched_dates_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/create_schedule_bloc.dart';
 import 'bloc/client_config_bloc.dart';

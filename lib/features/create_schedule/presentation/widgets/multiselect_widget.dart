@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../.././../bloc/create_schedule_bloc.dart';
-import '../.././../bloc/client_config_bloc.dart';
+import '../../bloc/create_schedule_bloc.dart';
+import '../../bloc/client_config_bloc.dart';
 
 class MultiSelectWidget extends StatefulWidget {
   const MultiSelectWidget({super.key});

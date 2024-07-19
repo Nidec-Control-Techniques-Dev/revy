@@ -13,20 +13,6 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     on<ResetSchedule>((event, emit) {
       emit(ScheduleReset());
     });
-    // on<SaveSched>((event, emit){
-    //   emit(ScheduleData(
-    //     companyRefs: event.companyRefs,
-    //     availableCompanies: event.availableCompanies,
-    //     companyAddresses: event.companyAddresses,
-    //     annualSales: event.annualSales,
-    //     businessModel: event.businessModel,
-    //     categoryName: event.categoryName, 
-    //     subcategoryName: event.subcategoryName, 
-    //     contactNumber: event.contactNumber, 
-    //     email: event.email, 
-    //     faxNumber: event.faxNumber
-    //     ));
-    // });
   }
 
   Future<void> onGenerateSchedule(GenerateSchedule event, Emitter<ScheduleState> emit) async {

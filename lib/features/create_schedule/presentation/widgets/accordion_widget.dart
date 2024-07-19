@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:accordion/accordion.dart';
-import '../../../bloc/schedule_bloc.dart';
+import '../../bloc/schedule_bloc.dart';
 
 class AccordionPage extends StatefulWidget {
   const AccordionPage({super.key});

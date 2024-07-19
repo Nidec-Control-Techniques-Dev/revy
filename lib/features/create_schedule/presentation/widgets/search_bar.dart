@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/datasources/remote/place_api_data_source.dart';
-import '../../../domain/utils/place_suggestions.dart';
-import '../../../bloc/create_schedule_bloc.dart';
+import '../../data/datasources/remote/place_api_data_source.dart';
+import '../../utils/place_suggestions.dart';
+import '../../bloc/create_schedule_bloc.dart';
 
 class PlacesSearchBar extends StatefulWidget {
   const PlacesSearchBar({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../bloc/create_schedule_bloc.dart';
+import '../../bloc/create_schedule_bloc.dart';
 
 class DatePickerWidget extends StatefulWidget {
   const DatePickerWidget({super.key});

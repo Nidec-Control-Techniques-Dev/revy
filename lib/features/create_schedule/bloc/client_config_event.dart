@@ -17,18 +17,3 @@ sealed class DataEvent{
 class FetchData extends DataEvent {}
 
 class InitializeSupabase extends DataEvent {}
-
-// class GenerateSchedule extends DataEvent{
-
-//   const GenerateSchedule(
-//       {
-//       super.statesOptions,
-//       super.businessModelsOptions,
-//       super.categoriesOptions
-//     }
-//   );
-// }
-// abstract class DataEvent {}
-
-// class InitializeSupabase extends DataEvent {}
-// class AnotherEvent extends DataEvent {}
