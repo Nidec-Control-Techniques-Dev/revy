@@ -113,6 +113,7 @@ class _FilterStatusState extends State<FilterStatus> {
   void initState() {
     super.initState();
     selectedOption = 'All';
+    context.read<GetParamsBloc>().add(FilterStatusChanged(filterStatus: selectedOption));
   }
 
   @override

@@ -1,21 +1,21 @@
 part of 'read_progress_bloc.dart';
 
 sealed class ProgressTrackerEvent {
-  final String? filterStatus;
-  final DateTime? startDate;
-  final DateTime? endDate;
+  final List<String> filterStatus;
+  final DateTime startDate;
+  final DateTime endDate;
 
   ProgressTrackerEvent({
-    this.filterStatus,
-    this.startDate,
-    this.endDate,
+    required this.filterStatus,
+    required this.startDate,
+    required this.endDate,
   });
 }
 
 final class ApplyButtonPressed extends ProgressTrackerEvent {
   ApplyButtonPressed({
-    super.filterStatus,
-    super.startDate,
-    super.endDate,
+    required super.filterStatus,
+    required super.startDate,
+    required super.endDate,
   });
 }

@@ -55,12 +55,26 @@ class ButtonApply extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.8,
             child: ElevatedButton(
               onPressed: () {
-                context.read<ReadProgressBloc>().add(ApplyButtonPressed(
-                      filterStatus: state.filterStatus,
-                      startDate: state.startDate,
-                      endDate: state.endDate,
-                    ));
+                print("start--------");
+                print(state.filterStatus);
+                print("end--------");
+                if (state.filterStatus == "All"){
+                  context.read<ReadProgressBloc>().add(ApplyButtonPressed(
+                    filterStatus: ["visited", "ongoing", "unvisited"],
+                    startDate: state.startDate,
+                    endDate: state.endDate,
+                  ));
                 print('Apply button pressed');
+                }
+                else{
+                  context.read<ReadProgressBloc>().add(ApplyButtonPressed(
+                        filterStatus: [state.filterStatus.toLowerCase()],
+                        startDate: state.startDate,
+                        endDate: state.endDate,
+                      ));
+                  print('Apply button pressed');
+                }
+
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,

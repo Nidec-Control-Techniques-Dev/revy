@@ -38,9 +38,22 @@ class ClientList extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final clients =
                               // state.clientName![index]['name'];
-                              state.clientName![index]['company_ref'];
+                              state.clientName![index];
+                              // state.clientName![index]['business_model_names'];
+                          print("------");
+                          print(clients);
+                          print("------");
                           Color iconColor = Colors.grey;
 
+
+                          print(state.clientName![index].runtimeType);
+                          print(state.businessModel![index].runtimeType);
+                          print(state.address![index].runtimeType);
+                          print(state.annualSales![index].runtimeType);
+                          print(state.telephoneNumber![index].runtimeType);
+                          print(state.email![index].runtimeType);
+                          print(state.faxNo![index].runtimeType);
+                          print(state.status![index].runtimeType);
                           //
 
                           // if (businessModel != null) {
@@ -65,18 +78,14 @@ class ClientList extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ClientPage(
-                                    clientName: state.clientName![index]
-                                        ['company_ref'],
-                                    businessModel: state.businessModel![index]
-                                        ['company_ref'],
-                                    address: state.address![index]['company_ref'],
-                                    annualSales: state.annualSales![index]
-                                        ['company_ref'],
-                                    telephoneNumber:
-                                        state.telephoneNumber![index]['company_ref'],
-                                    email: state.email![index]['company_ref'],
-                                    faxNo: state.faxNo![index]['company_ref'],
-                                    status: state.status![index]['company_ref'],
+                                    clientName: state.clientName![index],
+                                    businessModel: state.businessModel![index],
+                                    address: state.address![index],
+                                    annualSales: state.annualSales![index],
+                                    telephoneNumber: state.telephoneNumber![index],
+                                    email: state.email![index],
+                                    faxNo: state.faxNo![index],
+                                    status: state.status![index]
                                   ),
                                 ),
                               );

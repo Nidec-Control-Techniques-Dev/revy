@@ -60,11 +60,11 @@ class ProgressTrackerChild extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
-                  height: 200,
-                  alignment: Alignment.center,
-                  child: const ProgressBar(),
-                ),
+                // Container(
+                //   height: 200,
+                //   alignment: Alignment.center,
+                //   child: const ProgressBar(),
+                // ),
                 Container(
                   height: 100, // Half of the original height
                   alignment: Alignment.center,
