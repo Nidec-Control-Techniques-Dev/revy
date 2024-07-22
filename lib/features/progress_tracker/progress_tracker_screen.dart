@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:revy/features/progress_tracker/application/presentations/widgets/button_apply.dart';
+import 'package:revy/features/progress_tracker/presentations/widgets/button_apply.dart';
 import 'package:revy/features/progress_tracker/bloc/get_params_bloc.dart';
 import 'package:revy/features/progress_tracker/bloc/read_progress_bloc.dart';
-import '../widgets/client_list.dart';
-import '../widgets/date_picker.dart';
-import '../widgets/progress_bar.dart';
-import '../widgets/filter_status.dart';
+import 'presentations/widgets/client_list.dart';
+import 'presentations/widgets/date_picker.dart';
+import 'presentations/widgets/progress_bar.dart';
+import 'presentations/widgets/filter_status.dart';
+// import 'bloc/update_status_bloc.dart';
 
 class ProgressTrackerApp extends StatelessWidget {
   const ProgressTrackerApp({super.key});
@@ -21,6 +22,9 @@ class ProgressTrackerApp extends StatelessWidget {
         BlocProvider<ReadProgressBloc>(
           create: (context) => ReadProgressBloc(),
         ),
+        // BlocProvider<UpdateStatusBloc>(
+        //   create: (context) => UpdateStatusBloc()
+        // ) 
       ],
       child: Scaffold(
         appBar: AppBar(

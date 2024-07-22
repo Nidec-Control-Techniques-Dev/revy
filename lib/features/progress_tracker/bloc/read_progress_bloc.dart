@@ -90,7 +90,9 @@ class ReadProgressBloc extends Bloc<ProgressTrackerEvent, ProgressTrackerState> 
         emit(ProgressTrackerState(
           // clientName: businessModelsResponse, //all the parameters
           clientName: clientResponse.map((item) => item['company_name']).toList(), //all the parameters
+          companyRef: clientResponse.map((item) => item['company_ref']).toList(), //all the parameters
           businessModel: clientResponse.map((item) => item['business_model_names']).toList(),
+          category: clientResponse.map((item) => item['category_names']).toList(),
           address: clientResponse.map((item) => item['full_text']).toList(),
           annualSales: clientResponse.map((item) => item['annual_sales']).toList(),
           telephoneNumber: clientResponse.map((item) => item['contact_no']).toList(),

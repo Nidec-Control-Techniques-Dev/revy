@@ -95,7 +95,7 @@
 //   }
 // }
 import 'package:flutter/material.dart';
-import '../../../bloc/get_params_bloc.dart';
+import '../../bloc/get_params_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 

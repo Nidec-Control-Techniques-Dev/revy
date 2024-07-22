@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../bloc/get_params_bloc.dart';
+import '../../bloc/get_params_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -34,7 +34,7 @@ class _DatePickerState extends State<DatePicker> {
             const Align(
               alignment: Alignment.topLeft, // Align text to the top-left
               child: Text(
-                'Select your prefer start and end date',
+                'Select your preferred start and end date',
                 style:  TextStyle(
                   fontSize: 20, fontWeight: FontWeight.bold
                 )

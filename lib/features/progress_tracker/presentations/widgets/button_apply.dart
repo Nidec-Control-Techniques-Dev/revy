@@ -41,7 +41,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revy/features/progress_tracker/bloc/read_progress_bloc.dart';
-import '../../../bloc/get_params_bloc.dart';
+import '../../bloc/get_params_bloc.dart';
 
 class ButtonApply extends StatelessWidget {
   const ButtonApply({super.key});

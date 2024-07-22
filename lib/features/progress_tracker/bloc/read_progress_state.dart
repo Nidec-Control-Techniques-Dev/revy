@@ -11,6 +11,8 @@ class ProgressTrackerState {
   // final List<Map<String, dynamic>>? status;
   // final List<Map<String, dynamic>>? scheduleDates;
   final List<dynamic>? clientName;
+  final List<dynamic>? companyRef;
+  final List<dynamic>?  category;
   final List<dynamic>?  businessModel;
   final List<dynamic>? address;
   final List<dynamic>? annualSales;
@@ -21,6 +23,8 @@ class ProgressTrackerState {
   final List<dynamic>? scheduleDates;
   ProgressTrackerState(
       {this.clientName,
+      this.companyRef,
+      this.category,
       this.businessModel,
       this.address,
       this.annualSales,
@@ -33,6 +37,8 @@ class ProgressTrackerState {
 
   ProgressTrackerState copyWith({
     List<dynamic>? clientName,
+    List<dynamic>? companyRef,
+    List<dynamic>?  category,
     List<dynamic>? businessModel,
     List<dynamic>? address,
     List<dynamic>? annualSales,
@@ -53,6 +59,8 @@ class ProgressTrackerState {
   }) {
     return ProgressTrackerState(
       clientName: clientName ?? this.clientName,
+      companyRef: companyRef ?? this.companyRef,
+      category: category ?? this.category,
       businessModel: businessModel ?? this.businessModel,
       address: clientName ?? this.address,
       annualSales: annualSales ?? this.annualSales,
