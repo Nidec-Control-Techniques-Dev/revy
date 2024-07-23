@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:revy/features/progress_tracker/presentations/widgets/button_apply.dart';
+import 'package:revy/features/progress_tracker/presentation/widgets/button_apply.dart';
 import 'package:revy/features/progress_tracker/bloc/get_params_bloc.dart';
 import 'package:revy/features/progress_tracker/bloc/read_progress_bloc.dart';
-import 'presentations/widgets/client_list.dart';
-import 'presentations/widgets/date_picker.dart';
-import 'presentations/widgets/progress_bar.dart';
-import 'presentations/widgets/filter_status.dart';
+import 'presentation/widgets/client_list.dart';
+import 'presentation/widgets/date_picker.dart';
+import 'presentation/widgets/progress_bar.dart';
+import 'presentation/widgets/filter_status.dart';
+// import 'presentation/widgets/client_list_legend.dart';
 // import 'bloc/update_status_bloc.dart';
 
 class ProgressTrackerApp extends StatelessWidget {
@@ -64,21 +65,26 @@ class ProgressTrackerChild extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                // Container(
-                //   height: 200,
-                //   alignment: Alignment.center,
-                //   child: const ProgressBar(),
-                // ),
+                Container(
+                  height: 200,
+                  alignment: Alignment.center,
+                  child: const ProgressBar(),
+                ),
                 Container(
                   height: 100, // Half of the original height
                   alignment: Alignment.center,
                   child: const FilterStatus(),
                 ),
                 Container(
-                  height: 220, // Half of the original height
+                  height: 150, // Half of the original height
                   alignment: Alignment.center,
                   child: const DatePicker(),
                 ),
+                // Container(
+                //   alignment: Alignment.center,
+                //   child: const LegendRow(),
+                // ),
+                // const SizedBox(height: 15),
                 Container(
                   alignment: Alignment.center,
                   child: const ButtonApply(),

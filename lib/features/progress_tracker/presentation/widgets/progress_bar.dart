@@ -15,30 +15,20 @@ class ProgressBar extends StatelessWidget {
       if (state is DataError) {
         return Center(child: Text('Error: ${state.message}'));
       }
-      // Assuming the state contains the businessModel data as a List<Map<String, dynamic>>
-      final businessModelData = state.businessModel;
+      
+      final status = state.status;
 
-      double totalOEM = 0; // Dynamically calculate sum of OEM values
-      int totalLength =
-          0; // Dynamically calculate total length of the business model
+      int numVisited = 0;
+      int numTotal = 0;
 
-      // Iterate over the list to calculate total OEM and total length
-      for (var item in businessModelData ?? []) {
-        // print(
-        //     "-----------------------------------------------------------------------------");
-        // print(item);
-        // print(totalOEM);
-        // print(
-        //     "-----------------------------------------------------------------------------");
-        if (item['name'] == 'OEM') {
-          totalOEM += 1; // Increment totalOEM for each item named 'OEM'
+
+      for (var item in status ?? []) {
+        if (item == 'visited') {
+          numVisited += 1; 
         }
-        totalLength += 1; // Each item contributes to the length
+        numTotal += 1;
       }
-
-      // Ensure totalLength is greater than 0 to avoid division by zero
-      double percentValue =
-          totalLength > 0 ? (totalOEM / totalLength) * 100 : 0;
+      double percentValue = numTotal > 0 ? (numVisited / numTotal) * 100 : 0;
 
       // Return the UI based on the calculated percentValue
       return Padding(

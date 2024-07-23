@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:revy/features/progress_tracker/presentations/widgets/client_page.dart';
+import 'package:revy/features/progress_tracker/presentation/widgets/client_page.dart';
 import 'package:revy/features/progress_tracker/bloc/read_progress_bloc.dart';
 // import 'package:revy/features/progress_tracker/bloc/update_status_bloc.dart';
-
+import '../widgets/client_list_legend.dart';
 class ClientList extends StatelessWidget {
   const ClientList({super.key});
 
@@ -24,10 +24,16 @@ class ClientList extends StatelessWidget {
                   children: [
                     const Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Client Names',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Client Names',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(width: 10),
+                          LegendRow()
+                        ],
                       ),
                     ),
                     Expanded(
@@ -61,7 +67,7 @@ class ClientList extends StatelessWidget {
                                     companyRef: state.companyRef![index],
                                     businessModel: state.businessModel![index],
                                     address: state.address![index],
-                                    annualSales: state.annualSales![index],
+                                    annualSales: state.annualSales![index].toDouble(),
                                     telephoneNumber: state.telephoneNumber![index],
                                     email: state.email![index],
                                     faxNo: state.faxNo![index],

@@ -23,8 +23,7 @@ class _DatePickerState extends State<DatePicker> {
     final start = dateRange.start;
     final end = dateRange.end;
 
-    return Scaffold(
-      body: Container(
+    return Container(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment:
@@ -77,8 +76,7 @@ class _DatePickerState extends State<DatePicker> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 
   Future<void> pickDateRange(
