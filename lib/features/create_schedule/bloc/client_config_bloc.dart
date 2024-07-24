@@ -27,7 +27,9 @@ class DataBloc extends Bloc<DataEvent, DataState> {
       print('Error initializing Supabase: $e');
       return;
     }
-
+    // TODO: states, business models, categories must depend on user logged in
+    // for states, business models, categories
+    // check if uuid is in array of delegated uuids to user logged in
     try {
       print('Fetching states...');
       final statesResponse = await Supabase.instance.client

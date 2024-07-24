@@ -30,6 +30,7 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     // ignore: avoid_print
     print("---------------");
     // ignore: avoid_print
+    print("modelsCategoriesFiltered");
     print(modelsCategoriesFiltered);
     // ignore: avoid_print
     print("---------------");
@@ -43,6 +44,7 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     // ignore: avoid_print
     print("---------------");
     // ignore: avoid_print
+    print("statesFiltered");
     print(statesFiltered);
     // ignore: avoid_print
     print("---------------");
@@ -64,6 +66,7 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     // ignore: avoid_print
     print("---------------");
     // ignore: avoid_print
+    print("allAvailableCompaniesUuid");
     print(allAvailableCompaniesUuid);
     // ignore: avoid_print
     print("---------------");
@@ -78,7 +81,7 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     // ignore: avoid_print
     print("---------------");
 
-    final chosenClients = await supabase.rpc('clients', params: {
+    final chosenClients = await supabase.rpc('clients_v2', params: {
         'lat1': location["lat"],
         'lon1': location["long"],
         'refs': allAvailableCompaniesUuid.map((item) => item['uuid'] as String).toList(),
@@ -105,42 +108,17 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
       );
     }
 
-      await Future.wait(futures);
-
-    // List<Future> futures = [];
-
-    // for (var companyId in chosenClients.map((item) => item['company_ref'] as String).toList()){
-    //   futures.add(
-    //     supabase
-    //       .from("scheduled_companies")
-    //       .update({"is_chosen": 1})
-    //       .eq("company_ref", companyId)
-    //   );
-    // }
-
-    // await Future.wait(futures);
+    await Future.wait(futures);
     
     // ignore: avoid_print
     print("---------------");
     // ignore: avoid_print
+    print("chosen clients:");
     print(chosenClients);
     // ignore: avoid_print
     print("---------------");
 
-    final availableCompaniesNames = await supabase
-      .from("companies")
-      .select("name")
-      .filter("uuid", "in", chosenClients.map((item) => item['company_ref'] as String).toList())
-      .order("uuid", ascending: true);
-
-    // ignore: avoid_print
-    print("---------------");
-    // ignore: avoid_print
-    print(availableCompaniesNames);
-    // ignore: avoid_print
-    print("---------------");
-
-    final chosenClientsInfo = await supabase.rpc("get_client_info",
+    final chosenClientsInfo = await supabase.rpc("get_client_info_v2",
       params: {
         "company_ref_values": chosenClients.map((item) => item['company_ref'] as String).toList()
       }
@@ -149,7 +127,22 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     // ignore: avoid_print
     print("---------------");
     // ignore: avoid_print
+    print("chosenClientsInfo");
     print(chosenClientsInfo);
+    // ignore: avoid_print
+    print("---------------");
+
+    final availableCompaniesNames = await supabase
+      .from("companies")
+      .select("name")
+      .filter("uuid", "in", chosenClientsInfo.map((item) => item['company_ref'] as String).toList())
+      .order("uuid", ascending: true);
+
+    // ignore: avoid_print
+    print("---------------");
+    // ignore: avoid_print
+    print("availableCompaniesNames");
+    print(availableCompaniesNames);
     // ignore: avoid_print
     print("---------------");
 

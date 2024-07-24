@@ -67,7 +67,8 @@ class ProgressBar extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 20, color: Color.fromARGB(255, 11, 12, 11)),
                     ),
-                    progressColor: const Color.fromARGB(255, 236, 175, 83),
+                    // progressColor: const Color.fromARGB(255, 236, 175, 83),
+                    progressColor: Colors.green,
                     barRadius: const Radius.circular(8),
                   ),
                 ),

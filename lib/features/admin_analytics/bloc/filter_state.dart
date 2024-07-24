@@ -1,6 +1,7 @@
 part of 'filter_bloc.dart';
 
 class FilterState {
+  final String salesPersonRef;
   final String selectedFilter1;
   final String selectedFilter2;
   final String tempSelectedFilter1;
@@ -18,6 +19,7 @@ class FilterState {
   final Map<String, double> dataMap;
 
   FilterState({
+    required this.salesPersonRef,
     required this.selectedFilter1,
     required this.selectedFilter2,
     required this.tempSelectedFilter1,
@@ -36,6 +38,7 @@ class FilterState {
   });
 
   FilterState copyWith({
+    String? salesPersonRef,
     String? selectedFilter1,
     String? selectedFilter2,
     String? tempSelectedFilter1,
@@ -53,6 +56,7 @@ class FilterState {
     Map<String, double>? dataMap,
   }) {
     return FilterState(
+      salesPersonRef: salesPersonRef ?? this.salesPersonRef,
       selectedFilter1: selectedFilter1 ?? this.selectedFilter1,
       selectedFilter2: selectedFilter2 ?? this.selectedFilter2,
       tempSelectedFilter1: tempSelectedFilter1 ?? this.tempSelectedFilter1,

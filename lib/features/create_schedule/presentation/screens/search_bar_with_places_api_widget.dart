@@ -17,7 +17,7 @@ class SearchBarWidget extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Text(
                 "Where will you be coming from?",
-                style: TextStyle(fontSize: 22),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
                 textAlign: TextAlign.center,
               ),
             ),

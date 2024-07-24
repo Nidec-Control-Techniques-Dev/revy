@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'presentation/screens/search_bar_with_places_api_widget.dart';
+import 'presentation/screens/select_sched_dates_widget.dart';
 import 'presentation/screens/client_preferences_widget.dart';
 import 'presentation/screens/suggested_schedule_widget.dart';
-import 'presentation/screens/select_sched_dates_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/create_schedule_bloc.dart';
 import 'bloc/client_config_bloc.dart';
 import 'bloc/schedule_bloc.dart';
 import 'bloc/upload_schedule_bloc.dart';
-import 'dart:async'; //
+import 'dart:async';
 
 class CreateScheduleScreen extends StatelessWidget {
   const CreateScheduleScreen({super.key});
@@ -32,8 +32,28 @@ class CreateScheduleScreen extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Create Schedule'),
+          title: const Text(
+            'Create Schedule',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: const Icon(Icons.home, color: Colors.green,),
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+            },
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.report, color: Colors.red,),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+              },
+            ),
+          ],
         ),
         body: const CreateScheduleStepper(),
       ),
@@ -64,7 +84,6 @@ class _StepperState extends State<CreateScheduleStepper> {
             _currentScheduleState = schedState;
           }
         }
-
       },
       child: BlocListener<UploadScheduleBloc, UploadScheduleState>(
         listener: (context, state) {
@@ -83,7 +102,6 @@ class _StepperState extends State<CreateScheduleStepper> {
                         child: const Text('OK'),
                         onPressed: () {
                           Navigator.of(context).pop();
-                          // Navigator.popUntil(context, (route) => route.isFirst);
                         },
                       ),
                     ],
@@ -108,7 +126,8 @@ class _StepperState extends State<CreateScheduleStepper> {
                   );
                 },
               );
-            } else {
+            }
+            else {
               const Center(
                 child: CircularProgressIndicator(),
               );
@@ -124,7 +143,6 @@ class _StepperState extends State<CreateScheduleStepper> {
                 if (_index > 0 && _index < 3) {
                   setState(() {
                     _index -= 1;
-                    // _showReminders = true;
                   });
                 } else if (_index == 3) {
                   setState(() {
@@ -300,18 +318,13 @@ class _StepperState extends State<CreateScheduleStepper> {
                           });
                         });
                       }
-
                     });
                   }
-
                 } 
                 // step 4: schedule
                 else {
                   
                   setState(() {
-                    print(_index);
-                    // _index += 1;
-                    print(_index);
                     _buttonsVisible = false;
                     if (_currentScheduleState is ScheduleLoaded) {
                       ScheduleLoaded loadedState = _currentScheduleState as ScheduleLoaded;
@@ -329,8 +342,6 @@ class _StepperState extends State<CreateScheduleStepper> {
                           faxNumber: loadedState.faxNumber
                     )); 
                     }
-
-
                   });
                 }
               },
@@ -343,32 +354,35 @@ class _StepperState extends State<CreateScheduleStepper> {
                               ? Icons.location_on
                               : (_index > 0
                                   ? Icons.check_circle
-                                  : Icons.location_on),
+                                  : Icons.location_on
+                                ),
                           color: _index == 0 ? Colors.green : Colors.grey,
                         ),
                       ],
                     ),
                     content: Container(
                         alignment: Alignment.centerLeft,
-                        child: const SearchBarWidget()),
-                    isActive: _index == 0),
+                        child: const SearchBarWidget()
+                    ),
+                    isActive: _index == 0
+                ),
                 Step(
                     title: Row(
                       children: [
                         Icon(
                           _index == 1
                               ? Icons.calendar_month
-                              : (_index > 1
-                                  ? Icons.check_circle
-                                  : Icons.calendar_month),
+                              : (_index > 1 ? Icons.check_circle: Icons.calendar_month),
                           color: _index == 1 ? Colors.green : Colors.grey,
                         ),
                       ],
                     ),
                     content: Container(
                         alignment: Alignment.centerLeft,
-                        child: const DatePickerWidget()),
-                    isActive: _index == 1),
+                        child: const DatePickerWidget()
+                    ),
+                    isActive: _index == 1
+                ),
                 Step(
                     title: Row(
                       children: [
@@ -382,8 +396,10 @@ class _StepperState extends State<CreateScheduleStepper> {
                     ),
                     content: Container(
                         alignment: Alignment.centerLeft,
-                        child: const ClientConfigWidget()),
-                    isActive: _index == 2),
+                        child: const ClientConfigWidget()
+                    ),
+                    isActive: _index == 2
+                ),
                 Step(
                     title: Row(
                       children: [
@@ -397,8 +413,10 @@ class _StepperState extends State<CreateScheduleStepper> {
                     ),
                     content: Container(
                         alignment: Alignment.centerLeft,
-                        child: const SuggestedSchedWidget()),
-                    isActive: _index == 3),
+                        child: const SuggestedSchedWidget()
+                    ),
+                    isActive: _index == 3
+                ),
               ],
               controlsBuilder: (BuildContext context, ControlsDetails details) {
                 return _index == 3 && !_buttonsVisible

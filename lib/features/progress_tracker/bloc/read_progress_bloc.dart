@@ -34,7 +34,7 @@ class ReadProgressBloc extends Bloc<ProgressTrackerEvent, ProgressTrackerState> 
       ApplyButtonPressed event, Emitter<ProgressTrackerState> emit) async {
     // event.filterStatus;
     try {
-      var uuid = const Uuid();
+      // var uuid = const Uuid();
       final supabase = Supabase.instance.client;
       await supabase.auth.signInWithPassword(
         email: 'nidec.ct.dev@gmail.com',
