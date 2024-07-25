@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'client_list.dart';
+// import 'client_list.dart';
 import '../../bloc/filter_bloc.dart';
 import 'date.dart';
 import 'package:pie_chart/pie_chart.dart';
 // import '../../data/repository/assigned_users.dart';
 import '../../bloc/assigned_users_bloc.dart';
+import '../widgets/client_list.dart';
 
 class FilterScreenContent extends StatefulWidget {
   const FilterScreenContent({super.key});
@@ -126,40 +127,41 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
                               Container(
                                 height: 400.0,
                                 alignment: Alignment.center,
-                                child: ClientListCompany1(),
+                                child: ClientList(),
                               ),
                             ],
                           );
                         }
-                        if (state.displayText.isNotEmpty &&
-                            state.selectedFilter2 != 'Choose a Filter') {
-                          return Column(
-                            children: [
-                              _buildResultBox(state),
-                              const SizedBox(height: 20),
-                              Container(
-                                height: 400.0,
-                                alignment: Alignment.center,
-                                child: ClientListCompany2(),
-                              ),
-                            ],
-                          );
-                        }
-                        if (state.displayText.isNotEmpty &&
-                            state.selectedFilter1 == 'All' &&
-                            state.selectedFilter2 != 'Choose a Filter') {
-                          return Column(
-                            children: [
-                              _buildResultBox(state),
-                              const SizedBox(height: 20),
-                              Container(
-                                height: 400.0,
-                                alignment: Alignment.center,
-                                child: ClientListCompanyAll(),
-                              ),
-                            ],
-                          );
-                        } else {
+                        // if (state.displayText.isNotEmpty &&
+                        //     state.selectedFilter2 != 'Choose a Filter') {
+                        //   return Column(
+                        //     children: [
+                        //       _buildResultBox(state),
+                        //       const SizedBox(height: 20),
+                        //       // Container(
+                        //       //   height: 400.0,
+                        //       //   alignment: Alignment.center,
+                        //       //   child: ClientListCompany2(),
+                        //       // ),
+                        //     ],
+                        //   );
+                        // }
+                        // if (state.displayText.isNotEmpty &&
+                        //     state.selectedFilter1 == 'All' &&
+                        //     state.selectedFilter2 != 'Choose a Filter') {
+                        //   return Column(
+                        //     children: [
+                        //       _buildResultBox(state),
+                        //       const SizedBox(height: 20),
+                        //       // Container(
+                        //       //   height: 400.0,
+                        //       //   alignment: Alignment.center,
+                        //       //   child: ClientListCompanyAll(), 
+                        //       // ),
+                        //     ],
+                        //   );
+                        // }
+                        else {
                           return const SizedBox.shrink();
                         }
                       },
