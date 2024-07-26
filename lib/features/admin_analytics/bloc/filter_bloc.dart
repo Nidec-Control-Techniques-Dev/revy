@@ -79,51 +79,107 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
         case 'Today':
           print("Today");
 
-          // if (selectedFilter1 == 'Company 1') {
-          //   visitedCount = 30;
-          //   notVisitedCount = 20;
-          //   ongoingCount = 5;
-          // } else if (selectedFilter1 == 'Company 2') {
-          //   visitedCount = 20;
-          //   notVisitedCount = 40;
-          //   ongoingCount = 17;
-          // } else if (selectedFilter1 == 'All') {
-          //   visitedCount = 50;
-          //   notVisitedCount = 60;
-          //   ongoingCount = 22;
-          // }
+          final stats = await supabase.rpc("count_company_statuses_v2",
+            params: {
+              "p_user_uid": userUuid,
+              "dates_param": getDaysInBetween(DateTime.now(), DateTime.now())
+            }
+          );
+          print("stats-------");
+          print(stats);
+          print("stats-------");
+
+          visitedCount = stats[0]['visited_count'];
+          notVisitedCount = stats[0]['unvisited_count'];
+          ongoingCount = stats[0]['ongoing_count'];
+
+          final clientResponse = await supabase.rpc("get_scheduled_info_v2",
+            params: {
+              "status_arr": ['visited', 'unvisited', 'ongoing'],
+              "schedule_date_arr": getDaysInBetween(DateTime.now(), DateTime.now()),
+              "user_id": userUuid
+            }
+          );
+          clientName = clientResponse.map((item) => item['company_name']).toList();
+          companyRef = clientResponse.map((item) => item['company_ref']).toList();
+          category = clientResponse.map((item) => item['business_model_names']).toList();
+          businessModel = clientResponse.map((item) => item['category_names']).toList();
+          address = clientResponse.map((item) => item['full_text']).toList();
+          annualSales = clientResponse.map((item) => item['annual_sales']).toList();
+          telephoneNumber = clientResponse.map((item) => item['contact_no']).toList();
+          email = clientResponse.map((item) => item['email']).toList();
+          faxNo = clientResponse.map((item) => item['fax_number']).toList();
+          status = clientResponse.map((item) => item['status']).toList();
           break;
         case 'Last 7 Days':
           print("Last 7 Days");
-          // if (selectedFilter1 == 'Company 1') {
-          //   visitedCount = 100;
-          //   notVisitedCount = 100;
-          //   ongoingCount = 30;
-          // } else if (selectedFilter1 == 'Company 2') {
-          //   visitedCount = 250;
-          //   notVisitedCount = 40;
-          //   ongoingCount = 70;
-          // } else if (selectedFilter1 == 'All') {
-          //   visitedCount = 350;
-          //   notVisitedCount = 140;
-          //   ongoingCount = 100;
-          // }
+
+          final stats = await supabase.rpc("count_company_statuses_v2",
+            params: {
+              "p_user_uid": userUuid,
+              "dates_param": getDaysInBetween(DateTime.now().subtract(const Duration(days: 7)), DateTime.now()),
+            }
+          );
+          print("stats-------");
+          print(stats);
+          print("stats-------");
+
+          visitedCount = stats[0]['visited_count'];
+          notVisitedCount = stats[0]['unvisited_count'];
+          ongoingCount = stats[0]['ongoing_count'];
+
+          final clientResponse = await supabase.rpc("get_scheduled_info_v2",
+            params: {
+              "status_arr": ['visited', 'unvisited', 'ongoing'],
+              "schedule_date_arr": getDaysInBetween(DateTime.now().subtract(const Duration(days: 7)), DateTime.now()),
+              "user_id": userUuid
+            }
+          );
+          clientName = clientResponse.map((item) => item['company_name']).toList();
+          companyRef = clientResponse.map((item) => item['company_ref']).toList();
+          category = clientResponse.map((item) => item['business_model_names']).toList();
+          businessModel = clientResponse.map((item) => item['category_names']).toList();
+          address = clientResponse.map((item) => item['full_text']).toList();
+          annualSales = clientResponse.map((item) => item['annual_sales']).toList();
+          telephoneNumber = clientResponse.map((item) => item['contact_no']).toList();
+          email = clientResponse.map((item) => item['email']).toList();
+          faxNo = clientResponse.map((item) => item['fax_number']).toList();
+          status = clientResponse.map((item) => item['status']).toList();
           break;
         case 'Last 30 Days':
           print("Last 30 Days");
-          // if (selectedFilter1 == 'Company 1') {
-          //   visitedCount = 2000;
-          //   notVisitedCount = 5300;
-          //   ongoingCount = 1000;
-          // } else if (selectedFilter1 == 'Company 2') {
-          //   visitedCount = 600;
-          //   notVisitedCount = 4200;
-          //   ongoingCount = 900;
-          // } else if (selectedFilter1 == 'All') {
-          //   visitedCount = 2600;
-          //   notVisitedCount = 9500;
-          //   ongoingCount = 1900;
-          // }
+
+          final stats = await supabase.rpc("count_company_statuses_v2",
+            params: {
+              "p_user_uid": userUuid,
+              "dates_param": getDaysInBetween(DateTime.now().subtract(const Duration(days: 30)), DateTime.now()),
+            }
+          );
+          print("stats-------");
+          print(stats);
+          print("stats-------");
+
+          visitedCount = stats[0]['visited_count'];
+          notVisitedCount = stats[0]['unvisited_count'];
+          ongoingCount = stats[0]['ongoing_count'];
+
+          final clientResponse = await supabase.rpc("get_scheduled_info_v2",
+            params: {
+              "status_arr": ['visited', 'unvisited', 'ongoing'],
+              "schedule_date_arr": getDaysInBetween(DateTime.now().subtract(const Duration(days: 30)), DateTime.now()),
+              "user_id": userUuid
+            }
+          );
+          clientName = clientResponse.map((item) => item['company_name']).toList();
+          companyRef = clientResponse.map((item) => item['company_ref']).toList();
+          category = clientResponse.map((item) => item['business_model_names']).toList();
+          businessModel = clientResponse.map((item) => item['category_names']).toList();
+          address = clientResponse.map((item) => item['full_text']).toList();
+          annualSales = clientResponse.map((item) => item['annual_sales']).toList();
+          telephoneNumber = clientResponse.map((item) => item['contact_no']).toList();
+          email = clientResponse.map((item) => item['email']).toList();
+          faxNo = clientResponse.map((item) => item['fax_number']).toList();
+          status = clientResponse.map((item) => item['status']).toList();
           break;
         case 'All':
           print("All");
@@ -158,19 +214,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
           faxNo = clientResponse.map((item) => item['fax_number']).toList();
           status = clientResponse.map((item) => item['status']).toList();
           scheduleDates = clientResponse.map((item) => item['schedule_date']).toList();
-          // if (selectedFilter1 == 'Company 1') {
-          //   visitedCount = 35000;
-          //   notVisitedCount = 9000;
-          //   ongoingCount = 4000;
-          // } else if (selectedFilter1 == 'Company 2') {
-          //   visitedCount = 25000;
-          //   notVisitedCount = 6000;
-          //   ongoingCount = 4800;
-          // } else if (selectedFilter1 == 'All') {
-          //   visitedCount = 60000;
-          //   notVisitedCount = 15000;
-          //   ongoingCount = 8800;
-          // }
+
           break;
       }
 
