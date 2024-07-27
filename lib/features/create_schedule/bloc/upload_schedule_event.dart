@@ -6,6 +6,7 @@ part of 'upload_schedule_bloc.dart';
 // }
 
 sealed class UploadScheduleEvent {
+  final List<String> scheduleDates;
   final String startingAddress;
   final List<dynamic> companyRefs;
   final List<dynamic> availableCompanies;
@@ -19,6 +20,7 @@ sealed class UploadScheduleEvent {
   final List<dynamic> faxNumber;
 
   const UploadScheduleEvent({
+    required this.scheduleDates,
     required this.startingAddress,
     required this.companyRefs,
     required this.availableCompanies,
@@ -37,6 +39,7 @@ final class SaveSchedule extends UploadScheduleEvent{
 
 
   SaveSchedule({
+    required super.scheduleDates,
     required super.startingAddress,
     required super.companyRefs,
     required super.availableCompanies,
@@ -52,6 +55,7 @@ final class SaveSchedule extends UploadScheduleEvent{
 }
 final class SavingSchedule extends UploadScheduleEvent{
   SavingSchedule({
+    required super.scheduleDates,
     required super.startingAddress,
     required super.companyRefs,
     required super.availableCompanies,

@@ -19,6 +19,7 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
       // Trigger another event
       emit(ScheduleIsSaving());
       add(SavingSchedule(
+        scheduleDates: event.scheduleDates,
         startingAddress: event.startingAddress,
         companyRefs: event.companyRefs,
         availableCompanies: event.availableCompanies,
@@ -43,18 +44,30 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
         if (user != null){
           String userUid = user.id;
           print("user $userUid");
-          await supabase.rpc('update_scheduled_companies', params: {
-            'company_uuids': event.companyRefs,
-            'email': '',
-            'schedule_date_param': DateTime.now().toUtc().toIso8601String(),
-            'user_id': userUid
-          });
+          List<Future> futures = [];
+          for (int dateIndex=0; dateIndex < event.scheduleDates.length; dateIndex++){
+            futures.add(
+              supabase.rpc('update_scheduled_companies', params: {
+                          'company_uuids': event.companyRefs.sublist(dateIndex*4, (dateIndex*4)+4),
+                          'email': '',
+                          'schedule_date_param': event.scheduleDates[dateIndex],
+                          'user_id': userUid
+                        })
+            );
+          }
+          await Future.wait(futures);
+          // await supabase.rpc('update_scheduled_companies', params: {
+          //   'company_uuids': event.companyRefs,
+          //   'email': '',
+          //   'schedule_date_param': DateTime.now().toUtc().toIso8601String(),
+          //   'user_id': userUid
+          // });
           await supabase
           .from("schedule_starting_location")
           .insert({
             "address": event.startingAddress,
-            "user_uid": userUid
-            // "schedule_date": DateTime.now()
+            "user_uid": userUid,
+            "schedule_date": event.scheduleDates[0]
           });
           await supabase.rpc("delete_unscheduled_companies");
           emit(ScheduleSavedState());

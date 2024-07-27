@@ -81,10 +81,11 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     // ignore: avoid_print
     print("---------------");
 
-    final chosenClients = await supabase.rpc('clients_v2', params: {
+    final chosenClients = await supabase.rpc('clients_v3', params: {
         'lat1': location["lat"],
         'lon1': location["long"],
         'refs': allAvailableCompaniesUuid.map((item) => item['uuid'] as String).toList(),
+        'num_rows': (event.endDate.difference(event.startDate).inDays + 1) * 4
       });
 
     // await supabase
@@ -157,6 +158,7 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     List<dynamic> companyAnnualSales = chosenClients.map((item) => item['annual_sales']).toList();
 
     emit(ScheduleLoaded(
+      scheduleDates: getDaysInBetween(event.startDate, event.endDate),
       startingAddress: event.startLocation,
       companyRefs: chosenClients.map((item) => item['company_ref'] as String).toList(),
       availableCompanies: companyNames, 
@@ -171,6 +173,27 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
       )
     );
   }
+
+  List<String> getDaysInBetween(DateTime startDate, DateTime endDate) {
+    // Convert dates to UTC to avoid DST issues
+    // DateTime startDateInUTC = DateTime.utc(startDate.year, startDate.month, startDate.day);
+    // DateTime endDateInUTC = DateTime.utc(endDate.year, endDate.month, endDate.day);
+
+    // Initialize the list to hold the dates
+    List<String> days = [];
+
+    // Loop from startDate to endDate, incrementing by one day
+    for (DateTime current = startDate;
+        current.isBefore(endDate) || current.isAtSameMomentAs(endDate);
+        current = current.add(const Duration(days: 1))) {
+      // Add the current date to the list
+      days.add(DateTime(current.year, current.month, current.day).toIso8601String().substring(0, 10));
+    }
+    print(days);
+    return days;
+  }
+
+
 
 }
 

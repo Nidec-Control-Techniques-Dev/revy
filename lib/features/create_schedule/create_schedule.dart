@@ -329,6 +329,7 @@ class _StepperState extends State<CreateScheduleStepper> {
                     if (_currentScheduleState is ScheduleLoaded) {
                       ScheduleLoaded loadedState = _currentScheduleState as ScheduleLoaded;
                         context.read<UploadScheduleBloc>().add(SaveSchedule(
+                          scheduleDates: loadedState.scheduleDates,
                           startingAddress: loadedState.startingAddress,
                           companyRefs: loadedState.companyRefs,
                           availableCompanies: loadedState.availableCompanies,

@@ -3,6 +3,7 @@ part of 'schedule_bloc.dart';
 sealed class ScheduleState {}
 
 class ScheduleLoaded extends ScheduleState {
+  final List<String> scheduleDates;
   final String startingAddress;
   final List<dynamic> companyRefs;
   final List<dynamic> availableCompanies;
@@ -17,6 +18,7 @@ class ScheduleLoaded extends ScheduleState {
   
 
   ScheduleLoaded({
+    required this.scheduleDates,
     required this.startingAddress,
     required this.companyRefs,
     required this.availableCompanies,
@@ -33,6 +35,7 @@ class ScheduleLoaded extends ScheduleState {
 }
 
 class ScheduleReset extends ScheduleState {
+  final List<String> scheduleDates = [""];
   final String startingAddress = "";
   final List<dynamic> companyRefs = [];
   final List<dynamic> availableCompanies = [];
