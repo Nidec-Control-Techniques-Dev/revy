@@ -1,13 +1,4 @@
-// part of 'delegation_bloc_2.dart';
-
-// sealed class DelegationEvent {
-
-//   DelegationEvent({});
-// }
-
-// final class SalesPersonSelected extends DelegationEvent {}
-
-import 'package:equatable/equatable.dart';
+part of 'delegation_bloc_2.dart';
 
 abstract class DelegationEvent extends Equatable {
   const DelegationEvent();
@@ -17,8 +8,9 @@ abstract class DelegationEvent extends Equatable {
 // salesperson should be UUID
 class LoadSalespersonDetails extends DelegationEvent {
   final String salesperson; 
+  final String salespersonRef;
 
-  LoadSalespersonDetails(this.salesperson);
+  const LoadSalespersonDetails(this.salesperson, this.salespersonRef);
 
   @override
   List<Object> get props => [salesperson];
@@ -26,13 +18,15 @@ class LoadSalespersonDetails extends DelegationEvent {
 
 class UpdateDetails extends DelegationEvent {
   final String? salesperson;
+  final String? salespersonRef;
   final List<String> countries;
   final List<String> states;
   final List<String> businessModels;
   final List<String> businessCategories;
 
-  UpdateDetails({
-    this.salesperson,
+  const UpdateDetails({
+    required this.salesperson,
+    required this.salespersonRef,
     required this.countries,
     required this.states,
     required this.businessModels,
@@ -42,6 +36,7 @@ class UpdateDetails extends DelegationEvent {
   @override
   List<Object?> get props => [
         salesperson,
+        salespersonRef,
         countries,
         states,
         businessModels,
