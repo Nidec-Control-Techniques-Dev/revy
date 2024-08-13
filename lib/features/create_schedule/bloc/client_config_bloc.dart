@@ -16,10 +16,10 @@ class DataBloc extends Bloc<DataEvent, DataState> {
   Future<void> _onInitializeSupabase(InitializeSupabase event, Emitter<DataState> emit) async {
     try {
       final supabase = Supabase.instance.client;
-      await supabase.auth.signInWithPassword(
-        email: 'nidec.ct.dev@gmail.com',
-        password: 'Qwerty1234',
-      );
+      // await supabase.auth.signInWithPassword(
+      //   email: 'nidec.ct.dev@gmail.com',
+      //   password: 'Qwerty1234',
+      // );
       emit(SupabaseInitialized());
       print('Supabase initialized successfully.');
     } catch (e) {

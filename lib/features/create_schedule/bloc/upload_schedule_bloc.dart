@@ -28,10 +28,10 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
   }
   Future<void> insertSchedule(UploadScheduleEvent event, Emitter<UploadScheduleState> emit) async{
     final supabase = Supabase.instance.client;
-      await supabase.auth.signInWithPassword(
-        email: 'nidec.ct.dev@gmail.com',
-        password: 'Qwerty1234',
-      );
+      // await supabase.auth.signInWithPassword(
+      //   email: 'nidec.ct.dev@gmail.com',
+      //   password: 'Qwerty1234',
+      // );
     final user = supabase.auth.currentUser;
       
     if (user != null){

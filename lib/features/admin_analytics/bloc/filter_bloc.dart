@@ -67,10 +67,10 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     List<dynamic> scheduleDates = [];
 
     final supabase = Supabase.instance.client;
-    await supabase.auth.signInWithPassword(
-      email: 'markbadua92@gmail.com',
-      password: 'hiqzu7-wexgor-nijGet',
-    );
+    // await supabase.auth.signInWithPassword(
+    //   email: 'markbadua92@gmail.com',
+    //   password: 'hiqzu7-wexgor-nijGet',
+    // );
 
     if (selectedFilter1 != 'Choose a Filter' &&
         selectedFilter2 != 'Choose a Filter') {

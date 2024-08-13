@@ -36,10 +36,10 @@ class ReadProgressBloc extends Bloc<ProgressTrackerEvent, ProgressTrackerState> 
     try {
       // var uuid = const Uuid();
       final supabase = Supabase.instance.client;
-      await supabase.auth.signInWithPassword(
-        email: 'nidec.ct.dev@gmail.com',
-        password: 'Qwerty1234',
-      );
+      // await supabase.auth.signInWithPassword(
+      //   email: 'nidec.ct.dev@gmail.com',
+      //   password: 'Qwerty1234',
+      // );
       print('Supabase initialized successfully.');
       final user = supabase.auth.currentUser;
 

@@ -2,10 +2,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
     Future<void> insertSchedule({String? status, String? companyRef}) async{
       final supabase = Supabase.instance.client;
-        await supabase.auth.signInWithPassword(
-          email: 'nidec.ct.dev@gmail.com',
-          password: 'Qwerty1234',
-        );
+        // await supabase.auth.signInWithPassword(
+        //   email: 'nidec.ct.dev@gmail.com',
+        //   password: 'Qwerty1234',
+        // );
         final user = supabase.auth.currentUser;
         
         if (user != null){

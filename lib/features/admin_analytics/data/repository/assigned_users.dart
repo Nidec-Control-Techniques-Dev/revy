@@ -3,10 +3,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 Future<List<dynamic>> getAssignedUsers() async{
 
   final supabase = Supabase.instance.client;
-  await supabase.auth.signInWithPassword(
-    email: 'markbadua92@gmail.com',
-    password: 'hiqzu7-wexgor-nijGet',
-  );
+  // await supabase.auth.signInWithPassword(
+  //   email: 'markbadua92@gmail.com',
+  //   password: 'hiqzu7-wexgor-nijGet',
+  // );
   print('Supabase initialized successfully.');
   final user = supabase.auth.currentUser;
   print("user $user" );

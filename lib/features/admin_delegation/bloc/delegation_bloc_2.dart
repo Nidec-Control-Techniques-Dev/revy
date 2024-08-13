@@ -51,10 +51,10 @@ class DelegationBloc extends Bloc<DelegationEvent, DelegationState> {
   }
   Future<void> _updateConfig(ApplyChanges event, Emitter<DelegationState> emit) async {
     final supabase = Supabase.instance.client;
-    await supabase.auth.signInWithPassword(
-      email: 'markbadua92@gmail.com',
-      password: 'hiqzu7-wexgor-nijGet',
-    );
+    // await supabase.auth.signInWithPassword(
+    //   email: 'markbadua92@gmail.com',
+    //   password: 'hiqzu7-wexgor-nijGet',
+    // );
     print('Supabase initialized successfully.');
     final user = supabase.auth.currentUser;
 
@@ -108,10 +108,10 @@ class DelegationBloc extends Bloc<DelegationEvent, DelegationState> {
   Future<void> _onInitializeSupabase(LoadSalespersonDetails event, Emitter<DelegationState> emit) async {
       // TODO: get salespersonDetails
     final supabase = Supabase.instance.client;
-    await supabase.auth.signInWithPassword(
-      email: 'markbadua92@gmail.com',
-      password: 'hiqzu7-wexgor-nijGet',
-    );
+    // await supabase.auth.signInWithPassword(
+    //   email: 'markbadua92@gmail.com',
+    //   password: 'hiqzu7-wexgor-nijGet',
+    // );
     print('Supabase initialized successfully.');
     final user = supabase.auth.currentUser; 
 

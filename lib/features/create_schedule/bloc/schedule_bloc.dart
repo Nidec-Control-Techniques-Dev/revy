@@ -17,10 +17,10 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
 
   Future<void> onGenerateSchedule(GenerateSchedule event, Emitter<ScheduleState> emit) async {
     final supabase = Supabase.instance.client;
-      await supabase.auth.signInWithPassword(
-        email: 'nidec.ct.dev@gmail.com',
-        password: 'Qwerty1234',
-      );
+      // await supabase.auth.signInWithPassword(
+      //   email: 'nidec.ct.dev@gmail.com',
+      //   password: 'Qwerty1234',
+      // );
 
     final modelsCategoriesFiltered = await supabase
       .from('company_clients')
