@@ -28,10 +28,6 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
   }
   Future<void> insertSchedule(UploadScheduleEvent event, Emitter<UploadScheduleState> emit) async{
     final supabase = Supabase.instance.client;
-      // await supabase.auth.signInWithPassword(
-      //   email: 'nidec.ct.dev@gmail.com',
-      //   password: 'Qwerty1234',
-      // );
     final user = supabase.auth.currentUser;
       
     if (user != null){
@@ -80,6 +76,8 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
           "user_uid": userUid,
           "schedule_date": event.scheduleDates[0]
         });
+      // temporary fix for demo purposes
+      // must create mechanism where unscheduled but staged companies are unloaded after some period
       await supabase.rpc("delete_unscheduled_companies");
       emit(ScheduleSavedState());
     }

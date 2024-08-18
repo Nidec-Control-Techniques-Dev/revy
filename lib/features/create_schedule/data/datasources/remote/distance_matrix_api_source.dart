@@ -33,23 +33,3 @@ class DistanceMatrixDataSource {
     }
  }
 }
-
-// void main() async{
-//   List<String> originList = [startingLocation];
-//   List<String> destinationList = [ptA, ptB, ptC, ptD];
-//   print("origins: $originList");
-//   print("destinations: $destinationList");
-//   final DistanceMatrixDataSource dataSource = DistanceMatrixDataSource(Dio());
-//   String jsonResponse = await dataSource.fetchDistMatrix(
-//     destinationList.join('|'),
-//      originList.join('|')
-//   );
-//   print(jsonResponse);
-//   await writeJsonToFile(jsonResponse);
-// }
-
-// Future<void> writeJsonToFile(String jsonData) async {
-//   final file = File('output.json');  // Specify the path where you want to save the file
-//   await file.writeAsString(jsonData);
-//   print('JSON data written to output.json'); 
-// }

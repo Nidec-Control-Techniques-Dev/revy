@@ -1,12 +1,7 @@
-// import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:equatable/equatable.dart';
-// import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_schedule_event.dart';
 part 'create_schedule_state.dart';
-// part 'create_schedule_bloc.freezed.dart';
-
 
 class CreateScheduleBloc extends Bloc<CreateScheduleEvent, CreateScheduleState> {
   CreateScheduleBloc() : super(
