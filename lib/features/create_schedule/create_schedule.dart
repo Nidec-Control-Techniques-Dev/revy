@@ -43,17 +43,17 @@ class CreateScheduleScreen extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.home, color: Colors.green,),
             onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+               Navigator.popUntil(context, (route) => route.isFirst);
             },
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.report, color: Colors.red,),
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-              },
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     icon: const Icon(Icons.report, color: Colors.red,),
+          //     onPressed: () {
+          //        Navigator.popUntil(context, (route) => route.isFirst);
+          //     },
+          //   ),
+          // ],
         ),
         body: const CreateScheduleStepper(),
       ),
