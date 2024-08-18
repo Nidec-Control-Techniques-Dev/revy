@@ -1,10 +1,5 @@
 part of 'upload_schedule_bloc.dart';
 
-// @freezed
-// class UploadScheduleEvent with _$UploadScheduleEvent {
-//   const factory UploadScheduleEvent.started() = _Started;
-// }
-
 sealed class UploadScheduleEvent {
   final List<String> scheduleDates;
   final String startingAddress;

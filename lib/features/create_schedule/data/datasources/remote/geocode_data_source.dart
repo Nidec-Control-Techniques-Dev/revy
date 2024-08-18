@@ -2,8 +2,6 @@ import 'dart:convert'; // Make sure this import is at the top of your file
 import 'package:dio/dio.dart';
 import '../../../../../env/env.dart';
 
-// TODO: Do not hardcode api key
-
 class GeocodingApiDataSource {
   final Dio _dio;
 
@@ -42,13 +40,3 @@ void main() async {
     print(e);
   }
 }
-
-// void main() async {
-//   final GeocodingApiDataSource dataSource = GeocodingApiDataSource(Dio());
-//   try {
-//     Map<String, dynamic> location = await dataSource.geocodeAddress("1600 Amphitheatre Parkway, Mountain View, CA");
-//     print('Coordinates: ${location['lat']}, ${location['lng']}');
-//   } catch (e) {
-//     print(e);
-//   }
-// }

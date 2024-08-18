@@ -32,12 +32,6 @@ class DataLoaded extends DataState {
   }
 }
 
-// class ScheduleLoaded extends DataState {
-//   // final List<dynamic> availableCompanies;
-
-//   // const ScheduleLoaded({required this.availableCompanies});
-// }
-
 class DataError extends DataState {
   final String message;
 

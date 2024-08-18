@@ -18,16 +18,7 @@ class FilterScreenContent extends StatefulWidget {
 
 class _FilterScreenContentState extends State<FilterScreenContent> {
   
-  // ignore: prefer_final_fields
-  // List<String> _salesPersonOptions = ["Choose a Filter"];
   UsersData? dataStateCopy;
-  // final List<String> _salesPersonOptions = [
-  //   'Choose a Filter',
-  //   'All',
-  //   'Company 1',
-  //   'Company 2'
-  // ];
-  // final Future<List> _salesPersonOptions = getAssignedUsers();
   final List<String> _dateOptions = [
     'All',
     'Today',
@@ -101,15 +92,15 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
                         if (state.displayText.isNotEmpty &&
                             state.selectedFilter1 != 'Choose a Filter' &&
                             state.selectedFilter2 == 'Today') {
-                          return CurrentDate();
+                          return const CurrentDate();
                         } else if (state.displayText.isNotEmpty &&
                             state.selectedFilter1 != 'Choose a Filter' &&
                             state.selectedFilter2 == 'Last 7 Days') {
-                          return LastSevenDays();
+                          return const LastSevenDays();
                         } else if (state.displayText.isNotEmpty &&
                             state.selectedFilter1 != 'Choose a Filter' &&
                             state.selectedFilter2 == 'Last 30 Days') {
-                          return LastThirtyDays();
+                          return const LastThirtyDays();
                         } else {
                           return const SizedBox.shrink();
                         }
@@ -127,40 +118,11 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
                               Container(
                                 height: 400.0,
                                 alignment: Alignment.center,
-                                child: ClientList(),
+                                child: const ClientList(),
                               ),
                             ],
                           );
                         }
-                        // if (state.displayText.isNotEmpty &&
-                        //     state.selectedFilter2 != 'Choose a Filter') {
-                        //   return Column(
-                        //     children: [
-                        //       _buildResultBox(state),
-                        //       const SizedBox(height: 20),
-                        //       // Container(
-                        //       //   height: 400.0,
-                        //       //   alignment: Alignment.center,
-                        //       //   child: ClientListCompany2(),
-                        //       // ),
-                        //     ],
-                        //   );
-                        // }
-                        // if (state.displayText.isNotEmpty &&
-                        //     state.selectedFilter1 == 'All' &&
-                        //     state.selectedFilter2 != 'Choose a Filter') {
-                        //   return Column(
-                        //     children: [
-                        //       _buildResultBox(state),
-                        //       const SizedBox(height: 20),
-                        //       // Container(
-                        //       //   height: 400.0,
-                        //       //   alignment: Alignment.center,
-                        //       //   child: ClientListCompanyAll(), 
-                        //       // ),
-                        //     ],
-                        //   );
-                        // }
                         else {
                           return const SizedBox.shrink();
                         }
@@ -182,33 +144,6 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
       },
     );
   }
-
-  // Widget _buildDropdown(String selectedValue, List<String> options,
-  //     ValueChanged<String?> onChanged) {
-  //   return DropdownButtonFormField<String>(
-  //     value: selectedValue,
-  //     onChanged: onChanged,
-  //     decoration: InputDecoration(
-  //       fillColor: Colors.white,
-  //       filled: true,
-  //       contentPadding:
-  //           const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
-  //       border: OutlineInputBorder(
-  //         borderRadius: BorderRadius.circular(8.0),
-  //       ),
-  //     ),
-  //     items: options.map<DropdownMenuItem<String>>((String value) {
-  //       return DropdownMenuItem<String>(
-  //         value: value,
-  //         child: Text(
-  //           value,
-  //           maxLines: 1,
-  //           overflow: TextOverflow.ellipsis,
-  //         ),
-  //       );
-  //     }).toList(),
-  //   );
-  // }
 
 Widget _buildDropdown(String? selectedValue, List<String> options, String hint, ValueChanged<String?> onChanged) {
   return DropdownButtonFormField<String>(
@@ -248,9 +183,9 @@ Widget _buildDropdown(String? selectedValue, List<String> options, String hint, 
             Expanded(
                 child:
                     _buildBox('Not Visited', state.notVisitedCount.toString())),
-            const SizedBox(width: 10),
-            Expanded(
-                child: _buildBox('Ongoing', state.ongoingCount.toString())),
+            // const SizedBox(width: 10),
+            // Expanded(
+            //     child: _buildBox('Ongoing', state.ongoingCount.toString())),
             const SizedBox(width: 10),
             Expanded(child: _buildBox('Total', state.total.toString())),
           ],
@@ -297,7 +232,7 @@ Widget _buildDropdown(String? selectedValue, List<String> options, String hint, 
       colorList: const [
         Color.fromARGB(255, 165, 230, 167),
         Color.fromARGB(255, 238, 147, 140),
-        const Color.fromARGB(255, 243, 233, 147)
+        Color.fromARGB(255, 243, 233, 147)
       ],
       ringStrokeWidth: 32,
       legendOptions: const LegendOptions(

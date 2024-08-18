@@ -2,8 +2,6 @@ import 'dart:convert'; // Make sure this import is at the top of your file
 import 'package:dio/dio.dart';
 import '../../../../../env/env.dart';
 
-// TODO: Do not hardcode api key
-
 class PlaceApiDataSource {
  final Dio _dio;
 

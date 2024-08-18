@@ -228,7 +228,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
       Map<String, double> dataMap = {
         'Visited': visitedCount.toDouble(),
         'Not Visited': notVisitedCount.toDouble(),
-        'Ongoing': ongoingCount.toDouble(),
+        // 'Ongoing': ongoingCount.toDouble(),
       };
 
       emit(state.copyWith(

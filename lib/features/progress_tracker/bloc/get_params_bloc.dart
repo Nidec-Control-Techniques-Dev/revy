@@ -6,7 +6,7 @@ part 'get_params_state.dart';
 class GetParamsBloc extends Bloc<GetParamsEvent, GetParamsState> {
   GetParamsBloc()
       : super(GetParamsState(
-          filterStatus: "",
+          filterStatus: "All",
           startDate: DateTime.now(),
           endDate: DateTime.now(),
         )) {

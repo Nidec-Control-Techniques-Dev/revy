@@ -1,8 +1,6 @@
-// import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
-// import '../../../env/env.dart';
 
 part 'client_config_event.dart';
 part 'client_config_state.dart';
@@ -10,41 +8,35 @@ part 'client_config_state.dart';
 class DataBloc extends Bloc<DataEvent, DataState> {
   DataBloc() : super(DataInitial()) {
     on<InitializeSupabase>(_onInitializeSupabase);
-    // on<GenerateSchedule>(onGenerateSchedule);
   }
 
   Future<void> _onInitializeSupabase(InitializeSupabase event, Emitter<DataState> emit) async {
     try {
       final supabase = Supabase.instance.client;
-      // await supabase.auth.signInWithPassword(
-      //   email: 'nidec.ct.dev@gmail.com',
-      //   password: 'Qwerty1234',
-      // );
+
       emit(SupabaseInitialized());
-      print('Supabase initialized successfully.');
-    } catch (e) {
-      emit(DataError(e.toString()));
-      print('Error initializing Supabase: $e');
-      return;
-    }
-    // TODO: states, business models, categories must depend on user logged in
-    // for states, business models, categories
-    // check if uuid is in array of delegated uuids to user logged in
-    try {
-      print('Fetching states...');
+
+      final delegations = await Supabase.instance.client
+          .from("delegations")
+          .select('country_refs, business_model_refs, category_refs, state_refs')
+          .eq('delegated_to_ref', supabase.auth.currentUser?.id as Object)
+          .limit(1);
+
       final statesResponse = await Supabase.instance.client
           .from('states')
           .select('uuid, name')
-          .eq('country_ref', '3a55c85a-182a-4d80-854f-a9409631df6b');
+          .inFilter('country_ref', delegations[0]['country_refs'])
+          .inFilter('uuid', delegations[0]['state_refs']);
 
       final businessModelsResponse = await Supabase.instance.client
           .from('business_models')
-          .select('uuid, name');
+          .select('uuid, name')
+          .inFilter('uuid', delegations[0]['business_model_refs']);
 
       final categoriesResponse = await Supabase.instance.client
           .from('categories')
-          .select('uuid, name');
-      print('Categories response: $categoriesResponse');
+          .select('uuid, name')
+          .inFilter('uuid', delegations[0]['category_refs']);
 
       final statesOptions = (statesResponse as List)
           .map((item) => ValueItem(label: item['name'] as String, value: item['uuid'] as String))
@@ -65,7 +57,6 @@ class DataBloc extends Bloc<DataEvent, DataState> {
       ));
     } catch (e) {
       emit(DataError(e.toString()));
-      print('Error fetching data: $e');
     }
   }
 }

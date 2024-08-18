@@ -10,8 +10,8 @@ class LegendRow extends StatelessWidget {
       children: [
         LegendItem(color: Colors.green, label: 'Visited'),
         SizedBox(width: 10),
-        LegendItem(color: Colors.yellow, label: 'Ongoing'),
-        SizedBox(width: 10),
+        // LegendItem(color: Colors.yellow, label: 'Ongoing'),
+        // SizedBox(width: 10),
         LegendItem(color: Colors.red, label: 'Unvisited'),
       ],
     );

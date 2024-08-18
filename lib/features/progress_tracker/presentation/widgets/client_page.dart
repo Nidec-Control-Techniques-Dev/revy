@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import '../../bloc/update_status_bloc.dart';
 import '../../utils/update_status.dart';
 
 class ClientPage extends StatefulWidget {
@@ -112,10 +110,6 @@ class _ClientPageState extends State<ClientPage> {
               height: 40, // Fixed height
               child: ElevatedButton(
                 onPressed: () {
-                  // context.read<UpdateStatusBloc>().add(ApplyButtonPressed(
-                  //       status: status,
-                  //       companyRef: widget.companyRef,
-                  //     ));
                   insertSchedule(status: status, companyRef: widget.companyRef);
                   showDialog(
                     context: context,
@@ -189,11 +183,9 @@ class _ClientPageState extends State<ClientPage> {
               setState(() {
                 status = newValue?.toLowerCase();
                 print(status);
-                // currentValue = newValue?.toLowerCase();
-                // print(currentValue?.toLowerCase());
               });
             },
-            items: ['Visited', 'Ongoing', 'Unvisited']
+            items: ['Visited', 'Unvisited']
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value.toLowerCase(),
