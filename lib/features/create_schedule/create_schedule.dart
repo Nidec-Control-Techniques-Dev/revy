@@ -55,8 +55,8 @@ class CreateScheduleScreen extends StatelessWidget {
           //   ),
           // ],
         ),
-        body: const CreateScheduleStepper(),
-      ),
+        body: const CreateScheduleStepper() 
+      ), 
     );
   }
 }
@@ -363,7 +363,9 @@ class _StepperState extends State<CreateScheduleStepper> {
                     ),
                     content: Container(
                         alignment: Alignment.centerLeft,
-                        child: const SearchBarWidget()
+                        child: const SingleChildScrollView(
+                          child: SearchBarWidget()
+                        ) 
                     ),
                     isActive: _index == 0
                 ),

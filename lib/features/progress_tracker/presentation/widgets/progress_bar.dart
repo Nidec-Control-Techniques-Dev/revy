@@ -41,16 +41,16 @@ class ProgressBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
                 Text(
                   "$roundedPercentValue% Visited", // Display rounded percentage
-                  style: GoogleFonts.anton(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 55,
+                    fontSize: 30,
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(5),
                   child: LinearPercentIndicator(
                     lineHeight: 20,
                     percent: percentValue.isFinite

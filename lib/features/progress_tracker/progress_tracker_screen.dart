@@ -7,6 +7,7 @@ import 'presentation/widgets/client_list.dart';
 import 'presentation/widgets/date_picker.dart';
 import 'presentation/widgets/progress_bar.dart';
 import 'presentation/widgets/filter_status.dart';
+import '../progress_tracker/presentation/widgets/map.dart';
 // import 'presentation/widgets/client_list_legend.dart';
 // import 'bloc/update_status_bloc.dart';
 
@@ -32,8 +33,6 @@ class ProgressTrackerApp extends StatelessWidget {
           title: const Text(
             'Progress Tracker',
             style: TextStyle(
-              fontFamily: 'ArchivoBlack',
-              fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -66,7 +65,7 @@ class ProgressTrackerChild extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  height: 200,
+                  height: 100,
                   alignment: Alignment.center,
                   child: const ProgressBar(),
                 ),
@@ -75,20 +74,30 @@ class ProgressTrackerChild extends StatelessWidget {
                 //   alignment: Alignment.center,
                 //   child: const FilterStatus(),
                 // ),
-                Container(
-                  height: 150, // Half of the original height
-                  alignment: Alignment.center,
-                  child: const DatePicker(),
-                ),
+                const DatePicker(),
+                // const SizedBox(
+                //   height: 200, // Half of the original height
+                //   width: double.infinity,
+                //   child: DatePicker(),
+                // ),
                 // Container(
                 //   alignment: Alignment.center,
                 //   child: const LegendRow(),
                 // ),
                 // const SizedBox(height: 15),
+                const SizedBox(height: 15),
+                const SizedBox(
+                  width: double.infinity,
+                  height: 200,
+                  child: MapScreen()
+                ),
+                const SizedBox(height: 15),
                 Container(
                   alignment: Alignment.center,
                   child: const ButtonApply(),
                 ),
+                
+
                 Container(
                   height: 400.0,
                   alignment: Alignment.center,

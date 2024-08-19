@@ -13,6 +13,7 @@ import 'bloc/main_bloc_observer.dart';
 import 'env/env.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/auth_bloc.dart';
+import 'features/progress_tracker/presentation/widgets/map.dart';
 
 Future<void> main() async {
   Bloc.observer = MainBlocObserver();
