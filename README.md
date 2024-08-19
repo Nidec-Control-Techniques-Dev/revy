@@ -1,38 +1,14 @@
 # revy
 
-A new Flutter project.
+An internal tool to boost salespeople's productivity
 
-## Getting Started
+## Google Maps APIs not working?
 
-This project is a starting point for a Flutter application.
+Check if Google API keys are valid.
 
-A few resources to get you started if this is your first Flutter project:
+Resources to check out if API keys need to be modified:
+- [envied package](https://pub.dev/packages/envied)
+- [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-## Project Structure
-```
-├── lib
-|   |
-│   ├── features
-|   |   |
-│   │   └── create_schedule
-│   │       |
-|   |       |-- application
-|   |       |   |
-|   |       |   |-- presentation
-|   |       |   |---|
-|   |       |   |   |-- screens 
-|   |       |   |   |-- widget 
-│   │       |-- data
-│   │       |-- domain
-│   |       |---
-│---└── main.dart
-```
-
-## idea
+### Worried about your API keys being leaked?
+- [See top answer](https://stackoverflow.com/questions/59473527/how-to-hide-api-keys-in-androidmanifest-xml)
