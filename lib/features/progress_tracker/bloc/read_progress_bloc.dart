@@ -5,7 +5,7 @@ part 'read_progress_state.dart';
 part 'read_progress_event.dart';
 
 class ReadProgressBloc extends Bloc<ProgressTrackerEvent, ProgressTrackerState> {
-  ReadProgressBloc() : super(ProgressTrackerState(latitude: [], longitude: [])) {
+  ReadProgressBloc() : super(ProgressTrackerState(latitude: [], longitude: [], clientName: [], address: [])) {
     on<ApplyButtonPressed>(_onInitializeSupabase);
   }
 
@@ -49,7 +49,7 @@ class ReadProgressBloc extends Bloc<ProgressTrackerEvent, ProgressTrackerState> 
       }
     } 
     catch (e) {
-      emit(DataError(e.toString(), latitude: [], longitude: []));
+      emit(DataError(e.toString(), latitude: [], longitude: [], clientName: [], address: []));
       print('Error: $e');
     }
   }

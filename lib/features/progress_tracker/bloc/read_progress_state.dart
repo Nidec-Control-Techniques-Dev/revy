@@ -10,11 +10,11 @@ class ProgressTrackerState {
   // final List<Map<String, dynamic>>? faxNo;
   // final List<Map<String, dynamic>>? status;
   // final List<Map<String, dynamic>>? scheduleDates;
-  final List<dynamic>? clientName;
+  final List<dynamic> clientName;
   final List<dynamic>? companyRef;
   final List<dynamic>?  category;
   final List<dynamic>?  businessModel;
-  final List<dynamic>? address;
+  final List<dynamic> address;
   final List<dynamic>? annualSales;
   final List<dynamic>? telephoneNumber;
   final List<dynamic>? email;
@@ -24,11 +24,11 @@ class ProgressTrackerState {
   final List<dynamic> latitude;
   final List<dynamic> longitude;
   ProgressTrackerState(
-      {this.clientName,
+      {required this.clientName,
       this.companyRef,
       this.category,
       this.businessModel,
-      this.address,
+      required this.address,
       this.annualSales,
       this.telephoneNumber,
       this.email,
@@ -88,5 +88,5 @@ class ProgressTrackerState {
 class DataError extends ProgressTrackerState {
   final String message;
 
-  DataError(this.message, {required super.latitude, required super.longitude});
+  DataError(this.message, {required super.latitude, required super.longitude, required super.clientName, required super.address});
 }

@@ -15,7 +15,10 @@ class _MapScreenState extends State<MapScreen> {
   LatLng? _center;
   Set<Marker> _markers = {};
 
-  void _fetchLocation(List<dynamic> latitudeList, List<dynamic> longitudeList) async {
+  void _fetchLocation(
+    List<dynamic> latitudeList, List<dynamic> longitudeList,
+    List<dynamic> clientName, List<dynamic> address
+    ) async {
     try {
       // Calculate the center of all coordinates
       double sumLat = latitudeList.reduce((a, b) => a + b);
@@ -25,7 +28,7 @@ class _MapScreenState extends State<MapScreen> {
 
       setState(() {
         _center = LatLng(centerLat, centerLong);
-        _addMarkers(latitudeList, longitudeList);
+        _addMarkers(latitudeList, longitudeList, clientName, address);
       });
 
       // Animate the camera to the new center
@@ -41,7 +44,9 @@ class _MapScreenState extends State<MapScreen> {
     mapController = controller;
   }
 
-  void _addMarkers(List<dynamic> latitudeList, List<dynamic> longitudeList) {
+  void _addMarkers(
+    List<dynamic> latitudeList, List<dynamic> longitudeList,
+    List<dynamic> clientName, List<dynamic> address) {
     _markers.clear(); // Clear existing markers
 
     for (int i = 0; i < latitudeList.length; i++) {
@@ -51,10 +56,10 @@ class _MapScreenState extends State<MapScreen> {
           markerId: MarkerId('Location $i'),
           position: position,
           infoWindow: InfoWindow(
-            title: 'Location $i',
-            snippet: 'Tap to see more',
+            title: clientName[i],
+            snippet: 'Tap to view address',
             onTap: () {
-              _showMarkerInfo('Location $i');
+              _showMarkerInfo(clientName[i], address[i]);
             },
           ),
           icon: BitmapDescriptor.defaultMarker,
@@ -63,13 +68,13 @@ class _MapScreenState extends State<MapScreen> {
     }
   }
 
-  void _showMarkerInfo(String title) {
+  void _showMarkerInfo(String name, String address) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(title),
-          content: Text('This is $title.'),
+          title: Text(name),
+          content: Text(address),
           actions: <Widget>[
             TextButton(
               child: const Text('Close'),
@@ -88,7 +93,7 @@ class _MapScreenState extends State<MapScreen> {
     print("Building MapScreen with center: $_center");
     return BlocBuilder<ReadProgressBloc, ProgressTrackerState>(
       builder: (context, state) {
-        _fetchLocation(state.latitude, state.longitude);
+        _fetchLocation(state.latitude, state.longitude, state.clientName, state.address);
         return LayoutBuilder(
           builder: (context, constraints) {
             return Center(
