@@ -21,6 +21,8 @@ class ProgressTrackerState {
   final List<dynamic>? faxNo;
   final List<dynamic>? status;
   final List<dynamic>? scheduleDates;
+  final List<dynamic> latitude;
+  final List<dynamic> longitude;
   ProgressTrackerState(
       {this.clientName,
       this.companyRef,
@@ -32,7 +34,9 @@ class ProgressTrackerState {
       this.email,
       this.faxNo,
       this.status,
-      this.scheduleDates
+      this.scheduleDates,
+      required this.latitude,
+      required this.longitude
       });
 
   ProgressTrackerState copyWith({
@@ -46,7 +50,9 @@ class ProgressTrackerState {
     List<dynamic>? email,
     List<dynamic>? faxNo,
     List<dynamic>? status,
-    List<dynamic>? scheduleDates
+    List<dynamic>? scheduleDates,
+    List<dynamic>? latitude,
+    List<dynamic>? longitude
     // List<Map<String, dynamic>>? clientName,
     // List<Map<String, dynamic>>? businessModel,
     // List<Map<String, dynamic>>? address,
@@ -68,7 +74,9 @@ class ProgressTrackerState {
       email: email ?? this.email,
       faxNo: faxNo ?? this.faxNo,
       status: faxNo ?? this.status,
-      scheduleDates: scheduleDates ?? this.scheduleDates
+      scheduleDates: scheduleDates ?? this.scheduleDates,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude
 
       // filterStatus: filterStatus ?? this.filterStatus,
       // startDate: startDate ?? this.startDate,
@@ -80,5 +88,5 @@ class ProgressTrackerState {
 class DataError extends ProgressTrackerState {
   final String message;
 
-  DataError(this.message);
+  DataError(this.message, {required super.latitude, required super.longitude});
 }

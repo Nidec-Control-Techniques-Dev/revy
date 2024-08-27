@@ -76,9 +76,12 @@ class UploadScheduleBloc extends Bloc<UploadScheduleEvent, UploadScheduleState> 
           "user_uid": userUid,
           "schedule_date": event.scheduleDates[0]
         });
-      // temporary fix for demo purposes
-      // must create mechanism where unscheduled but staged companies are unloaded after some period
-      await supabase.rpc("delete_unscheduled_companies");
+      await supabase.rpc(
+        "delete_unscheduled_companies_v2",
+        params: {
+          "uuid_param":userUid
+        }
+      );
       emit(ScheduleSavedState());
     }
         

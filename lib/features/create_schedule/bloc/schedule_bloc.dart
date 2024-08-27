@@ -15,7 +15,7 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
 
   Future<void> onGenerateSchedule(GenerateSchedule event, Emitter<ScheduleState> emit) async {
     final supabase = Supabase.instance.client;
-
+    final user = supabase.auth.currentUser;
     final modelsCategoriesFiltered = await supabase
       .from('company_clients')
       .select('company_ref')
@@ -45,19 +45,26 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
         'num_rows': (event.endDate.difference(event.startDate).inDays + 1) * 4
       });
 
-    List<Future> futures = [];
+    if (user != null){
+      String userUid = user.id;
+      List<Future> futures = [];
 
-    for (var companyId in chosenClients.map((item) => item['company_ref'] as String).toList()){
-      futures.add(
-        supabase
-          .from("scheduled_companies")
-          .insert([
-              {'company_ref': companyId},
-            ])
-      );
+      for (var companyId in chosenClients.map((item) => item['company_ref'] as String).toList()){
+        futures.add(
+          supabase
+            .from("scheduled_companies")
+            .insert([
+                {
+                  'company_ref': companyId,
+                  'user_uid': userUid
+                },
+              ])
+        );
+      }
+      await Future.wait(futures);
     }
 
-    await Future.wait(futures);
+
 
     final chosenClientsInfo = await supabase.rpc("get_client_info_v2",
       params: {
@@ -81,6 +88,14 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
     List<dynamic> companyAddresses = chosenClients.map((item) => item['address_name']).toList();
     List<dynamic> companyAnnualSales = chosenClients.map((item) => item['annual_sales']).toList();
 
+    final latLong = await supabase
+      .from("company_addresses")
+      .select("latitude, longitude")
+      .filter("company_ref", "in", chosenClients.map((item) => item['company_ref'] as String).toList());
+
+    List<dynamic> latitude = latLong.map((item) => item['latitude']).toList();
+    List<dynamic> longitude = latLong.map((item) => item['longitude']).toList();
+
     emit(ScheduleLoaded(
       scheduleDates: getDaysInBetween(event.startDate, event.endDate),
       startingAddress: event.startLocation,
@@ -93,7 +108,9 @@ class ScheduleBloc extends Bloc<GenerateSchedule, ScheduleState> {
       subcategoryName: subcategoryName,
       contactNumber: contactNumber,
       email: email,
-      faxNumber: faxNumber
+      faxNumber: faxNumber,
+      latitude: latitude,
+      longitude: longitude
       )
     );
   }

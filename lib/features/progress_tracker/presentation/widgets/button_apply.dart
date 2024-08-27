@@ -5,26 +5,24 @@ import '../../bloc/get_params_bloc.dart';
 
 class ButtonApply extends StatelessWidget {
   const ButtonApply({super.key});
+
+  
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetParamsBloc, GetParamsState>(
       builder: (context, state) {
         return Center(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             width: MediaQuery.of(context).size.width * 0.8,
             child: ElevatedButton(
               onPressed: () {
-                print("start--------");
-                print(state.filterStatus);
-                print("end--------");
                 if (state.filterStatus == "All"){
                   context.read<ReadProgressBloc>().add(ApplyButtonPressed(
                     filterStatus: ["visited", "ongoing", "unvisited"],
                     startDate: state.startDate,
                     endDate: state.endDate,
                   ));
-                print('Apply button pressed');
                 }
                 else{
                   context.read<ReadProgressBloc>().add(ApplyButtonPressed(
@@ -32,7 +30,6 @@ class ButtonApply extends StatelessWidget {
                         startDate: state.startDate,
                         endDate: state.endDate,
                       ));
-                  print('Apply button pressed');
                 }
 
               },

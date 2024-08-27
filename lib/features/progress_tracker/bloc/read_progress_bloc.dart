@@ -5,7 +5,7 @@ part 'read_progress_state.dart';
 part 'read_progress_event.dart';
 
 class ReadProgressBloc extends Bloc<ProgressTrackerEvent, ProgressTrackerState> {
-  ReadProgressBloc() : super(ProgressTrackerState()) {
+  ReadProgressBloc() : super(ProgressTrackerState(latitude: [], longitude: [])) {
     on<ApplyButtonPressed>(_onInitializeSupabase);
   }
 
@@ -24,6 +24,13 @@ class ReadProgressBloc extends Bloc<ProgressTrackerEvent, ProgressTrackerState> 
             "user_id": userUid
           }
         );
+        final latLong = await supabase
+          .from("company_addresses")
+          .select("latitude, longitude")
+          .filter("company_ref", "in", clientResponse.map((item) => item['company_ref']).toList());
+
+        List<dynamic> latitude = latLong.map((item) => item['latitude']).toList();
+        List<dynamic> longitude = latLong.map((item) => item['longitude']).toList();
         emit(ProgressTrackerState(
           clientName: clientResponse.map((item) => item['company_name']).toList(), //all the parameters
           companyRef: clientResponse.map((item) => item['company_ref']).toList(), //all the parameters
@@ -35,12 +42,14 @@ class ReadProgressBloc extends Bloc<ProgressTrackerEvent, ProgressTrackerState> 
           email: clientResponse.map((item) => item['email']).toList(),
           faxNo: clientResponse.map((item) => item['fax_number']).toList(),
           status: clientResponse.map((item) => item['status']).toList(),
-          scheduleDates: clientResponse.map((item) => item['schedule_date']).toList()
+          scheduleDates: clientResponse.map((item) => item['schedule_date']).toList(),
+          latitude: latitude,
+          longitude: longitude
         ));
       }
     } 
     catch (e) {
-      emit(DataError(e.toString()));
+      emit(DataError(e.toString(), latitude: [], longitude: []));
       print('Error: $e');
     }
   }
