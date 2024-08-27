@@ -15,7 +15,8 @@ class ScheduleLoaded extends ScheduleState {
   final List<dynamic> contactNumber;
   final List<dynamic> email;
   final List<dynamic> faxNumber;
-  
+  final List<dynamic> latitude;
+  final List<dynamic> longitude;
 
   ScheduleLoaded({
     required this.scheduleDates,
@@ -29,7 +30,9 @@ class ScheduleLoaded extends ScheduleState {
     required this.subcategoryName,
     required this.contactNumber,
     required this.email,
-    required this.faxNumber
+    required this.faxNumber,
+    required this.latitude,
+    required this.longitude
 
     });
 }
@@ -47,6 +50,8 @@ class ScheduleReset extends ScheduleState {
   final List<dynamic> contactNumber = [];
   final List<dynamic> email = [];
   final List<dynamic> faxNumber = [];
+  final List<dynamic> latitude = [];
+  final List<dynamic> longitude = [];
   
   ScheduleReset();
 }
