@@ -20,7 +20,7 @@ class _FilterScreenContentState extends State<FilterScreenContent> {
   
   UsersData? dataStateCopy;
   final List<String> _dateOptions = [
-    'All',
+    // 'All',
     'Today',
     'Last 7 Days',
     'Last 30 Days'
