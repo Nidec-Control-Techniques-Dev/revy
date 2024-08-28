@@ -431,7 +431,7 @@ class _StepperState extends State<CreateScheduleStepper> {
                             child: TextButton(
                               onPressed: _buttonsVisible ? details.onStepCancel : null,
                               child: Text(
-                                _index == 3 ? 'Generate a New Schedule' : 'BACK',
+                                _index == 3 ? 'BACK' : 'BACK',
                               ),
                             ),
                           ),
@@ -440,7 +440,7 @@ class _StepperState extends State<CreateScheduleStepper> {
                             child: TextButton(
                               onPressed: _buttonsVisible ? details.onStepContinue : null,
                               child: Text(
-                                _index == 3 ? 'Save Schedule' : 'NEXT',
+                                _index == 3 ? 'SAVE' : 'NEXT',
                               ),
                             ),
                           ),
